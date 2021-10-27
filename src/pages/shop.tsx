@@ -7,6 +7,7 @@ import {useQuery} from '@apollo/client';
 import Image from 'next/image';
 import {GetProductInfo} from 'graphql/@types/GetProductInfo';
 import GET_PRODUCT_INVENTORY from 'graphql/GetProductInfo.graphql';
+import Link from 'next/link';
 
 const Shop: NextPage = () => {
 	const {data} = useQuery<GetProductInfo>(GET_PRODUCT_INVENTORY);
@@ -23,15 +24,17 @@ const Shop: NextPage = () => {
 
 				{data?.products?.edges?.map(({node: product}) => (
 					<div key={product.id}>
-						<a href={product.onlineStoreUrl} target="_blank">
-							<Image
-								alt={product.title}
-								src={product.images.edges[0].node.transformedSrc}
-								width={100}
-								height={100}
-							/>
-							{product.title}
-						</a>
+						<Link href={`/product/${product.id}`}>
+							<a>
+								<Image
+									alt={product.title}
+									src={product.images.edges[0].node.transformedSrc}
+									width={100}
+									height={100}
+								/>
+								{product.title}
+							</a>
+						</Link>
 					</div>
 				))}
 			</ContentColumn>

@@ -22,7 +22,7 @@ export const Navigation = () => (
 				<Link passHref href="/shop">
 					<StyledLink>Shop</StyledLink>
 				</Link>
-				<Link passHref href="/">
+				<Link passHref href="/contact">
 					<StyledLink>Contact</StyledLink>
 				</Link>
 			</div>
@@ -41,6 +41,26 @@ const StyledNavigation = styled.nav`
 	top: 0;
 	left: 50%;
 	transform: translateX(-50%);
+	z-index: 10;
+
+	&:before {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 50%;
+		transform: translateX(-50%);
+		right: 0;
+		bottom: 0;
+		background: rgba(200, 200, 200, 1);
+		@supports (-webkit-backdrop-filter: none) or (backdrop-filter: none) {
+			background: rgba(200, 200, 200, 0.7);
+			-webkit-backdrop-filter: blur(10px);
+			backdrop-filter: blur(10px);
+		}
+		width: 100vw;
+		height: 100%;
+		z-index: -1;
+	}
 `;
 
 const FlexWrapper = styled.div`
@@ -56,14 +76,6 @@ const StyledLink = styled.a`
 	color: ${colors.black};
 	font-weight: 500;
 	position: relative;
-
-	/* &:first-of-type {
-		padding-left: 0;
-	}
-
-	&:last-of-type {
-		padding-right: 0;
-	} */
 
 	&::after {
 		content: '';
