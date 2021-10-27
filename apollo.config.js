@@ -8,6 +8,6 @@ module.exports = {
 			},
 		},
 		excludes: ['**/node_modules/**/*'],
-		includes: ['**/*.ts'],
+		includes: ['src/**/*.{ts,tsx,js,jsx,graphql}'],
 	},
 };
