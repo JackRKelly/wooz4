@@ -28,7 +28,7 @@ const Shop: NextPage = () => {
 							<a>
 								<Image
 									alt={product.title}
-									src={product.images.edges[0].node.transformedSrc}
+									src={product.images.edges[0].node.transformedSrc as string}
 									width={100}
 									height={100}
 								/>
