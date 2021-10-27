@@ -2,7 +2,7 @@ import {ContentColumn} from 'components/ContentColumn';
 import {useRouter} from 'next/router';
 import React from 'react';
 import GET_PRODUCT_BY_ID from 'graphql/GetProductById.graphql';
-import {gql, useQuery} from '@apollo/client';
+import {useQuery} from '@apollo/client';
 import {
 	GetProductById,
 	GetProductByIdVariables,
@@ -12,22 +12,16 @@ const Product = () => {
 	const router = useRouter();
 	const {id} = router.query;
 
-	const QUERY = gql`
-		query GetProductById($id: ID!) {
-			product(id: $id) {
-				title
-			}
-		}
-	`;
-
-	const {data} = useQuery<GetProductById, GetProductByIdVariables>(QUERY, {
-		variables: {id: id?.toString()},
-	});
-
-	console.log(id, data);
+	const {data} = useQuery<GetProductById, GetProductByIdVariables>(
+		GET_PRODUCT_BY_ID,
+		{
+			variables: {id: id?.toString() || ''},
+		},
+	);
 
 	return (
 		<ContentColumn>
+			<h1>{data?.product?.title}</h1>
 			<p>Product: {id}</p>
 		</ContentColumn>
 	);

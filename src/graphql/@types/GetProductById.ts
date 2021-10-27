@@ -7,11 +7,7 @@
 // GraphQL query operation: GetProductById
 // ====================================================
 
-export interface GetProductById_node_AppliedGiftCard {
-  __typename: "AppliedGiftCard" | "Article" | "Blog" | "Checkout" | "CheckoutLineItem" | "Collection" | "Comment" | "ExternalVideo" | "MailingAddress" | "MediaImage" | "Metafield" | "Model3d" | "Order" | "Page" | "Payment" | "ProductOption" | "ProductVariant" | "ShopPolicy" | "Video";
-}
-
-export interface GetProductById_node_Product {
+export interface GetProductById_product {
   __typename: "Product";
   /**
    * The product’s title.
@@ -19,15 +15,13 @@ export interface GetProductById_node_Product {
   title: string;
 }
 
-export type GetProductById_node = GetProductById_node_AppliedGiftCard | GetProductById_node_Product;
-
 export interface GetProductById {
   /**
-   * Returns a specific node by ID.
+   * Fetch a specific `Product` by one of its unique attributes.
    */
-  node: GetProductById_node | null;
+  product: GetProductById_product | null;
 }
 
 export interface GetProductByIdVariables {
-  id?: string | null;
+  id: string;
 }

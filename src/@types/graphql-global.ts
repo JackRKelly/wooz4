@@ -166,6 +166,7 @@ export enum CurrencyCode {
   XCD = "XCD",
   XOF = "XOF",
   XPF = "XPF",
+  XXX = "XXX",
   YER = "YER",
   ZAR = "ZAR",
   ZMW = "ZMW",

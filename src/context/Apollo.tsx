@@ -7,7 +7,7 @@ import {
 import {setContext} from '@apollo/client/link/context';
 import React from 'react';
 
-const uri = 'https://wooz4.myshopify.com/api/2021-10/graphql.json';
+const uri = 'https://wooz4.myshopify.com/api/2022-01/graphql.json';
 const token = 'a372aab299a287bb7c1aa9bb2eb0196b';
 const httpLink = createHttpLink({
 	uri,
