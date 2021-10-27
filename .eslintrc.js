@@ -30,6 +30,7 @@ module.exports = {
 		'no-mixed-operators': 'off',
 		'operator-linebreak': 'off',
 		'@typescript-eslint/indent': 'off',
-		'@typescript-eslint/ban-tslint-comment', 'off'
+		'@typescript-eslint/ban-tslint-comment': 'off',
+		'capitalized-comments': 'off',
 	},
 };
