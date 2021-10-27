@@ -15,8 +15,14 @@
 		"noEmit": true,
 		"jsx": "preserve",
 		"noFallthroughCasesInSwitch": true,
-		"allowSyntheticDefaultImports": true
+		"allowSyntheticDefaultImports": true,
+		"typeRoots": [
+			"node_modules/@types",
+			"src/@types",
+			"src/@types/graphql.d.ts"
+		]
 	},
-	"exclude": ["node_modules", "types/generated"],
+	"files": ["src/@types/graphql.d.ts"],
+	"exclude": ["node_modules"],
 	"include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"]
 }

@@ -1,0 +1,27 @@
+query GetProductInfo {
+	products(first: 20) {
+		edges {
+			node {
+				id
+				title
+				description
+				onlineStoreUrl
+				tags
+				handle
+				images(first: 1) {
+					edges {
+						node {
+							transformedSrc
+						}
+					}
+				}
+				priceRange {
+					minVariantPrice {
+						amount
+						currencyCode
+					}
+				}
+			}
+		}
+	}
+}

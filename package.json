@@ -11,8 +11,8 @@
 		"lint:check": "next lint ./src/ --no-cache",
 		"format": "yarn prettier --write ./src/**/*.{js,jsx,json,md,ts,tsx}",
 		"format:check": "yarn prettier ./src/**/*.{js,jsx,json,md,ts,tsx}",
-		"codegen": "yarn download-schema && apollo codegen:generate --localSchemaFile=types/download.json --target=typescript --includes=src/**/*.{ts,tsx,js,jsx,graphql} --globalTypesFile=src/types/generated/graphql.ts types/generated",
-		"download-schema": "apollo schema:download types/download.json --endpoint=https://wooz4.myshopify.com/api/graphql --header=\"X-Shopify-Storefront-Access-Token: a372aab299a287bb7c1aa9bb2eb0196b\""
+		"codegen": "yarn download-schema && apollo codegen:generate --localSchemaFile=src/@types/download.json --target=typescript --includes=src/**/*.{ts,tsx,js,jsx,graphql} --globalTypesFile=src/@types/graphql-global.ts @types",
+		"download-schema": "apollo schema:download src/@types/download.json --endpoint=https://wooz4.myshopify.com/api/graphql --header=\"X-Shopify-Storefront-Access-Token: a372aab299a287bb7c1aa9bb2eb0196b\""
 	},
 	"dependencies": {
 		"@apollo/client": "^3.4.16",
@@ -45,7 +45,8 @@
 		"pretty-quick": "^3.1.1",
 		"sass": "^1.41.1",
 		"styled-components": "^5.3.1",
-		"typescript": "^4.4.3"
+		"typescript": "^4.4.3",
+		"webpack": "^5.60.0"
 	},
 	"browserslist": {
 		"production": [
