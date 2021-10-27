@@ -15,14 +15,15 @@ const Product = () => {
 	const {data} = useQuery<GetProductById, GetProductByIdVariables>(
 		GET_PRODUCT_BY_ID,
 		{
-			variables: {id: id?.toString() || ''},
+			variables: {id: id?.toString() ?? ''},
 		},
 	);
 
 	return (
 		<ContentColumn>
 			<h1>{data?.product?.title}</h1>
-			<p>Product: {id}</p>
+			<p>Product ID: {id}</p>
+			<p>Price: ${data?.product?.priceRange.minVariantPrice.amount}</p>
 		</ContentColumn>
 	);
 };
