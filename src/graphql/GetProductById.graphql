@@ -1,5 +1,23 @@
 query GetProductById($id: ID!) {
 	product(id: $id) {
+		id
 		title
+		description
+		onlineStoreUrl
+		tags
+		handle
+		images(first: 1) {
+			edges {
+				node {
+					transformedSrc
+				}
+			}
+		}
+		priceRange {
+			minVariantPrice {
+				amount
+				currencyCode
+			}
+		}
 	}
 }
