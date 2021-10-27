@@ -20,7 +20,7 @@ module.exports = {
 		project: './tsconfig.json',
 	},
 	plugins: ['react', '@typescript-eslint'],
-	ignorePatterns: ['**/*.js'],
+	ignorePatterns: ['**/*.js', '*/**/types/generated/*'],
 	rules: {
 		'@typescript-eslint/triple-slash-reference': 'off',
 		'react/function-component-definition': 'off',

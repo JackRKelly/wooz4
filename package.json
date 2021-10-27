@@ -10,19 +10,25 @@
 		"lint": "next lint ./src/ --fix --no-cache",
 		"lint:check": "next lint ./src/ --no-cache",
 		"format": "yarn prettier --write ./src/**/*.{js,jsx,json,md,ts,tsx}",
-		"format:check": "yarn prettier ./src/**/*.{js,jsx,json,md,ts,tsx}"
+		"format:check": "yarn prettier ./src/**/*.{js,jsx,json,md,ts,tsx}",
+		"codegen": "yarn download-schema && apollo codegen:generate --localSchemaFile=types/download.json --target=typescript --includes=src/**/*.{ts,tsx,js,jsx,graphql} --globalTypesFile=src/types/generated/graphql.ts types/generated",
+		"download-schema": "apollo schema:download types/download.json --endpoint=https://wooz4.myshopify.com/api/graphql --header=\"X-Shopify-Storefront-Access-Token: a372aab299a287bb7c1aa9bb2eb0196b\""
 	},
 	"dependencies": {
+		"@apollo/client": "^3.4.16",
 		"@next/eslint-plugin-next": "11.1.3-canary.7",
+		"graphql": "^15.7.1",
 		"next": "11.1.3-canary.7",
 		"react": "17.0.2",
-		"react-dom": "17.0.2"
+		"react-dom": "17.0.2",
+		"shopify-buy": "^2.12.0"
 	},
 	"devDependencies": {
 		"@babel/core": "^7.15.5",
 		"@types/node": "^16.9.2",
 		"@types/react": "^17.0.21",
 		"@types/react-dom": "^17.0.9",
+		"@types/shopify-buy": "^2.10.8",
 		"@types/styled-components": "^5.1.14",
 		"@typescript-eslint/eslint-plugin": "^4.31.1",
 		"@typescript-eslint/parser": "^4.31.1",
