@@ -6,6 +6,11 @@ query GetProductById($id: ID!) {
 		onlineStoreUrl
 		tags
 		handle
+		options {
+			id
+			name
+			values
+		}
 		images(first: 10) {
 			edges {
 				node {
