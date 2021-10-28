@@ -1,4 +1,4 @@
-import React, {FC, useState} from 'react';
+import React, {FC, useEffect, useState} from 'react';
 import styled from 'styled-components';
 import {
 	DesktopNavigation,
@@ -9,6 +9,10 @@ import {columnWidth} from 'const';
 
 export const Navigation: FC = () => {
 	const [isNavigationOpen, setIsNavigationOpen] = useState(false);
+
+	useEffect(() => {
+		document.body.style.overflow = isNavigationOpen ? 'hidden' : 'auto';
+	}, [isNavigationOpen]);
 
 	return (
 		<>
