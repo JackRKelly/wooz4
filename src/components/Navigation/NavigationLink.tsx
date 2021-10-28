@@ -8,14 +8,21 @@ import styled from 'styled-components';
 interface NavigationLinkProps {
 	route: string;
 	text: string;
+	onClick?: () => void;
 }
 
-export const NavigationLink: FC<NavigationLinkProps> = ({route, text}) => {
+export const NavigationLink: FC<NavigationLinkProps> = ({
+	route,
+	text,
+	onClick,
+}) => {
 	const router = useRouter();
 
 	return (
 		<Link passHref href={route}>
-			<StyledLink active={router.pathname === route}>{text}</StyledLink>
+			<StyledLink active={router.pathname === route} onClick={onClick}>
+				{text}
+			</StyledLink>
 		</Link>
 	);
 };
