@@ -43,16 +43,7 @@ export default class DocumentPage extends Document {
 			<>
 				<Head>
 					<meta charSet="utf-8" />
-					<link
-						rel="icon"
-						type="image/png"
-						href="https://avatars.githubusercontent.com/u/42853339?v=4"
-					/>
 					<meta name="theme-color" content={colors.lightRed} />
-					<meta
-						name="description"
-						content="Jack Kelly, Full–stack TypeScript engineer from the US"
-					/>
 					<link rel="preconnect" href="https://fonts.googleapis.com" />
 					<link rel="preconnect" href="https://fonts.gstatic.com" />
 					<link
