@@ -20,7 +20,7 @@ export const FullscreenNavigation: FC<{
 			<NavigationLink text="Home" route="/" onClick={close} />
 			<NavigationLink text="Shop" route="/shop" onClick={close} />
 			<NavigationLink text="Contact" route="/contact" onClick={close} />
-			<NavigationLink text="Contact" route="/cart" onClick={close} />
+			<NavigationLink text="Cart" route="/cart" onClick={close} />
 			<button type="button" onClick={close}>
 				X
 			</button>
