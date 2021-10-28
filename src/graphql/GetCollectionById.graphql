@@ -1,0 +1,22 @@
+query GetCollectionById($id: ID!) {
+	collection(id: $id) {
+		title
+		description
+		image {
+			transformedSrc
+		}
+		products(first: 8) {
+			edges {
+				node {
+					id
+					priceRange {
+						minVariantPrice {
+							amount
+							currencyCode
+						}
+					}
+				}
+			}
+		}
+	}
+}
