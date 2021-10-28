@@ -8,4 +8,6 @@ export const colors = {
 	lightGray: '#E1E1E1',
 	lighterGray: '#EBEBEB',
 	black: '#000000',
+	sakuraRed: '#FF2E2E',
+	sakuraBlue: '#0066FF',
 };
