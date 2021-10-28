@@ -44,7 +44,7 @@ export const ProductCardLink = styled.a`
 `;
 
 export const ProductCardWrapper = styled.div`
-	transition: ${transitions.easeInOutMedium};
+	transition: ${transitions.easeInOutShort};
 	box-shadow: 0 0 1rem rgba(0, 0, 0, 0.03);
 	&:hover {
 		box-shadow: 0 3px 1rem rgba(0, 0, 0, 0.06);
