@@ -1,4 +1,4 @@
-import {breakpoints} from 'constants/breakpoints';
+import {columnWidth} from 'constants/mediaQuery';
 import React from 'react';
 import styled from 'styled-components';
 
@@ -11,23 +11,9 @@ export const ContentColumn: React.FC<ContentColumnType> = ({children}) => (
 );
 
 const ContentColumnStyled = styled.div`
-	padding: 2.5em 0;
-	width: 90%;
+	padding: 3.5rem 0;
 	margin: 0 auto;
+	overflow-x: hidden;
 
-	@media (min-width: ${breakpoints.sm}px) {
-		width: 80%;
-	}
-
-	@media (min-width: ${breakpoints.md}px) {
-		width: 70%;
-	}
-
-	@media (min-width: ${breakpoints.lg}px) {
-		width: 60%;
-	}
-
-	@media (min-width: ${breakpoints.xl}px) {
-		width: 50%;
-	}
+	${columnWidth}
 `;
