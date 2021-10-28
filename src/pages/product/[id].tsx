@@ -6,7 +6,7 @@ import {useQuery} from '@apollo/client';
 import {
 	GetProductById,
 	GetProductByIdVariables,
-} from 'graphql/@types/GetProductById';
+} from 'graph/@types/GetProductById';
 import Image from 'next/image';
 import Head from 'next/head';
 import {Select, Option} from 'components/Select';
@@ -28,39 +28,37 @@ const Product = () => {
 	const {title, priceRange, options: productOptions, images} = product ?? {};
 
 	return (
-		<>
+		<ContentColumn>
 			<Head>
 				<title>{buildTitle(`${title ?? 'View Product'}`, 'after')}</title>
 			</Head>
 
 			<LoadingSpinner isLoading={loading} />
 
-			<ContentColumn>
-				<h1>{title}</h1>
-				<p>Product ID: {id}</p>
-				<p>Price: ${priceRange?.minVariantPrice.amount}</p>
-				{productOptions?.map(option => {
-					const options: Option[] = option.values.map(value => ({
-						id: `${option.id}${value}`,
-						value,
-					}));
-					return (
-						<div key={option.id}>
-							<p>{option.name}</p>
-							<Select options={options} />
-						</div>
-					);
-				})}
-				{images?.edges[0]?.node?.transformedSrc && (
-					<Image
-						alt={title}
-						src={images?.edges[0]?.node?.transformedSrc as string}
-						width={300}
-						height={300}
-					/>
-				)}
-			</ContentColumn>
-		</>
+			<h1>{title}</h1>
+			<p>Product ID: {id}</p>
+			<p>Price: ${priceRange?.minVariantPrice.amount}</p>
+			{productOptions?.map(option => {
+				const options: Option[] = option.values.map(value => ({
+					id: `${option.id}${value}`,
+					value,
+				}));
+				return (
+					<div key={option.id}>
+						<p>{option.name}</p>
+						<Select options={options} />
+					</div>
+				);
+			})}
+			{images?.edges[0]?.node?.transformedSrc && (
+				<Image
+					alt={title}
+					src={images?.edges[0]?.node?.transformedSrc as string}
+					width={300}
+					height={300}
+				/>
+			)}
+		</ContentColumn>
 	);
 };
 

@@ -5,15 +5,12 @@ import {ContentColumn} from 'components/ContentColumn';
 import {buildTitle} from 'util/title';
 
 const Contact: NextPage = () => (
-	<div>
+	<ContentColumn>
 		<Head>
 			<title>{buildTitle('Contact', 'after')}</title>
 		</Head>
-
-		<ContentColumn>
-			<h1>Contact</h1>
-		</ContentColumn>
-	</div>
+		<h1>Contact</h1>
+	</ContentColumn>
 );
 
 export default Contact;

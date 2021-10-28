@@ -1,5 +1,5 @@
-query GetProductInfo {
-	products(first: 20) {
+query GetProducts($limit: Int!) {
+	products(first: $limit) {
 		edges {
 			node {
 				id

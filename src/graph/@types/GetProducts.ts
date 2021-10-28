@@ -6,10 +6,10 @@
 import { CurrencyCode } from "./../../@types/graphql-global";
 
 // ====================================================
-// GraphQL query operation: GetProductInfo
+// GraphQL query operation: GetProducts
 // ====================================================
 
-export interface GetProductInfo_products_edges_node_images_edges_node {
+export interface GetProducts_products_edges_node_images_edges_node {
   __typename: "Image";
   /**
    * The location of the transformed image as a URL.
@@ -20,23 +20,23 @@ export interface GetProductInfo_products_edges_node_images_edges_node {
   transformedSrc: any;
 }
 
-export interface GetProductInfo_products_edges_node_images_edges {
+export interface GetProducts_products_edges_node_images_edges {
   __typename: "ImageEdge";
   /**
    * The item at the end of ImageEdge.
    */
-  node: GetProductInfo_products_edges_node_images_edges_node;
+  node: GetProducts_products_edges_node_images_edges_node;
 }
 
-export interface GetProductInfo_products_edges_node_images {
+export interface GetProducts_products_edges_node_images {
   __typename: "ImageConnection";
   /**
    * A list of edges.
    */
-  edges: GetProductInfo_products_edges_node_images_edges[];
+  edges: GetProducts_products_edges_node_images_edges[];
 }
 
-export interface GetProductInfo_products_edges_node_priceRange_minVariantPrice {
+export interface GetProducts_products_edges_node_priceRange_minVariantPrice {
   __typename: "MoneyV2";
   /**
    * Decimal money amount.
@@ -48,15 +48,15 @@ export interface GetProductInfo_products_edges_node_priceRange_minVariantPrice {
   currencyCode: CurrencyCode;
 }
 
-export interface GetProductInfo_products_edges_node_priceRange {
+export interface GetProducts_products_edges_node_priceRange {
   __typename: "ProductPriceRange";
   /**
    * The lowest variant's price.
    */
-  minVariantPrice: GetProductInfo_products_edges_node_priceRange_minVariantPrice;
+  minVariantPrice: GetProducts_products_edges_node_priceRange_minVariantPrice;
 }
 
-export interface GetProductInfo_products_edges_node {
+export interface GetProducts_products_edges_node {
   __typename: "Product";
   /**
    * A globally-unique identifier.
@@ -87,32 +87,36 @@ export interface GetProductInfo_products_edges_node {
   /**
    * List of images associated with the product.
    */
-  images: GetProductInfo_products_edges_node_images;
+  images: GetProducts_products_edges_node_images;
   /**
    * The price range.
    */
-  priceRange: GetProductInfo_products_edges_node_priceRange;
+  priceRange: GetProducts_products_edges_node_priceRange;
 }
 
-export interface GetProductInfo_products_edges {
+export interface GetProducts_products_edges {
   __typename: "ProductEdge";
   /**
    * The item at the end of ProductEdge.
    */
-  node: GetProductInfo_products_edges_node;
+  node: GetProducts_products_edges_node;
 }
 
-export interface GetProductInfo_products {
+export interface GetProducts_products {
   __typename: "ProductConnection";
   /**
    * A list of edges.
    */
-  edges: GetProductInfo_products_edges[];
+  edges: GetProducts_products_edges[];
 }
 
-export interface GetProductInfo {
+export interface GetProducts {
   /**
    * List of the shop’s products.
    */
-  products: GetProductInfo_products;
+  products: GetProducts_products;
+}
+
+export interface GetProductsVariables {
+  limit: number;
 }

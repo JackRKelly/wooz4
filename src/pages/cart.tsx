@@ -5,15 +5,12 @@ import {ContentColumn} from 'components/ContentColumn';
 import {buildTitle} from 'util/title';
 
 const Cart: NextPage = () => (
-	<div>
+	<ContentColumn>
 		<Head>
 			<title>{buildTitle('Cart', 'after')}</title>
 		</Head>
-
-		<ContentColumn>
-			<h1>Cart</h1>
-		</ContentColumn>
-	</div>
+		<h1>Cart</h1>
+	</ContentColumn>
 );
 
 export default Cart;
