@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import React, {FC} from 'react';
+import React, {FC, useState} from 'react';
 import {RBWoozLogo} from 'assets/svg/RBWoozLogo';
 import {StyledNavigation} from 'components/Navigation';
 import {breakpoints} from 'const';
@@ -13,35 +13,46 @@ import {Hamburger} from 'assets/svg/Icons/Hamburger';
 import {Cart} from 'assets/svg/Icons/Cart';
 import {Search} from 'assets/svg';
 
-export const MobileNavigation: FC<{open: () => void}> = ({open}) => (
-	<StyledMobileNavigation>
-		<FlexRowWrapper>
-			<div>
-				<Link passHref href="/">
-					<a>
-						<RBWoozLogo />
-					</a>
-				</Link>
-			</div>
+export const MobileNavigation: FC<{open: () => void}> = ({open}) => {
+	const [isHoveringSearch, setIsHoveringSearch] = useState(false);
 
+	return (
+		<StyledMobileNavigation>
 			<FlexRowWrapper>
-				<NormalizedIconButton>
-					<Search />
-				</NormalizedIconButton>
+				<div>
+					<Link passHref href="/">
+						<a>
+							<RBWoozLogo />
+						</a>
+					</Link>
+				</div>
 
-				<Link passHref href="/cart">
-					<NormalizedIconLink>
-						<Cart />
-					</NormalizedIconLink>
-				</Link>
+				<FlexRowWrapper>
+					<NormalizedIconButton
+						onMouseEnter={() => {
+							setIsHoveringSearch(true);
+						}}
+						onMouseLeave={() => {
+							setIsHoveringSearch(false);
+						}}
+					>
+						<Search active={isHoveringSearch} />
+					</NormalizedIconButton>
 
-				<NormalizedIconButton type="button" onClick={open}>
-					<Hamburger />
-				</NormalizedIconButton>
+					<Link passHref href="/cart">
+						<NormalizedIconLink>
+							<Cart />
+						</NormalizedIconLink>
+					</Link>
+
+					<NormalizedIconButton type="button" onClick={open}>
+						<Hamburger />
+					</NormalizedIconButton>
+				</FlexRowWrapper>
 			</FlexRowWrapper>
-		</FlexRowWrapper>
-	</StyledMobileNavigation>
-);
+		</StyledMobileNavigation>
+	);
+};
 
 const StyledMobileNavigation = styled(StyledNavigation)`
 	display: none;

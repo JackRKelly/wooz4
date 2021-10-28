@@ -1,4 +1,4 @@
-import React, {FC} from 'react';
+import React, {FC, useState} from 'react';
 import {RBWoozLogo} from 'assets/svg/RBWoozLogo';
 import {NavigationLink, StyledNavigation} from 'components/Navigation';
 import {breakpoints} from 'const';
@@ -11,34 +11,45 @@ import {
 import {Cart, Search} from 'assets/svg';
 import Link from 'next/link';
 
-export const DesktopNavigation: FC = () => (
-	<StyledDesktopNavigation>
-		<FlexRowWrapper>
+export const DesktopNavigation: FC = () => {
+	const [isHoveringSearch, setIsHoveringSearch] = useState(false);
+
+	return (
+		<StyledDesktopNavigation>
 			<FlexRowWrapper>
-				<Link passHref href="/">
-					<a>
-						<RBWoozLogo />
-					</a>
-				</Link>
+				<FlexRowWrapper>
+					<Link passHref href="/">
+						<a>
+							<RBWoozLogo />
+						</a>
+					</Link>
+				</FlexRowWrapper>
+				<FlexRowWrapper>
+					<NavigationLink text="Home" route="/" />
+					<NavigationLink text="Shop" route="/shop" />
+					<NavigationLink text="Contact" route="/contact" />
+				</FlexRowWrapper>
+				<FlexRowWrapper>
+					<NormalizedIconButton
+						onMouseEnter={() => {
+							setIsHoveringSearch(true);
+						}}
+						onMouseLeave={() => {
+							setIsHoveringSearch(false);
+						}}
+					>
+						<Search active={isHoveringSearch} />
+					</NormalizedIconButton>
+					<Link passHref href="/cart">
+						<NormalizedIconLink>
+							<Cart />
+						</NormalizedIconLink>
+					</Link>
+				</FlexRowWrapper>
 			</FlexRowWrapper>
-			<FlexRowWrapper>
-				<NavigationLink text="Home" route="/" />
-				<NavigationLink text="Shop" route="/shop" />
-				<NavigationLink text="Contact" route="/contact" />
-			</FlexRowWrapper>
-			<FlexRowWrapper>
-				<NormalizedIconButton>
-					<Search />
-				</NormalizedIconButton>
-				<Link passHref href="/cart">
-					<NormalizedIconLink>
-						<Cart />
-					</NormalizedIconLink>
-				</Link>
-			</FlexRowWrapper>
-		</FlexRowWrapper>
-	</StyledDesktopNavigation>
-);
+		</StyledDesktopNavigation>
+	);
+};
 
 export const StyledDesktopNavigation = styled(StyledNavigation)`
 	display: none;
