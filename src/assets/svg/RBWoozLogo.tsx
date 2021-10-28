@@ -16,6 +16,7 @@ export const RBWoozLogo = () => (
 );
 
 const Svg = styled.svg`
+	display: block;
 	width: 4rem;
 	height: 3rem;
 	&:hover {
