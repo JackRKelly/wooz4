@@ -12,10 +12,7 @@ import {LoadingSpinner} from 'components/LoadingSpinner';
 
 const Shop: NextPage = () => {
 	const {loading, data} = useQuery<GetProductInfo>(GET_PRODUCT_INVENTORY);
-
 	const {products} = data ?? {};
-
-	console.log(data);
 
 	return (
 		<div>

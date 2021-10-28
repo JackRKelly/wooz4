@@ -14,7 +14,7 @@ const Product = () => {
 	const router = useRouter();
 	const {id} = router.query;
 
-	const {loading, data} = useQuery<GetProductById, GetProductByIdVariables>(
+	const {data} = useQuery<GetProductById, GetProductByIdVariables>(
 		GET_PRODUCT_BY_ID,
 		{
 			variables: {id: id?.toString() ?? ''},
@@ -26,36 +26,33 @@ const Product = () => {
 
 	return (
 		<ContentColumn>
-			{loading ? (
-				<p>loading (change)</p>
-			) : (
-				<div>
-					<h1>{title}</h1>
-					<p>Product ID: {id}</p>
-					<p>Price: ${priceRange?.minVariantPrice.amount}</p>
-					{productOptions?.map(option => {
-						const options: Option[] = option.values.map(value => ({
-							id: `${option.id}${value}`,
-							value,
-						}));
-						return (
-							<div key={option.id}>
-								<p>{option.name}</p>
-								<Select options={options} />
-							</div>
-						);
-					})}
+			<div>
+				<h1>{title}</h1>
+				<p>Product ID: {id}</p>
+				<p>Price: ${priceRange?.minVariantPrice.amount}</p>
+				{productOptions?.map(option => {
+					const options: Option[] = option.values.map(value => ({
+						id: `${option.id}${value}`,
+						value,
+					}));
+					return (
+						<div key={option.id}>
+							<p>{option.name}</p>
+							<Select options={options} />
+						</div>
+					);
+				})}
 
-					{images?.edges[0]?.node?.transformedSrc && (
-						<Image
-							alt={title}
-							src={images?.edges[0]?.node?.transformedSrc as string}
-							width={300}
-							height={300}
-						/>
-					)}
-				</div>
-			)}
+				{images?.edges[0]?.node?.transformedSrc && (
+					<Image
+						alt={title}
+						src={images?.edges[0]?.node?.transformedSrc as string}
+						width={300}
+						height={300}
+					/>
+				)}
+			</div>
+			)
 		</ContentColumn>
 	);
 };
