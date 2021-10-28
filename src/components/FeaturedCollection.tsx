@@ -5,22 +5,32 @@ import {
 } from 'graph/@types/GetCollectionById';
 import {useQuery} from '@apollo/client';
 import React from 'react';
-import styled from 'styled-components';
 import Image from 'next/image';
 import Link from 'next/link';
+import {
+	ProductCardGrid,
+	ProductCard,
+	ProductCardLink,
+	ProductFlex,
+	ProductCardImageWrapper,
+	ProductCardWrapper,
+} from './ProductCard';
+import {colors} from 'const';
+import styled from 'styled-components';
 
 export const FeaturedCollection = () => {
+	const CURRENT_COLLECTION_ID =
+		'Z2lkOi8vc2hvcGlmeS9Db2xsZWN0aW9uLzM0OTM1OTQwNzM0Mg==';
+
 	const {data} = useQuery<GetCollectionById, GetCollectionByIdVariables>(
 		GET_COLLECTION_BY_ID,
 		{
-			variables: {id: 'Z2lkOi8vc2hvcGlmeS9Db2xsZWN0aW9uLzM0OTM1OTQwNzM0Mg=='},
+			variables: {id: CURRENT_COLLECTION_ID},
 		},
 	);
 
 	const {collection} = data ?? {};
 	const {title, description, products} = collection ?? {};
-
-	console.log(collection);
 
 	return (
 		<section>
@@ -38,67 +48,52 @@ export const FeaturedCollection = () => {
 							},
 						},
 					}) => (
-						<ProductCard key={id}>
+						<ProductCardWrapper key={id}>
 							<Link passHref href={`/product/${id}`}>
 								<ProductCardLink>
-									<ProductFlex>
-										<ProductCardImageWrapper>
-											<Image
-												alt="product"
-												src={images?.edges[0].node.transformedSrc as string}
-												layout="fill"
-											/>
-										</ProductCardImageWrapper>
-										<span>
-											{title} - ${amount}
-										</span>
-									</ProductFlex>
+									<ProductCard>
+										<ProductFlex>
+											<ProductCardImageWrapper>
+												<Image
+													alt="product"
+													src={images?.edges[0].node.transformedSrc as string}
+													layout="fill"
+												/>
+											</ProductCardImageWrapper>
+											<span>
+												{title} - ${amount}
+											</span>
+										</ProductFlex>
+									</ProductCard>
 								</ProductCardLink>
 							</Link>
-						</ProductCard>
+						</ProductCardWrapper>
 					),
 				)}
 			</ProductCardGrid>
+			<ViewCollectionLinkWrapper>
+				<Link passHref href={`/collection/${CURRENT_COLLECTION_ID}`}>
+					<ViewCollectionLink>View collection</ViewCollectionLink>
+				</Link>
+			</ViewCollectionLinkWrapper>
 		</section>
 	);
 };
 
-const ProductCard = styled.div`
-	background-color: white;
-	width: 100%;
-	padding: 0.5rem;
-`;
-
-const ProductCardImageWrapper = styled.div`
-	width: 10rem;
-	height: 10rem;
-	position: relative;
-`;
-
-const ProductCardGrid = styled.div`
-	width: 100%;
-	display: grid;
-	justify-items: stretch;
-	column-gap: 1rem;
-	row-gap: 1rem;
-	grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
-`;
-
-const ProductFlex = styled.div`
-	display: flex;
-	flex-direction: column;
-	flex-wrap: wrap;
-	align-items: center;
-	justify-content: space-between;
-	width: 100%;
-	height: 100%;
-`;
-
-const ProductCardLink = styled.a`
-	color: black;
+const ViewCollectionLink = styled.a`
+	display: inline-block;
+	color: ${colors.black};
 	text-decoration: none;
-	cursor: pointer;
-	width: 100%;
-	height: 100%;
-	display: block;
+	text-align: right;
+	border: 1px solid ${colors.black};
+	padding: 0.6rem 0.8rem;
+	border-radius: 3px;
+	text-transform: uppercase;
+	font-size: 0.8rem;
+`;
+
+const ViewCollectionLinkWrapper = styled.div`
+	display: flex;
+	justify-content: flex-end;
+	margin: 1rem 0;
 `;
