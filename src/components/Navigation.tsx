@@ -1,9 +1,8 @@
 import {RBWoozLogo} from 'assets/svg/RBWoozLogo';
-import {colors} from 'constants/colors';
-import {transitions} from 'constants/transitions';
 import Link from 'next/link';
 import React from 'react';
 import styled from 'styled-components';
+import {NavigationLink} from './NavigationLink';
 
 export const Navigation = () => (
 	<StyledNavigation>
@@ -16,20 +15,12 @@ export const Navigation = () => (
 				</Link>
 			</div>
 			<div>
-				<Link passHref href="/">
-					<StyledLink>Home</StyledLink>
-				</Link>
-				<Link passHref href="/shop">
-					<StyledLink>Shop</StyledLink>
-				</Link>
-				<Link passHref href="/contact">
-					<StyledLink>Contact</StyledLink>
-				</Link>
+				<NavigationLink text="Home" route="/" />
+				<NavigationLink text="Shop" route="/shop" />
+				<NavigationLink text="Contact" route="/contact" />
 			</div>
 			<div>
-				<Link passHref href="/">
-					<StyledLink>Cart</StyledLink>
-				</Link>
+				<NavigationLink text="Cart" route="/cart" />
 			</div>
 		</FlexWrapper>
 	</StyledNavigation>
@@ -68,28 +59,4 @@ const FlexWrapper = styled.div`
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-`;
-
-const StyledLink = styled.a`
-	display: inline-block;
-	padding: 1rem 1rem;
-	text-decoration: none;
-	color: ${colors.black};
-	font-weight: 500;
-	position: relative;
-
-	&::after {
-		content: '';
-		position: absolute;
-		bottom: 0.5rem;
-		left: 50%;
-		transform: translateX(-50%);
-		width: 0%;
-		height: 1.5px;
-		background-color: ${colors.black};
-		transition: ${transitions.easeInOutShort};
-	}
-	&:hover::after {
-		width: 90%;
-	}
 `;
