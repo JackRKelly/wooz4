@@ -38,7 +38,11 @@ const Collection = () => {
 	return (
 		<ContentColumn>
 			<Head>
-				<title>{buildTitle(`${title ?? 'Collection'}`, 'after')}</title>
+				<title>
+					{title
+						? buildTitle(`${title}`, 'after')
+						: buildTitle('Loading...', 'before')}
+				</title>
 			</Head>
 
 			<LoadingSpinner isLoading={loading} />

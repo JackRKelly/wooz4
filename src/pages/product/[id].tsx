@@ -30,7 +30,11 @@ const Product = () => {
 	return (
 		<ContentColumn>
 			<Head>
-				<title>{buildTitle(`${title ?? 'View Product'}`, 'after')}</title>
+				<title>
+					{title
+						? buildTitle(`${title}`, 'after')
+						: buildTitle('Loading...', 'before')}
+				</title>
 			</Head>
 
 			<LoadingSpinner isLoading={loading} />

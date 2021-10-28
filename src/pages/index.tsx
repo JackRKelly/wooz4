@@ -8,7 +8,7 @@ import {FeaturedCollection} from 'components/FeaturedCollection';
 const Home: NextPage = () => (
 	<ContentColumn>
 		<Head>
-			<title>{buildTitle('About', 'after')}</title>
+			<title>{buildTitle('Home', 'after')}</title>
 		</Head>
 
 		<section>
