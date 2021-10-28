@@ -8,7 +8,6 @@ import React from 'react';
 import styled from 'styled-components';
 import Image from 'next/image';
 import Link from 'next/link';
-import {breakpoints} from 'const';
 
 export const FeaturedCollection = () => {
 	const {data} = useQuery<GetCollectionById, GetCollectionByIdVariables>(
@@ -51,7 +50,7 @@ export const FeaturedCollection = () => {
 											/>
 										</ProductCardImageWrapper>
 										<span>
-											{title} - {amount}
+											{title} - ${amount}
 										</span>
 									</ProductFlex>
 								</ProductCardLink>
@@ -82,11 +81,7 @@ const ProductCardGrid = styled.div`
 	justify-items: stretch;
 	column-gap: 1rem;
 	row-gap: 1rem;
-	grid-template-columns: repeat(auto-fill, minmax(40%, 1fr));
-
-	@media (min-width: ${breakpoints.lg}px) {
-		grid-template-columns: repeat(auto-fill, minmax(20%, 1fr));
-	}
+	grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
 `;
 
 const ProductFlex = styled.div`
