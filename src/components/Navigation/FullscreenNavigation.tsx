@@ -5,10 +5,11 @@ import styled from 'styled-components';
 import {transitions} from 'const';
 import {
 	FlexColumnWrapper,
+	FlexRowWrapper,
 	NormalizedIconButton,
 	NormalizedIconLink,
 } from 'components/Styled';
-import {Cart, Close, RBWoozLogo} from 'assets/svg';
+import {Cart, Close, RBWoozLogo, Search} from 'assets/svg';
 
 export const FullscreenNavigation: FC<{
 	open: boolean;
@@ -16,22 +17,30 @@ export const FullscreenNavigation: FC<{
 }> = ({open, close}) => (
 	<StyledFullscreenNavigation open={open}>
 		<FlexColumnWrapperHeight>
+			<NormalizedIconButton type="button" onClick={close}>
+				<Close />
+			</NormalizedIconButton>
+
+			<FlexRowWrapper>
+				<NormalizedIconButton>
+					<Search />
+				</NormalizedIconButton>
+				<Link passHref href="/cart">
+					<NormalizedIconLink onClick={close}>
+						<Cart />
+					</NormalizedIconLink>
+				</Link>
+			</FlexRowWrapper>
+
+			<NavigationLink text="Home" route="/" onClick={close} />
+			<NavigationLink text="Shop" route="/shop" onClick={close} />
+			<NavigationLink text="Contact" route="/contact" onClick={close} />
+
 			<Link passHref href="/">
 				<a onClick={close}>
 					<RBWoozLogo />
 				</a>
 			</Link>
-			<NavigationLink text="Home" route="/" onClick={close} />
-			<NavigationLink text="Shop" route="/shop" onClick={close} />
-			<NavigationLink text="Contact" route="/contact" onClick={close} />
-			<Link passHref href="/cart">
-				<NormalizedIconLink onClick={close}>
-					<Cart />
-				</NormalizedIconLink>
-			</Link>
-			<NormalizedIconButton type="button" onClick={close}>
-				<Close />
-			</NormalizedIconButton>
 		</FlexColumnWrapperHeight>
 	</StyledFullscreenNavigation>
 );

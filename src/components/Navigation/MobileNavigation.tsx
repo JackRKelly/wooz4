@@ -11,6 +11,7 @@ import {
 } from 'components/Styled';
 import {Hamburger} from 'assets/svg/Icons/Hamburger';
 import {Cart} from 'assets/svg/Icons/Cart';
+import {Search} from 'assets/svg';
 
 export const MobileNavigation: FC<{open: () => void}> = ({open}) => (
 	<StyledMobileNavigation>
@@ -24,6 +25,10 @@ export const MobileNavigation: FC<{open: () => void}> = ({open}) => (
 			</div>
 
 			<FlexRowWrapper>
+				<NormalizedIconButton>
+					<Search />
+				</NormalizedIconButton>
+
 				<Link passHref href="/cart">
 					<NormalizedIconLink>
 						<Cart />
