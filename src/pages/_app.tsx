@@ -3,6 +3,7 @@ import type {AppProps} from 'next/app';
 import {createGlobalStyle} from 'styled-components';
 import {Navigation} from 'components/Navigation';
 import {Apollo as ApolloProvider} from 'context/Apollo';
+import {colors} from 'const';
 
 export const GlobalStyle = createGlobalStyle`
   html {
@@ -10,7 +11,7 @@ export const GlobalStyle = createGlobalStyle`
     scroll-behavior: smooth;
 		font-family: 'Sora', sans-serif;
 		font-weight: 300;
-		background-color: #F8FAFA;
+		background-color: ${colors.lighterGray};
   }
 
   body {
@@ -24,6 +25,22 @@ export const GlobalStyle = createGlobalStyle`
   *::after {
     box-sizing: inherit;
   }
+
+	::selection {
+		color: ${colors.white};
+		background: ${colors.sakuraRed}
+	}
+
+	img::selection {
+		color: ${colors.black};
+		background: ${colors.lightGray}
+	}
+
+	h1,h2,h3,h4,h5,h6 {
+		&::selection {
+			color: ${colors.white};
+			background: ${colors.sakuraBlue}}
+		}
 `;
 
 const App = ({Component, pageProps, router}: AppProps) => {
