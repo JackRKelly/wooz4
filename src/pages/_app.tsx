@@ -10,6 +10,7 @@ export const GlobalStyle = createGlobalStyle`
     scroll-behavior: smooth;
 		font-family: 'Sora', sans-serif;
 		font-weight: 300;
+		background-color: #F8FAFA;
   }
 
   body {
