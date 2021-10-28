@@ -10,15 +10,6 @@ import Document, {
 import {colors} from 'constants/colors';
 import {ServerStyleSheet} from 'styled-components';
 
-const Page = () => (
-	<Html lang="en">
-		<body>
-			<Main />
-			<NextScript />
-		</body>
-	</Html>
-);
-
 export default class DocumentPage extends Document {
 	static async getInitialProps(
 		ctx: DocumentContext,
@@ -70,7 +61,12 @@ export default class DocumentPage extends Document {
 					/>
 				</Head>
 
-				<Page />
+				<Html lang="en">
+					<body>
+						<Main />
+						<NextScript />
+					</body>
+				</Html>
 			</>
 		);
 	}
