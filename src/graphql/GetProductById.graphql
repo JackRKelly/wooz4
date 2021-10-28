@@ -6,7 +6,7 @@ query GetProductById($id: ID!) {
 		onlineStoreUrl
 		tags
 		handle
-		images(first: 1) {
+		images(first: 10) {
 			edges {
 				node {
 					transformedSrc

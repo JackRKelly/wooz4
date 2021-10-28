@@ -9,8 +9,8 @@
 		"start": "next start",
 		"lint": "next lint ./src/ --fix --no-cache",
 		"lint:check": "next lint ./src/ --no-cache",
-		"format": "yarn prettier --write ./src/**/*.{js,jsx,json,md,ts,tsx}",
-		"format:check": "yarn prettier ./src/**/*.{js,jsx,json,md,ts,tsx}",
+		"format": "yarn prettier --write ./src/**/*.{js,jsx,json,md,ts,tsx,graphql}",
+		"format:check": "yarn prettier ./src/**/*.{js,jsx,json,md,ts,tsx,graphql}",
 		"codegen": "yarn download-schema && apollo client:codegen --target typescript --globalTypesFile=src/@types/graphql-global.ts @types",
 		"download-schema": "rover graph introspect https://wooz4.myshopify.com/api/graphql --header=\"X-Shopify-Storefront-Access-Token: a372aab299a287bb7c1aa9bb2eb0196b\" > src/graphql/schema.graphql"
 	},
