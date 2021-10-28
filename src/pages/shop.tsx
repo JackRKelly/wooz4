@@ -15,17 +15,16 @@ const Shop: NextPage = () => {
 	const {products} = data ?? {};
 
 	return (
-		<div>
+		<>
 			<Head>
 				<title>{buildTitle('Shop', 'after')}</title>
 				<meta name="description" content="All about Jack Kelly" />
 			</Head>
 
+			<LoadingSpinner isLoading={loading} />
+
 			<ContentColumn>
 				<h1>Shop Wooz4</h1>
-
-				<LoadingSpinner isLoading={loading} />
-
 				{products?.edges?.map(({node}) => {
 					const {
 						id,
@@ -50,7 +49,7 @@ const Shop: NextPage = () => {
 					);
 				})}
 			</ContentColumn>
-		</div>
+		</>
 	);
 };
 
