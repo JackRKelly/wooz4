@@ -10,6 +10,7 @@ const Contact: NextPage = () => (
 			<title>{buildTitle('Contact', 'after')}</title>
 		</Head>
 		<h1>Contact</h1>
+		<p>This page is under construction</p>
 	</ContentColumn>
 );
 

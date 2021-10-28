@@ -10,6 +10,7 @@ const Cart: NextPage = () => (
 			<title>{buildTitle('Cart', 'after')}</title>
 		</Head>
 		<h1>Cart</h1>
+		<p>This page is under construction</p>
 	</ContentColumn>
 );
 
