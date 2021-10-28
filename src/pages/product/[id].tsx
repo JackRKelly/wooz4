@@ -40,9 +40,9 @@ const Product = () => {
 
 			<LoadingSpinner isLoading={loading} />
 
-			<h1>
+			<h2>
 				{title} - ${priceRange?.minVariantPrice.amount}
-			</h1>
+			</h2>
 			<div>{reactHtmlParser(product?.descriptionHtml as string)}</div>
 
 			{productOptions?.map(option => {

@@ -18,13 +18,25 @@ import {
 	ProductCardGrid,
 } from 'components/ProductCard';
 
+const PRODUCTS_PER_PAGE = 12;
+
 const Shop: NextPage = () => {
-	const {loading, data} = useQuery<GetProducts, GetProductsVariables>(
-		GET_PRODUCTS,
-		{
-			variables: {limit: 20},
+	const {loading, error, data, fetchMore} = useQuery<
+		GetProducts,
+		GetProductsVariables
+	>(GET_PRODUCTS, {
+		variables: {
+			first: PRODUCTS_PER_PAGE,
+			last: null,
+			after: null,
+			before: null,
 		},
-	);
+	});
+
+	if (error) {
+		console.error(error);
+	}
+
 	const {products} = data ?? {};
 
 	return (
@@ -70,6 +82,62 @@ const Shop: NextPage = () => {
 					);
 				})}
 			</ProductCardGrid>
+
+			<button
+				type="button"
+				disabled={!products?.pageInfo.hasPreviousPage}
+				onClick={() => {
+					void fetchMore({
+						variables: {
+							first: null,
+							after: null,
+							last: PRODUCTS_PER_PAGE,
+							before: products?.edges[0]?.cursor ?? null,
+						},
+						updateQuery: (prevResult, {fetchMoreResult}) => {
+							if (
+								!fetchMoreResult ||
+								fetchMoreResult.products.edges.length === 0
+							) {
+								return prevResult;
+							}
+
+							return fetchMoreResult;
+						},
+					});
+				}}
+			>
+				previous
+			</button>
+			<span>Pagination</span>
+			<button
+				type="button"
+				disabled={!products?.pageInfo.hasNextPage}
+				onClick={() => {
+					void fetchMore({
+						variables: {
+							first: PRODUCTS_PER_PAGE,
+							after:
+								products?.edges[(products?.edges?.length ?? 1) - 1]?.cursor ??
+								null,
+							last: null,
+							before: null,
+						},
+						updateQuery: (prevResult, {fetchMoreResult}) => {
+							if (
+								!fetchMoreResult ||
+								fetchMoreResult.products.edges.length === 0
+							) {
+								return prevResult;
+							}
+
+							return fetchMoreResult;
+						},
+					});
+				}}
+			>
+				next
+			</button>
 		</ContentColumn>
 	);
 };

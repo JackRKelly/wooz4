@@ -8,6 +8,17 @@
 //==============================================================
 
 /**
+ * Possible error codes that could be returned by CartUserError.
+ */
+export enum CartErrorCode {
+  INVALID = "INVALID",
+  INVALID_MERCHANDISE_LINE = "INVALID_MERCHANDISE_LINE",
+  LESS_THAN = "LESS_THAN",
+  MISSING_DISCOUNT_CODE = "MISSING_DISCOUNT_CODE",
+  MISSING_NOTE = "MISSING_NOTE",
+}
+
+/**
  * Currency codes.
  */
 export enum CurrencyCode {

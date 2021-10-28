@@ -113,6 +113,10 @@ export interface GetProducts_products_edges_node {
 export interface GetProducts_products_edges {
   __typename: "ProductEdge";
   /**
+   * A cursor for use in pagination.
+   */
+  cursor: string;
+  /**
    * The item at the end of ProductEdge.
    */
   node: GetProducts_products_edges_node;
@@ -138,5 +142,8 @@ export interface GetProducts {
 }
 
 export interface GetProductsVariables {
-  limit: number;
+  first?: number | null;
+  last?: number | null;
+  after?: string | null;
+  before?: string | null;
 }
