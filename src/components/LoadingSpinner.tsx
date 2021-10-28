@@ -32,12 +32,7 @@ interface LoadingSpinnerProps {
 }
 
 const Spinner = styled.div<LoadingSpinnerProps>`
-	background: rgba(0, 0, 0, 0.6);
-	@supports (-webkit-backdrop-filter: none) or (backdrop-filter: none) {
-		background: rgba(0, 0, 0, 0.6);
-		-webkit-backdrop-filter: blur(10px);
-		backdrop-filter: blur(10px);
-	}
+	background: rgb(255, 255, 255);
 	position: fixed;
 	top: 0;
 	left: 0;
