@@ -23,6 +23,10 @@ export interface GetCollectionById_collection_image {
 export interface GetCollectionById_collection_products_edges_node_images_edges_node {
   __typename: "Image";
   /**
+   * A unique identifier for the image.
+   */
+  id: string | null;
+  /**
    * The location of the transformed image as a URL.
    * 
    * All transformation arguments are considered "best-effort". If they can be applied to an image, they will be.

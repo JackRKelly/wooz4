@@ -34,6 +34,10 @@ export interface GetProductById_product_images_edges_node {
    * Otherwise any transformations which an image type does not support will be ignored.
    */
   transformedSrc: any;
+  /**
+   * A unique identifier for the image.
+   */
+  id: string | null;
 }
 
 export interface GetProductById_product_images_edges {

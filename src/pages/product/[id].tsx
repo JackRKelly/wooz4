@@ -54,14 +54,16 @@ const Product = () => {
 					</div>
 				);
 			})}
-			{images?.edges[0]?.node?.transformedSrc && (
+
+			{images?.edges?.map(({node: {id, transformedSrc}}) => (
 				<Image
+					key={id}
 					alt={title}
-					src={images?.edges[0]?.node?.transformedSrc as string}
+					src={transformedSrc as string}
 					width={300}
 					height={300}
 				/>
-			)}
+			))}
 		</ContentColumn>
 	);
 };

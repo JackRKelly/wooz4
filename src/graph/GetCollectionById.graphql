@@ -13,6 +13,7 @@ query GetCollectionById($id: ID!) {
 					images(first: 1) {
 						edges {
 							node {
+								id
 								transformedSrc
 							}
 						}
