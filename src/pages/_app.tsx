@@ -1,7 +1,6 @@
 import React, {StrictMode, useEffect} from 'react';
 import type {AppProps} from 'next/app';
 import {createGlobalStyle} from 'styled-components';
-import {FixedBackground} from 'components/FixedBackground';
 import {Navigation} from 'components/Navigation';
 import {Apollo as ApolloProvider} from 'context/Apollo';
 
@@ -37,7 +36,6 @@ const App = ({Component, pageProps, router}: AppProps) => {
 				<Navigation />
 				<GlobalStyle />
 				<Component {...pageProps} />
-				<FixedBackground />
 			</ApolloProvider>
 		</StrictMode>
 	);
