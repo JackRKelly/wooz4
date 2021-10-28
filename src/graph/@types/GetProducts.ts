@@ -9,6 +9,18 @@ import { CurrencyCode } from "./../../@types/graphql-global";
 // GraphQL query operation: GetProducts
 // ====================================================
 
+export interface GetProducts_products_pageInfo {
+  __typename: "PageInfo";
+  /**
+   * Indicates if there are more pages to fetch.
+   */
+  hasNextPage: boolean;
+  /**
+   * Indicates if there are any pages prior to the current page.
+   */
+  hasPreviousPage: boolean;
+}
+
 export interface GetProducts_products_edges_node_images_edges_node {
   __typename: "Image";
   /**
@@ -104,6 +116,10 @@ export interface GetProducts_products_edges {
 
 export interface GetProducts_products {
   __typename: "ProductConnection";
+  /**
+   * Information to aid in pagination.
+   */
+  pageInfo: GetProducts_products_pageInfo;
   /**
    * A list of edges.
    */

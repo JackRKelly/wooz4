@@ -1,5 +1,9 @@
 query GetProducts($limit: Int!) {
 	products(first: $limit) {
+		pageInfo {
+			hasNextPage
+			hasPreviousPage
+		}
 		edges {
 			node {
 				id
