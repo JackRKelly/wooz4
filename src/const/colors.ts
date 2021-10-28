@@ -6,7 +6,7 @@ export const colors = {
 	darkGray: '#323842',
 	gray: '#BBBBBB',
 	lightGray: '#E1E1E1',
-	lighterGray: '#EBEBEB',
+	lighterGray: '#F8FAFA',
 	black: '#000000',
 	sakuraRed: '#FF2E2E',
 	sakuraBlue: '#0066FF',
