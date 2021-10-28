@@ -8,6 +8,7 @@ import React from 'react';
 import styled from 'styled-components';
 import Image from 'next/image';
 import Link from 'next/link';
+import {breakpoints} from 'const';
 
 export const FeaturedCollection = () => {
 	const {data} = useQuery<GetCollectionById, GetCollectionByIdVariables>(
@@ -65,19 +66,27 @@ export const FeaturedCollection = () => {
 
 const ProductCard = styled.div`
 	background-color: white;
-	width: 15rem;
-	height: 18rem;
-	margin-bottom: 20px;
+	width: 100%;
+	padding: 0.5rem;
 `;
 
 const ProductCardImageWrapper = styled.div`
-	width: 15rem;
-	height: 15rem;
+	width: 10rem;
+	height: 10rem;
 	position: relative;
 `;
 
 const ProductCardGrid = styled.div`
+	width: 100%;
 	display: grid;
+	justify-items: stretch;
+	column-gap: 1rem;
+	row-gap: 1rem;
+	grid-template-columns: repeat(auto-fill, minmax(40%, 1fr));
+
+	@media (min-width: ${breakpoints.lg}px) {
+		grid-template-columns: repeat(auto-fill, minmax(20%, 1fr));
+	}
 `;
 
 const ProductFlex = styled.div`
@@ -85,11 +94,16 @@ const ProductFlex = styled.div`
 	flex-direction: column;
 	flex-wrap: wrap;
 	align-items: center;
-	justify-content: space-evenly;
+	justify-content: space-between;
+	width: 100%;
+	height: 100%;
 `;
 
 const ProductCardLink = styled.a`
 	color: black;
 	text-decoration: none;
 	cursor: pointer;
+	width: 100%;
+	height: 100%;
+	display: block;
 `;
