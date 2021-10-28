@@ -7,7 +7,7 @@ import Document, {
 	Main,
 	NextScript,
 } from 'next/document';
-import {colors} from 'constants/colors';
+import {colors} from 'const';
 import {ServerStyleSheet} from 'styled-components';
 
 export default class DocumentPage extends Document {

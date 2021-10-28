@@ -1,4 +1,4 @@
-import {breakpoints} from 'constants/breakpoints';
+import {breakpoints} from 'const';
 import {css} from 'styled-components';
 
 export const columnWidth = css`

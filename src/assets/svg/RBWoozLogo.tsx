@@ -1,5 +1,4 @@
-import {colors} from 'constants/colors';
-import {transitions} from 'constants/transitions';
+import {colors, transitions} from 'const';
 import React from 'react';
 import styled from 'styled-components';
 
@@ -18,7 +17,7 @@ export const RBWoozLogo = () => (
 
 const Svg = styled.svg`
 	display: block;
-	width: 4rem;
+	width: 3.5rem;
 	height: 3rem;
 	&:hover {
 		circle {

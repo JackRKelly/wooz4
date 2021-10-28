@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import React, {FC} from 'react';
-import {redBlueFade, spinnerDash, spinnerRotate} from 'constants/keyframes';
+import {redBlueFade, spinnerDash, spinnerRotate} from 'const';
 
 interface Props {
 	isLoading: boolean;

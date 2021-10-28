@@ -1,4 +1,4 @@
-import {columnWidth} from 'constants/mediaQuery';
+import {columnWidth} from 'const';
 import React from 'react';
 import styled from 'styled-components';
 

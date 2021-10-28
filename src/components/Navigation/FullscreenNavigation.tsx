@@ -1,42 +1,40 @@
 import Link from 'next/link';
 import React, {FC} from 'react';
-import {RBWoozLogo} from 'assets/svg/RBWoozLogo';
 import {NavigationLink} from 'components/Navigation';
 import styled from 'styled-components';
-import {transitions} from 'constants/transitions';
-import {FlexColumnWrapper} from 'components/Styled/FlexColumnWrapper';
-import {Cart} from 'assets/svg/Cart';
-import {useRouter} from 'next/router';
+import {transitions} from 'const';
+import {
+	FlexColumnWrapper,
+	NormalizedIconButton,
+	NormalizedIconLink,
+} from 'components/Styled';
+import {Cart, Close, RBWoozLogo} from 'assets/svg';
 
 export const FullscreenNavigation: FC<{
 	open: boolean;
 	close: () => void;
-}> = ({open, close}) => {
-	const router = useRouter();
-
-	return (
-		<StyledFullscreenNavigation open={open}>
-			<FlexColumnWrapperHeight>
-				<Link passHref href="/">
-					<a onClick={close}>
-						<RBWoozLogo />
-					</a>
-				</Link>
-				<NavigationLink text="Home" route="/" onClick={close} />
-				<NavigationLink text="Shop" route="/shop" onClick={close} />
-				<NavigationLink text="Contact" route="/contact" onClick={close} />
-				<Link passHref href="/cart">
-					<a onClick={close}>
-						<Cart active={router.pathname === '/cart'} />
-					</a>
-				</Link>
-				<button type="button" onClick={close}>
-					X
-				</button>
-			</FlexColumnWrapperHeight>
-		</StyledFullscreenNavigation>
-	);
-};
+}> = ({open, close}) => (
+	<StyledFullscreenNavigation open={open}>
+		<FlexColumnWrapperHeight>
+			<Link passHref href="/">
+				<a onClick={close}>
+					<RBWoozLogo />
+				</a>
+			</Link>
+			<NavigationLink text="Home" route="/" onClick={close} />
+			<NavigationLink text="Shop" route="/shop" onClick={close} />
+			<NavigationLink text="Contact" route="/contact" onClick={close} />
+			<Link passHref href="/cart">
+				<NormalizedIconLink onClick={close}>
+					<Cart />
+				</NormalizedIconLink>
+			</Link>
+			<NormalizedIconButton type="button" onClick={close}>
+				<Close />
+			</NormalizedIconButton>
+		</FlexColumnWrapperHeight>
+	</StyledFullscreenNavigation>
+);
 
 export const StyledFullscreenNavigation = styled.div<{open: boolean}>`
 	transition: ${transitions.easeInOutMedium};

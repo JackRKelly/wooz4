@@ -5,7 +5,7 @@ import {
 	FullscreenNavigation,
 	MobileNavigation,
 } from 'components/Navigation';
-import {columnWidth} from 'constants/mediaQuery';
+import {columnWidth} from 'const';
 
 export const Navigation: FC = () => {
 	const [isNavigationOpen, setIsNavigationOpen] = useState(false);
