@@ -32,7 +32,7 @@ interface StyledLinkProps {
 }
 
 const StyledLink = styled.a<StyledLinkProps>`
-	display: inline-block;
+	display: block;
 	padding: 1rem 1rem;
 	text-decoration: none;
 	color: ${colors.black};
@@ -42,7 +42,7 @@ const StyledLink = styled.a<StyledLinkProps>`
 	&:nth-child(2n + 1) {
 		&::after {
 			background-color: ${props =>
-				props.active ? colors.sakuraRed : colors.black};
+				props.active ? colors.sakuraRed : colors.gray};
 		}
 	}
 
@@ -55,7 +55,7 @@ const StyledLink = styled.a<StyledLinkProps>`
 		width: ${props => (props.active ? '90%' : '0%')};
 		height: 1.5px;
 		background-color: ${props =>
-			props.active ? colors.sakuraBlue : colors.black};
+			props.active ? colors.sakuraBlue : colors.gray};
 		transition: ${transitions.easeInOutShort};
 	}
 

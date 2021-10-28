@@ -1,11 +1,12 @@
+import {colors} from 'constants/colors';
 import {transitions} from 'constants/transitions';
-import * as React from 'react';
+import React from 'react';
 import styled from 'styled-components';
 
 export const RBWoozLogo = () => (
 	<Svg viewBox="0 0 1389 860" fill="none" xmlns="http://www.w3.org/2000/svg">
-		<Circle cx={834} cy={476} r={139} fill="#0066FF" />
-		<Circle cx={476} cy={476} r={139} fill="#FF2E2E" />
+		<Circle cx={834} cy={476} r={139} fill={colors.sakuraBlue} />
+		<Circle cx={476} cy={476} r={139} fill={colors.sakuraRed} />
 		<path
 			fillRule="evenodd"
 			clipRule="evenodd"
