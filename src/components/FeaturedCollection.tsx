@@ -86,8 +86,8 @@ const ViewCollectionLink = styled.a`
 	text-decoration: none;
 	text-align: right;
 	border: 1px solid ${colors.black};
-	padding: 0.6rem 0.8rem;
-	border-radius: 3px;
+	padding: 0.4rem 0.8rem;
+	border-radius: 4px;
 	text-transform: uppercase;
 	font-size: 0.8rem;
 `;
@@ -95,5 +95,5 @@ const ViewCollectionLink = styled.a`
 const ViewCollectionLinkWrapper = styled.div`
 	display: flex;
 	justify-content: flex-end;
-	margin: 1rem 0;
+	margin: 1.5rem 0;
 `;
