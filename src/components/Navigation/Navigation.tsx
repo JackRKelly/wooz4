@@ -11,7 +11,7 @@ export const Navigation: FC = () => {
 	const [isNavigationOpen, setIsNavigationOpen] = useState(false);
 
 	useEffect(() => {
-		document.body.style.overflow = isNavigationOpen ? 'hidden' : 'auto';
+		document.body.className = isNavigationOpen ? 'scroll-hidden' : '';
 	}, [isNavigationOpen]);
 
 	return (

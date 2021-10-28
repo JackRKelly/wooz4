@@ -21,12 +21,22 @@ export const GlobalStyle = styled.createGlobalStyle`
 		background-size: cover;
 	}
 
+	body.scroll-hidden {
+		overflow: hidden;
+	}
+
 	table {
 		border-collapse: collapse;
 	}
 
 	.table-responsive.dynamic {
-		overflow-x: scroll;
+		overflow-x: auto;
+	}
+
+	.scroll-hidden {
+		.table-responsive.dynamic {
+			overflow-x: hidden;
+		}
 	}
 
 	table,
