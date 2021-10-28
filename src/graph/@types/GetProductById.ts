@@ -87,13 +87,13 @@ export interface GetProductById_product {
    */
   title: string;
   /**
-   * Stripped description of the product, single line with HTML tags removed.
-   */
-  description: string;
-  /**
    * The URL used for viewing the resource on the shop's Online Store. Returns `null` if the resource is currently not published to the Online Store sales channel.
    */
   onlineStoreUrl: any | null;
+  /**
+   * The description of the product, complete with HTML formatting.
+   */
+  descriptionHtml: any;
   /**
    * A comma separated list of tags that have been added to the product.
    * Additional access scope required for private apps: unauthenticated_read_product_tags.

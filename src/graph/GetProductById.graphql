@@ -2,8 +2,8 @@ query GetProductById($id: ID!) {
 	product(id: $id) {
 		id
 		title
-		description
 		onlineStoreUrl
+		descriptionHtml
 		tags
 		handle
 		options {
