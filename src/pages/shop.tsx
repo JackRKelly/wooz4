@@ -8,9 +8,14 @@ import Image from 'next/image';
 import {GetProductInfo} from 'graphql/@types/GetProductInfo';
 import GET_PRODUCT_INVENTORY from 'graphql/GetProductInfo.graphql';
 import Link from 'next/link';
+import {LoadingSpinner} from 'components/LoadingSpinner';
 
 const Shop: NextPage = () => {
-	const {data} = useQuery<GetProductInfo>(GET_PRODUCT_INVENTORY);
+	const {loading, data} = useQuery<GetProductInfo>(GET_PRODUCT_INVENTORY);
+
+	const {products} = data ?? {};
+
+	console.log(data);
 
 	return (
 		<div>
@@ -22,21 +27,31 @@ const Shop: NextPage = () => {
 			<ContentColumn>
 				<h1>Shop Wooz4</h1>
 
-				{data?.products?.edges?.map(({node: product}) => (
-					<div key={product.id}>
-						<Link href={`/product/${product.id}`}>
-							<a>
-								<Image
-									alt={product.title}
-									src={product.images.edges[0].node.transformedSrc as string}
-									width={100}
-									height={100}
-								/>
-								{product.title}
-							</a>
-						</Link>
-					</div>
-				))}
+				<LoadingSpinner isLoading={loading} />
+
+				{products?.edges?.map(({node}) => {
+					const {
+						id,
+						title,
+						images: {edges: images},
+					} = node;
+
+					return (
+						<div key={id}>
+							<Link href={`/product/${id}`}>
+								<a>
+									<Image
+										alt={title}
+										src={images[0].node.transformedSrc as string}
+										width={100}
+										height={100}
+									/>
+									{title}
+								</a>
+							</Link>
+						</div>
+					);
+				})}
 			</ContentColumn>
 		</div>
 	);
