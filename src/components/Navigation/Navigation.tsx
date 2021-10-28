@@ -48,7 +48,7 @@ const NavigationWrapper = styled.div`
 	left: 0;
 	right: 0;
 	background: rgba(255, 255, 255, 1);
-	box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
+	box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.04);
 	@supports (-webkit-backdrop-filter: none) or (backdrop-filter: none) {
 		background: rgba(255, 255, 255, 0.7);
 		-webkit-backdrop-filter: blur(10px);

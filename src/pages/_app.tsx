@@ -21,6 +21,21 @@ export const GlobalStyle = styled.createGlobalStyle`
 		background-size: cover;
 	}
 
+	table {
+		border-collapse: collapse;
+	}
+
+	.table-responsive.dynamic {
+		overflow-x: scroll;
+	}
+
+	table,
+	td,
+	th {
+		border-bottom: 1px solid black;
+		padding: 4px 6px;
+	}
+
 	*,
 	*::before,
 	*::after {
