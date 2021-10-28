@@ -32,5 +32,7 @@ module.exports = {
 		'@typescript-eslint/indent': 'off',
 		'@typescript-eslint/ban-tslint-comment': 'off',
 		'capitalized-comments': 'off',
+		'react/jsx-indent': 'off',
+		'react/jsx-curly-newline': 'off',
 	},
 };
