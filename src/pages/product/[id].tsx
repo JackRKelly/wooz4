@@ -1,7 +1,7 @@
 import {ContentColumn} from 'components/ContentColumn';
 import {useRouter} from 'next/router';
 import React from 'react';
-import GET_PRODUCT_BY_ID from 'graphql/GetProductById.graphql';
+import {GET_PRODUCT_BY_ID} from 'graph';
 import {useQuery} from '@apollo/client';
 import {
 	GetProductById,
