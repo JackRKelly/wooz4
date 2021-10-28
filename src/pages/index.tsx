@@ -13,7 +13,6 @@ const Home: NextPage = () => (
 	<div>
 		<Head>
 			<title>{buildTitle('About', 'after')}</title>
-			<meta name="description" content="The home page for Jack Kelly" />
 		</Head>
 
 		<ContentColumn>

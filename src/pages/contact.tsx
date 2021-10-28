@@ -8,7 +8,6 @@ const Contact: NextPage = () => (
 	<div>
 		<Head>
 			<title>{buildTitle('Contact', 'after')}</title>
-			<meta name="description" content="All about Jack Kelly" />
 		</Head>
 
 		<ContentColumn>

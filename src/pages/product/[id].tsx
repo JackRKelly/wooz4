@@ -31,7 +31,6 @@ const Product = () => {
 		<>
 			<Head>
 				<title>{buildTitle('title', 'after')}</title>
-				<meta name="description" content="All about Jack Kelly" />
 			</Head>
 
 			<LoadingSpinner isLoading={loading} />
