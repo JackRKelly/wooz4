@@ -12,6 +12,7 @@ import Head from 'next/head';
 import {Select, Option} from 'components/Select';
 import {LoadingSpinner} from 'components/LoadingSpinner';
 import {buildTitle} from 'util/title';
+import reactHtmlParser from 'react-html-parser';
 
 const Product = () => {
 	const router = useRouter();
@@ -39,9 +40,11 @@ const Product = () => {
 
 			<LoadingSpinner isLoading={loading} />
 
-			<h1>{title}</h1>
-			<p>Product ID: {id}</p>
-			<p>Price: ${priceRange?.minVariantPrice.amount}</p>
+			<h1>
+				{title} - ${priceRange?.minVariantPrice.amount}
+			</h1>
+			<div>{reactHtmlParser(product?.descriptionHtml as string)}</div>
+
 			{productOptions?.map(option => {
 				const options: Option[] = option.values.map(value => ({
 					id: `${option.id}${value}`,
