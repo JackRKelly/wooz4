@@ -87,6 +87,7 @@ const Shop: NextPage = () => {
 				type="button"
 				disabled={!products?.pageInfo.hasPreviousPage}
 				onClick={() => {
+					void new Audio('/pop.mp3').play().catch(() => null);
 					void fetchMore({
 						variables: {
 							first: null,
@@ -114,6 +115,7 @@ const Shop: NextPage = () => {
 				type="button"
 				disabled={!products?.pageInfo.hasNextPage}
 				onClick={() => {
+					void new Audio('/pop.mp3').play().catch(() => null);
 					void fetchMore({
 						variables: {
 							first: PRODUCTS_PER_PAGE,
