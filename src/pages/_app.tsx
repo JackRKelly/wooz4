@@ -17,7 +17,7 @@ export const GlobalStyle = createGlobalStyle`
     margin: 0;
 		background-attachment: fixed; 
 		background-size: cover;
-  }  
+  }
 
   *,
   *::before,
@@ -26,7 +26,7 @@ export const GlobalStyle = createGlobalStyle`
   }
 `;
 
-function App({Component, pageProps, router}: AppProps) {
+const App = ({Component, pageProps, router}: AppProps) => {
 	useEffect(() => {
 		void new Audio('/pop.mp3').play().catch(() => null);
 	}, [router.pathname]);
@@ -41,6 +41,6 @@ function App({Component, pageProps, router}: AppProps) {
 			</ApolloProvider>
 		</StrictMode>
 	);
-}
+};
 
 export default App;
