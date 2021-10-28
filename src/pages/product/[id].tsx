@@ -30,7 +30,7 @@ const Product = () => {
 	return (
 		<>
 			<Head>
-				<title>{buildTitle('title', 'after')}</title>
+				<title>{buildTitle(`${title ?? 'View Product'}`, 'after')}</title>
 			</Head>
 
 			<LoadingSpinner isLoading={loading} />

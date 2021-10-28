@@ -3,8 +3,8 @@ export const buildTitle = (
 	titlePlacement: 'before' | 'after',
 ) => {
 	if (titlePlacement === 'before') {
-		return `wooz4.com | ${content}`;
+		return `wooz4.com — ${content}`;
 	}
 
-	return `${content} | wooz4.com`;
+	return `${content} — wooz4.com`;
 };
