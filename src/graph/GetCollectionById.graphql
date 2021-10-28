@@ -9,6 +9,14 @@ query GetCollectionById($id: ID!) {
 			edges {
 				node {
 					id
+					title
+					images(first: 1) {
+						edges {
+							node {
+								transformedSrc
+							}
+						}
+					}
 					priceRange {
 						minVariantPrice {
 							amount

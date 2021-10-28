@@ -20,6 +20,33 @@ export interface GetCollectionById_collection_image {
   transformedSrc: any;
 }
 
+export interface GetCollectionById_collection_products_edges_node_images_edges_node {
+  __typename: "Image";
+  /**
+   * The location of the transformed image as a URL.
+   * 
+   * All transformation arguments are considered "best-effort". If they can be applied to an image, they will be.
+   * Otherwise any transformations which an image type does not support will be ignored.
+   */
+  transformedSrc: any;
+}
+
+export interface GetCollectionById_collection_products_edges_node_images_edges {
+  __typename: "ImageEdge";
+  /**
+   * The item at the end of ImageEdge.
+   */
+  node: GetCollectionById_collection_products_edges_node_images_edges_node;
+}
+
+export interface GetCollectionById_collection_products_edges_node_images {
+  __typename: "ImageConnection";
+  /**
+   * A list of edges.
+   */
+  edges: GetCollectionById_collection_products_edges_node_images_edges[];
+}
+
 export interface GetCollectionById_collection_products_edges_node_priceRange_minVariantPrice {
   __typename: "MoneyV2";
   /**
@@ -46,6 +73,14 @@ export interface GetCollectionById_collection_products_edges_node {
    * A globally-unique identifier.
    */
   id: string;
+  /**
+   * The product’s title.
+   */
+  title: string;
+  /**
+   * List of images associated with the product.
+   */
+  images: GetCollectionById_collection_products_edges_node_images;
   /**
    * The price range.
    */
