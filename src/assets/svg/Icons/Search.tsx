@@ -7,7 +7,7 @@ export const Search: FC<{active?: boolean}> = ({active}) => (
 	<RotatingGlass viewBox="0 0 20 24" active={active}>
 		<g
 			fill="none"
-			stroke="currentColor"
+			stroke="black"
 			strokeLinecap="square"
 			strokeMiterlimit="10"
 			strokeWidth="2"

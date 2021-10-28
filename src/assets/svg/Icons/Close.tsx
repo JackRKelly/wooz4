@@ -6,7 +6,7 @@ export const Close = () => (
 		<path
 			d="M17 4l-8 8 8 8M1 4l8 8-8 8"
 			fill="none"
-			stroke="currentColor"
+			stroke="black"
 			strokeMiterlimit="10"
 			strokeWidth="2"
 		/>

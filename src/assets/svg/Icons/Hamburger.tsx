@@ -6,7 +6,7 @@ export const Hamburger = () => (
 		<path
 			d="M0 6h24M0 12h24M0 18h24"
 			fill="none"
-			stroke="currentColor"
+			stroke="black"
 			strokeMiterlimit="10"
 			strokeWidth="2"
 		/>
