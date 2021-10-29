@@ -3,7 +3,6 @@ import {useRouter} from 'next/router';
 import React from 'react';
 import {GET_COLLECTION_BY_ID} from 'graph';
 import {useQuery} from '@apollo/client';
-import Image from 'next/image';
 import Head from 'next/head';
 import {LoadingSpinner} from 'components/LoadingSpinner';
 import {buildTitle} from 'util/title';
@@ -11,15 +10,7 @@ import {
 	GetCollectionById,
 	GetCollectionByIdVariables,
 } from 'graph/@types/GetCollectionById';
-import {
-	ProductCardGrid,
-	ProductCard,
-	ProductCardLink,
-	ProductFlex,
-	ProductCardImageWrapper,
-	ProductCardWrapper,
-} from 'components/ProductCard';
-import Link from 'next/link';
+import {ProductCard, ProductCardGrid} from 'components/ProductCard';
 
 const Collection = () => {
 	const router = useRouter();
@@ -55,32 +46,19 @@ const Collection = () => {
 						node: {
 							id,
 							title,
-							images,
+							images: {edges},
 							priceRange: {
 								minVariantPrice: {amount},
 							},
 						},
 					}) => (
-						<ProductCardWrapper key={id}>
-							<Link passHref href={`/product/${id}`}>
-								<ProductCardLink>
-									<ProductCard>
-										<ProductFlex>
-											<ProductCardImageWrapper>
-												<Image
-													alt="product"
-													src={images?.edges[0].node.transformedSrc as string}
-													layout="fill"
-												/>
-											</ProductCardImageWrapper>
-											<span>
-												{title} - ${amount}
-											</span>
-										</ProductFlex>
-									</ProductCard>
-								</ProductCardLink>
-							</Link>
-						</ProductCardWrapper>
+						<ProductCard
+							key={id}
+							link={`/product/${id}`}
+							price={amount as string}
+							thumbnail={edges[0].node.transformedSrc as string}
+							title={title}
+						/>
 					),
 				)}
 			</ProductCardGrid>

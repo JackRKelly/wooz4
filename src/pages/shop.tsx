@@ -4,21 +4,16 @@ import Head from 'next/head';
 import {ContentColumn} from 'components/ContentColumn';
 import {buildTitle} from 'util/title';
 import {useQuery} from '@apollo/client';
-import Image from 'next/image';
 import {GetProducts, GetProductsVariables} from 'graph/@types/GetProducts';
 import {GET_PRODUCTS} from 'graph';
-import Link from 'next/link';
 import {LoadingSpinner} from 'components/LoadingSpinner';
-import {
-	ProductCardWrapper,
-	ProductCardLink,
-	ProductCard,
-	ProductFlex,
-	ProductCardImageWrapper,
-	ProductCardGrid,
-} from 'components/ProductCard';
 import {ArrowLeft, ArrowRight} from 'assets/svg';
 import {FlexRowWrapper} from 'components/Styled';
+import {NormalizedButton} from 'components/Styled/NormalizedButton';
+import {colors} from 'const';
+import styled from 'styled-components';
+import {ProductCard} from 'components/ProductCard';
+import {ProductCardGrid} from 'components/ProductCard.styled';
 
 const PRODUCTS_PER_PAGE = 12;
 
@@ -51,7 +46,7 @@ const Shop: NextPage = () => {
 			<FlexRowWrapper>
 				<h1>Shop Wooz4</h1>
 				<FlexRowWrapper>
-					<button
+					<PaginationButton
 						type="button"
 						disabled={!products?.pageInfo.hasPreviousPage}
 						onClick={() => {
@@ -79,8 +74,8 @@ const Shop: NextPage = () => {
 							<ArrowLeft />
 							<span>Previous</span>
 						</FlexRowWrapper>
-					</button>
-					<button
+					</PaginationButton>
+					<PaginationButton
 						type="button"
 						disabled={!products?.pageInfo.hasNextPage}
 						onClick={() => {
@@ -110,45 +105,38 @@ const Shop: NextPage = () => {
 							<span>Next</span>
 							<ArrowRight />
 						</FlexRowWrapper>
-					</button>
+					</PaginationButton>
 				</FlexRowWrapper>
 			</FlexRowWrapper>
 
 			<ProductCardGrid>
-				{products?.edges?.map(({node}) => {
-					const {
-						id,
-						title,
-						priceRange: {minVariantPrice},
-						images,
-					} = node;
-
-					return (
-						<ProductCardWrapper key={id}>
-							<Link passHref href={`/product/${id}`}>
-								<ProductCardLink>
-									<ProductCard>
-										<ProductFlex>
-											<ProductCardImageWrapper>
-												<Image
-													alt="product"
-													src={images?.edges[0].node.transformedSrc as string}
-													layout="fill"
-												/>
-											</ProductCardImageWrapper>
-											<span>
-												{title} - ${minVariantPrice.amount}
-											</span>
-										</ProductFlex>
-									</ProductCard>
-								</ProductCardLink>
-							</Link>
-						</ProductCardWrapper>
-					);
-				})}
+				{products?.edges?.map(
+					({
+						node: {
+							id,
+							title,
+							images: {edges},
+							priceRange: {
+								minVariantPrice: {amount},
+							},
+						},
+					}) => (
+						<ProductCard
+							key={id}
+							link={`/product/${id}`}
+							price={amount as string}
+							thumbnail={edges[0].node.transformedSrc as string}
+							title={title}
+						/>
+					),
+				)}
 			</ProductCardGrid>
 		</ContentColumn>
 	);
 };
+
+const PaginationButton = styled(NormalizedButton)`
+	background-color: ${colors.white};
+`;
 
 export default Shop;

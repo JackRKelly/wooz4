@@ -1,10 +1,7 @@
 import styled from 'styled-components';
+import {NormalizedLink} from './NormalizedLink';
 
-export const NormalizedIconLink = styled.a`
-	background-color: transparent;
-	text-decoration: none;
-	border-radius: 0;
-	cursor: pointer;
+export const NormalizedIconLink = styled(NormalizedLink)`
 	width: 3rem;
 	height: 3rem;
 	display: flex;

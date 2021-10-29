@@ -5,18 +5,10 @@ import {
 } from 'graph/@types/GetCollectionById';
 import {useQuery} from '@apollo/client';
 import React from 'react';
-import Image from 'next/image';
 import Link from 'next/link';
-import {
-	ProductCardGrid,
-	ProductCard,
-	ProductCardLink,
-	ProductFlex,
-	ProductCardImageWrapper,
-	ProductCardWrapper,
-} from './ProductCard';
 import {colors} from 'const';
 import styled from 'styled-components';
+import {ProductCard, ProductCardGrid} from './ProductCard';
 
 export const FeaturedCollection = () => {
 	const CURRENT_COLLECTION_ID =
@@ -42,35 +34,23 @@ export const FeaturedCollection = () => {
 						node: {
 							id,
 							title,
-							images,
+							images: {edges},
 							priceRange: {
 								minVariantPrice: {amount},
 							},
 						},
 					}) => (
-						<ProductCardWrapper key={id}>
-							<Link passHref href={`/product/${id}`}>
-								<ProductCardLink>
-									<ProductCard>
-										<ProductFlex>
-											<ProductCardImageWrapper>
-												<Image
-													alt="product"
-													src={images?.edges[0].node.transformedSrc as string}
-													layout="fill"
-												/>
-											</ProductCardImageWrapper>
-											<span>
-												{title} - ${amount}
-											</span>
-										</ProductFlex>
-									</ProductCard>
-								</ProductCardLink>
-							</Link>
-						</ProductCardWrapper>
+						<ProductCard
+							key={id}
+							link={`/product/${id}`}
+							price={amount as string}
+							thumbnail={edges[0].node.transformedSrc as string}
+							title={title}
+						/>
 					),
 				)}
 			</ProductCardGrid>
+
 			<ViewCollectionLinkWrapper>
 				<Link passHref href={`/collection/${CURRENT_COLLECTION_ID}`}>
 					<ViewCollectionLink>View collection</ViewCollectionLink>

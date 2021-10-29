@@ -10,14 +10,14 @@ export const columnWidth = css`
 	}
 
 	@media (min-width: ${breakpoints.md}px) {
-		width: 60%;
+		width: 65%;
 	}
 
 	@media (min-width: ${breakpoints.lg}px) {
-		width: 55%;
+		width: 60%;
 	}
 
 	@media (min-width: ${breakpoints.xl}px) {
-		width: 50%;
+		width: 55%;
 	}
 `;

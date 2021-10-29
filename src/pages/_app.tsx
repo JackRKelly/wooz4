@@ -12,7 +12,7 @@ export const GlobalStyle = styled.createGlobalStyle`
 		scroll-behavior: smooth;
 		font-family: 'Sora', sans-serif;
 		font-weight: 300;
-		background-color: ${colors.lighterGray};
+		background-color: ${colors.white};
 	}
 
 	body {
