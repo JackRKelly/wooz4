@@ -2,6 +2,14 @@ import {colors, transitions} from 'const';
 import styled from 'styled-components';
 import {NormalizedButton} from './Normalized.styled';
 
+export const PaginationText = styled.span`
+	font-size: 0.8rem;
+	padding: 0.5rem;
+	text-transform: uppercase;
+	font-style: italic;
+	font-weight: bold;
+`;
+
 export const PaginationButton = styled(NormalizedButton)<{
 	direction: 'left' | 'right';
 }>`
@@ -23,11 +31,4 @@ export const PaginationButton = styled(NormalizedButton)<{
 			);
 		}
 	}
-`;
-
-export const PaginationText = styled.span`
-	padding: 0.5rem;
-	text-transform: uppercase;
-	font-style: italic;
-	font-weight: bold;
 `;
