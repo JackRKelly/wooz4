@@ -48,12 +48,13 @@ const Collection = () => {
 							title,
 							images: {edges},
 							priceRange: {
-								minVariantPrice: {amount},
+								minVariantPrice: {amount, currencyCode},
 							},
 						},
 					}) => (
 						<ProductCard
 							key={id}
+							currencyCode={currencyCode}
 							link={`/product/${id}`}
 							price={amount as string}
 							thumbnail={edges[0].node.transformedSrc as string}
