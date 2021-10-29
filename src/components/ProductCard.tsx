@@ -16,10 +16,17 @@ interface Props {
 	link: string;
 	title: string;
 	price: string;
+	currencyCode: string;
 	thumbnail: string;
 }
 
-export const ProductCard: FC<Props> = ({link, title, price, thumbnail}) => (
+export const ProductCard: FC<Props> = ({
+	link,
+	title,
+	price,
+	currencyCode,
+	thumbnail,
+}) => (
 	<Link passHref href={link}>
 		<ProductCardLink>
 			<ProductCardWrapper>
@@ -38,7 +45,12 @@ export const ProductCard: FC<Props> = ({link, title, price, thumbnail}) => (
 			</ProductCardWrapper>
 			<ProductTitleWrapper>
 				<ProductCardTitle>{title}</ProductCardTitle>
-				<ProductCardPrice>${price}</ProductCardPrice>
+				<ProductCardPrice>
+					{new Intl.NumberFormat('en-US', {
+						style: 'currency',
+						currency: currencyCode ?? 'USD',
+					}).format(parseInt(price, 10))}
+				</ProductCardPrice>
 			</ProductTitleWrapper>
 		</ProductCardLink>
 	</Link>

@@ -121,7 +121,7 @@ const Shop: NextPage = () => {
 							title,
 							images: {edges},
 							priceRange: {
-								minVariantPrice: {amount},
+								minVariantPrice: {amount, currencyCode},
 							},
 						},
 					}) => (
@@ -129,6 +129,7 @@ const Shop: NextPage = () => {
 							key={id}
 							link={`/product/${id}`}
 							price={amount as string}
+							currencyCode={currencyCode}
 							thumbnail={edges[0].node.transformedSrc as string}
 							title={title}
 						/>
