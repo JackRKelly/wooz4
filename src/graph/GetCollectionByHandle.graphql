@@ -1,0 +1,31 @@
+query GetCollectionById($handle: String) {
+	collectionByHandle(handle: $handle) {
+		title
+		description
+		image {
+			transformedSrc
+		}
+		products(first: 8) {
+			edges {
+				node {
+					id
+					title
+					images(first: 1) {
+						edges {
+							node {
+								id
+								transformedSrc
+							}
+						}
+					}
+					priceRange {
+						minVariantPrice {
+							amount
+							currencyCode
+						}
+					}
+				}
+			}
+		}
+	}
+}
