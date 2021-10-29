@@ -1,4 +1,5 @@
 import {colors, transitions} from 'const';
+import Image from 'next/image';
 import styled from 'styled-components';
 import {FlexRowWrapper} from './Styled';
 
@@ -6,15 +7,18 @@ export const ProductCardStyled = styled.div`
 	background-color: ${colors.lighterGray};
 	width: 100%;
 	height: 100%;
-	padding: 0.5rem;
 	border-radius: 3px;
 `;
 
+export const ProductCardImage = styled(Image)`
+	border-radius: 3px;
+	filter: drop-shadow(3px 6px 5px rgba(0, 0, 0, 0.15));
+`;
+
 export const ProductCardImageWrapper = styled.div`
-	width: 12rem;
-	height: 12rem;
+	width: 100%;
+	min-height: 15rem;
 	position: relative;
-	filter: drop-shadow(3px 5px 5px rgba(0, 0, 0, 0.04));
 `;
 
 export const ProductCardGrid = styled.div`
@@ -62,9 +66,7 @@ export const ProductTitleWrapper = styled(FlexRowWrapper)`
 
 export const ProductCardWrapper = styled.div`
 	transition: ${transitions.easeInOutShort};
-	box-shadow: 0 0 1rem rgba(0, 0, 0, 0.03);
 	&:hover {
-		box-shadow: 0 3px 1rem rgba(0, 0, 0, 0.06);
 		transform: translate(0, -3px);
 	}
 `;

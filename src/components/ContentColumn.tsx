@@ -13,7 +13,6 @@ export const ContentColumn: React.FC<ContentColumnType> = ({children}) => (
 const ContentColumnStyled = styled.div`
 	padding: 3.5rem 0;
 	margin: 0 auto;
-	overflow-x: hidden;
 
 	${columnWidth}
 `;

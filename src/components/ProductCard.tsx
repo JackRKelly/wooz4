@@ -1,6 +1,5 @@
 import Link from 'next/link';
 import React, {FC} from 'react';
-import Image from 'next/image';
 import {
 	ProductCardStyled,
 	ProductCardLink,
@@ -10,6 +9,7 @@ import {
 	ProductTitleWrapper,
 	ProductCardTitle,
 	ProductCardPrice,
+	ProductCardImage,
 } from './ProductCard.styled';
 
 interface Props {
@@ -26,7 +26,12 @@ export const ProductCard: FC<Props> = ({link, title, price, thumbnail}) => (
 				<ProductCardStyled>
 					<ProductFlex>
 						<ProductCardImageWrapper>
-							<Image alt="product" src={thumbnail} layout="fill" />
+							<ProductCardImage
+								alt="product"
+								src={thumbnail}
+								layout="fill"
+								objectFit="cover"
+							/>
 						</ProductCardImageWrapper>
 					</ProductFlex>
 				</ProductCardStyled>
