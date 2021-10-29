@@ -1,2 +1,2 @@
 export * from './Icons';
-export * from './RBWoozLogo';
+export * from './WoozBadge';

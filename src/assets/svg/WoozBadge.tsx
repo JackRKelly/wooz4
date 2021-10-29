@@ -1,11 +1,8 @@
-import {colors, transitions} from 'const';
 import React from 'react';
 import styled from 'styled-components';
 
-export const RBWoozLogo = () => (
+export const WoozBadge = () => (
 	<Svg viewBox="0 0 1389 860" fill="none" xmlns="http://www.w3.org/2000/svg">
-		<Circle cx={834} cy={476} r={139} fill={colors.sakuraBlue} />
-		<Circle cx={476} cy={476} r={139} fill={colors.sakuraRed} />
 		<path
 			fillRule="evenodd"
 			clipRule="evenodd"
@@ -19,14 +16,4 @@ const Svg = styled.svg`
 	display: block;
 	width: 3.5rem;
 	height: 3rem;
-	&:hover {
-		circle {
-			transform: translate(1.5rem, -2.1rem) scale(0.9);
-		}
-	}
-`;
-
-const Circle = styled.circle`
-	transition: ${transitions.easeInOutShort};
-	transform-origin: 50% 50%;
 `;

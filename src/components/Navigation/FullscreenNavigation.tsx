@@ -3,7 +3,7 @@ import React, {FC} from 'react';
 import {NavigationLink} from 'components/Navigation';
 import styled from 'styled-components';
 import {transitions} from 'const';
-import {Cart, Close, RBWoozLogo, Search} from 'assets/svg';
+import {Cart, Close, WoozBadge, Search} from 'assets/svg';
 import {FlexRowWrapper, FlexColumnWrapper} from 'components/Flex.styled';
 import {
 	NormalizedIconButton,
@@ -38,7 +38,7 @@ export const FullscreenNavigation: FC<{
 
 			<Link passHref href="/">
 				<a onClick={close}>
-					<RBWoozLogo />
+					<WoozBadge />
 				</a>
 			</Link>
 		</FlexColumnWrapperHeight>

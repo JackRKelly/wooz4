@@ -1,9 +1,8 @@
 import React, {FC, useState} from 'react';
-import {RBWoozLogo} from 'assets/svg/RBWoozLogo';
 import {NavigationLink, StyledNavigation} from 'components/Navigation';
 import {breakpoints} from 'const';
 import styled from 'styled-components';
-import {Cart, Search} from 'assets/svg';
+import {Cart, Search, WoozBadge} from 'assets/svg';
 import Link from 'next/link';
 import {FlexRowWrapper} from 'components/Flex.styled';
 import {
@@ -20,7 +19,7 @@ export const DesktopNavigation: FC = () => {
 				<FlexRowWrapper>
 					<Link passHref href="/">
 						<a>
-							<RBWoozLogo />
+							<WoozBadge />
 						</a>
 					</Link>
 				</FlexRowWrapper>
