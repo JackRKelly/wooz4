@@ -10,6 +10,7 @@ query GetCollectionById($id: ID!) {
 				node {
 					id
 					title
+					handle
 					images(first: 1) {
 						edges {
 							node {

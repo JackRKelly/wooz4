@@ -6,10 +6,10 @@
 import { CurrencyCode } from "./../../@types/graphql-global";
 
 // ====================================================
-// GraphQL query operation: GetCollectionById
+// GraphQL query operation: GetCollectionByHandle
 // ====================================================
 
-export interface GetCollectionById_collection_image {
+export interface GetCollectionByHandle_collectionByHandle_image {
   __typename: "Image";
   /**
    * The location of the transformed image as a URL.
@@ -20,7 +20,7 @@ export interface GetCollectionById_collection_image {
   transformedSrc: any;
 }
 
-export interface GetCollectionById_collection_products_edges_node_images_edges_node {
+export interface GetCollectionByHandle_collectionByHandle_products_edges_node_images_edges_node {
   __typename: "Image";
   /**
    * A unique identifier for the image.
@@ -35,23 +35,23 @@ export interface GetCollectionById_collection_products_edges_node_images_edges_n
   transformedSrc: any;
 }
 
-export interface GetCollectionById_collection_products_edges_node_images_edges {
+export interface GetCollectionByHandle_collectionByHandle_products_edges_node_images_edges {
   __typename: "ImageEdge";
   /**
    * The item at the end of ImageEdge.
    */
-  node: GetCollectionById_collection_products_edges_node_images_edges_node;
+  node: GetCollectionByHandle_collectionByHandle_products_edges_node_images_edges_node;
 }
 
-export interface GetCollectionById_collection_products_edges_node_images {
+export interface GetCollectionByHandle_collectionByHandle_products_edges_node_images {
   __typename: "ImageConnection";
   /**
    * A list of edges.
    */
-  edges: GetCollectionById_collection_products_edges_node_images_edges[];
+  edges: GetCollectionByHandle_collectionByHandle_products_edges_node_images_edges[];
 }
 
-export interface GetCollectionById_collection_products_edges_node_priceRange_minVariantPrice {
+export interface GetCollectionByHandle_collectionByHandle_products_edges_node_priceRange_minVariantPrice {
   __typename: "MoneyV2";
   /**
    * Decimal money amount.
@@ -63,15 +63,15 @@ export interface GetCollectionById_collection_products_edges_node_priceRange_min
   currencyCode: CurrencyCode;
 }
 
-export interface GetCollectionById_collection_products_edges_node_priceRange {
+export interface GetCollectionByHandle_collectionByHandle_products_edges_node_priceRange {
   __typename: "ProductPriceRange";
   /**
    * The lowest variant's price.
    */
-  minVariantPrice: GetCollectionById_collection_products_edges_node_priceRange_minVariantPrice;
+  minVariantPrice: GetCollectionByHandle_collectionByHandle_products_edges_node_priceRange_minVariantPrice;
 }
 
-export interface GetCollectionById_collection_products_edges_node {
+export interface GetCollectionByHandle_collectionByHandle_products_edges_node {
   __typename: "Product";
   /**
    * A globally-unique identifier.
@@ -89,30 +89,30 @@ export interface GetCollectionById_collection_products_edges_node {
   /**
    * List of images associated with the product.
    */
-  images: GetCollectionById_collection_products_edges_node_images;
+  images: GetCollectionByHandle_collectionByHandle_products_edges_node_images;
   /**
    * The price range.
    */
-  priceRange: GetCollectionById_collection_products_edges_node_priceRange;
+  priceRange: GetCollectionByHandle_collectionByHandle_products_edges_node_priceRange;
 }
 
-export interface GetCollectionById_collection_products_edges {
+export interface GetCollectionByHandle_collectionByHandle_products_edges {
   __typename: "ProductEdge";
   /**
    * The item at the end of ProductEdge.
    */
-  node: GetCollectionById_collection_products_edges_node;
+  node: GetCollectionByHandle_collectionByHandle_products_edges_node;
 }
 
-export interface GetCollectionById_collection_products {
+export interface GetCollectionByHandle_collectionByHandle_products {
   __typename: "ProductConnection";
   /**
    * A list of edges.
    */
-  edges: GetCollectionById_collection_products_edges[];
+  edges: GetCollectionByHandle_collectionByHandle_products_edges[];
 }
 
-export interface GetCollectionById_collection {
+export interface GetCollectionByHandle_collectionByHandle {
   __typename: "Collection";
   /**
    * The collection’s name. Limit of 255 characters.
@@ -125,20 +125,20 @@ export interface GetCollectionById_collection {
   /**
    * Image associated with the collection.
    */
-  image: GetCollectionById_collection_image | null;
+  image: GetCollectionByHandle_collectionByHandle_image | null;
   /**
    * List of products in the collection.
    */
-  products: GetCollectionById_collection_products;
+  products: GetCollectionByHandle_collectionByHandle_products;
 }
 
-export interface GetCollectionById {
+export interface GetCollectionByHandle {
   /**
-   * Fetch a specific `Collection` by one of its unique attributes.
+   * Find a collection by its handle.
    */
-  collection: GetCollectionById_collection | null;
+  collectionByHandle: GetCollectionByHandle_collectionByHandle | null;
 }
 
-export interface GetCollectionByIdVariables {
-  id: string;
+export interface GetCollectionByHandleVariables {
+  handle: string;
 }

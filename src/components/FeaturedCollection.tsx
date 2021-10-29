@@ -1,28 +1,27 @@
-import {GET_COLLECTION_BY_ID} from 'graph';
-import {
-	GetCollectionById,
-	GetCollectionByIdVariables,
-} from 'graph/@types/GetCollectionById';
+import {GET_COLLECTION_BY_HANDLE} from 'graph';
 import {useQuery} from '@apollo/client';
 import React from 'react';
 import styled from 'styled-components';
 import {ProductCard, ProductCardGrid} from './ProductCard';
 import {LoadingSpinner} from 'components/LoadingSpinner';
 import {ArrowLink} from 'components/Link';
+import {
+	GetCollectionByHandle,
+	GetCollectionByHandleVariables,
+} from 'graph/@types/GetCollectionByHandle';
 
 export const FeaturedCollection = () => {
-	const CURRENT_COLLECTION_ID =
-		'Z2lkOi8vc2hvcGlmeS9Db2xsZWN0aW9uLzM0OTM1OTQwNzM0Mg==';
+	const CURRENT_COLLECTION_HANDLE = 'sakura-collection';
 
 	const {loading, data} = useQuery<
-		GetCollectionById,
-		GetCollectionByIdVariables
-	>(GET_COLLECTION_BY_ID, {
-		variables: {id: CURRENT_COLLECTION_ID},
+		GetCollectionByHandle,
+		GetCollectionByHandleVariables
+	>(GET_COLLECTION_BY_HANDLE, {
+		variables: {handle: CURRENT_COLLECTION_HANDLE},
 	});
 
-	const {collection} = data ?? {};
-	const {title, description, products} = collection ?? {};
+	const {collectionByHandle} = data ?? {};
+	const {title, description, products} = collectionByHandle ?? {};
 
 	return (
 		<section>
@@ -36,6 +35,7 @@ export const FeaturedCollection = () => {
 					({
 						node: {
 							id,
+							handle,
 							title,
 							images: {edges},
 							priceRange: {
@@ -45,7 +45,7 @@ export const FeaturedCollection = () => {
 					}) => (
 						<ProductCard
 							key={id}
-							link={`/product/${id}`}
+							link={`/product/${handle as string}`}
 							currencyCode={currencyCode}
 							price={amount as string}
 							thumbnail={edges[0].node.transformedSrc as string}
@@ -57,7 +57,7 @@ export const FeaturedCollection = () => {
 
 			<ViewCollectionLinkWrapper>
 				<ArrowLink
-					link={`/collection/${CURRENT_COLLECTION_ID}`}
+					link={`/collection/${CURRENT_COLLECTION_HANDLE}`}
 					text="View Collection"
 				/>
 			</ViewCollectionLinkWrapper>

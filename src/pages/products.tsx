@@ -117,6 +117,7 @@ const Shop: NextPage = () => {
 						node: {
 							id,
 							title,
+							handle,
 							images: {edges},
 							priceRange: {
 								minVariantPrice: {amount, currencyCode},
@@ -125,7 +126,7 @@ const Shop: NextPage = () => {
 					}) => (
 						<ProductCard
 							key={id}
-							link={`/product/${id}`}
+							link={`/product/${handle}`}
 							price={amount as string}
 							currencyCode={currencyCode}
 							thumbnail={edges[0].node.transformedSrc as string}

@@ -1,4 +1,4 @@
-query GetCollectionByHandle($handle: String) {
+query GetCollectionByHandle($handle: String!) {
 	collectionByHandle(handle: $handle) {
 		title
 		description
@@ -10,6 +10,7 @@ query GetCollectionByHandle($handle: String) {
 				node {
 					id
 					title
+					handle
 					images(first: 1) {
 						edges {
 							node {
