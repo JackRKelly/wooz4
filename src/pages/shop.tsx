@@ -17,6 +17,8 @@ import {
 	ProductCardImageWrapper,
 	ProductCardGrid,
 } from 'components/ProductCard';
+import {ArrowLeft, ArrowRight} from 'assets/svg';
+import {FlexRowWrapper} from 'components/Styled';
 
 const PRODUCTS_PER_PAGE = 12;
 
@@ -46,8 +48,71 @@ const Shop: NextPage = () => {
 			</Head>
 
 			<LoadingSpinner isLoading={loading} />
-
-			<h1>Shop Wooz4</h1>
+			<FlexRowWrapper>
+				<h1>Shop Wooz4</h1>
+				<FlexRowWrapper>
+					<button
+						type="button"
+						disabled={!products?.pageInfo.hasPreviousPage}
+						onClick={() => {
+							void new Audio('/pop.mp3').play().catch(() => null);
+							void fetchMore({
+								variables: {
+									first: null,
+									after: null,
+									last: PRODUCTS_PER_PAGE,
+									before: products?.edges[0]?.cursor ?? null,
+								},
+								updateQuery: (prevResult, {fetchMoreResult}) => {
+									if (
+										!fetchMoreResult ||
+										fetchMoreResult.products.edges.length === 0
+									) {
+										return prevResult;
+									}
+									return fetchMoreResult;
+								},
+							});
+						}}
+					>
+						<FlexRowWrapper>
+							<ArrowLeft />
+							<span>Previous</span>
+						</FlexRowWrapper>
+					</button>
+					<button
+						type="button"
+						disabled={!products?.pageInfo.hasNextPage}
+						onClick={() => {
+							void new Audio('/pop.mp3').play().catch(() => null);
+							void fetchMore({
+								variables: {
+									first: PRODUCTS_PER_PAGE,
+									after:
+										products?.edges[(products?.edges?.length ?? 1) - 1]
+											?.cursor ?? null,
+									last: null,
+									before: null,
+								},
+								updateQuery: (prevResult, {fetchMoreResult}) => {
+									if (
+										!fetchMoreResult ||
+										fetchMoreResult.products.edges.length === 0
+									) {
+										return prevResult;
+									}
+									return fetchMoreResult;
+								},
+							});
+						}}
+					>
+						<FlexRowWrapper>
+							<span>Next</span>
+							<ArrowRight />
+						</FlexRowWrapper>
+					</button>
+				</FlexRowWrapper>
+			</FlexRowWrapper>
 
 			<ProductCardGrid>
 				{products?.edges?.map(({node}) => {
@@ -82,64 +147,6 @@ const Shop: NextPage = () => {
 					);
 				})}
 			</ProductCardGrid>
-
-			<button
-				type="button"
-				disabled={!products?.pageInfo.hasPreviousPage}
-				onClick={() => {
-					void new Audio('/pop.mp3').play().catch(() => null);
-					void fetchMore({
-						variables: {
-							first: null,
-							after: null,
-							last: PRODUCTS_PER_PAGE,
-							before: products?.edges[0]?.cursor ?? null,
-						},
-						updateQuery: (prevResult, {fetchMoreResult}) => {
-							if (
-								!fetchMoreResult ||
-								fetchMoreResult.products.edges.length === 0
-							) {
-								return prevResult;
-							}
-
-							return fetchMoreResult;
-						},
-					});
-				}}
-			>
-				previous
-			</button>
-			<span>Pagination</span>
-			<button
-				type="button"
-				disabled={!products?.pageInfo.hasNextPage}
-				onClick={() => {
-					void new Audio('/pop.mp3').play().catch(() => null);
-					void fetchMore({
-						variables: {
-							first: PRODUCTS_PER_PAGE,
-							after:
-								products?.edges[(products?.edges?.length ?? 1) - 1]?.cursor ??
-								null,
-							last: null,
-							before: null,
-						},
-						updateQuery: (prevResult, {fetchMoreResult}) => {
-							if (
-								!fetchMoreResult ||
-								fetchMoreResult.products.edges.length === 0
-							) {
-								return prevResult;
-							}
-
-							return fetchMoreResult;
-						},
-					});
-				}}
-			>
-				next
-			</button>
 		</ContentColumn>
 	);
 };
