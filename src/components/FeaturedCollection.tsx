@@ -39,13 +39,14 @@ export const FeaturedCollection = () => {
 							title,
 							images: {edges},
 							priceRange: {
-								minVariantPrice: {amount},
+								minVariantPrice: {amount, currencyCode},
 							},
 						},
 					}) => (
 						<ProductCard
 							key={id}
 							link={`/product/${id}`}
+							currencyCode={currencyCode}
 							price={amount as string}
 							thumbnail={edges[0].node.transformedSrc as string}
 							title={title}
