@@ -3,13 +3,6 @@ import Image from 'next/image';
 import styled from 'styled-components';
 import {FlexRowWrapper} from './Flex.styled';
 
-export const ProductCardStyled = styled.div`
-	background-color: ${colors.lighterGray};
-	width: 100%;
-	height: 100%;
-	border-radius: 3px;
-`;
-
 export const ProductCardImage = styled(Image)`
 	border-radius: 3px;
 	filter: drop-shadow(3px 6px 5px rgba(0, 0, 0, 0.15));
@@ -18,8 +11,8 @@ export const ProductCardImage = styled(Image)`
 `;
 
 export const ProductCardImageWrapper = styled.div`
-	width: 100%;
 	min-height: 15rem;
+	min-width: 15rem;
 	position: relative;
 `;
 
@@ -67,6 +60,8 @@ export const ProductTitleWrapper = styled(FlexRowWrapper)`
 `;
 
 export const ProductCardWrapper = styled.div`
+	background-color: ${colors.lighterGray};
+	border-radius: 3px;
 	transition: ${transitions.easeInOutShort};
 	&:hover {
 		transform: translate(0, -3px);

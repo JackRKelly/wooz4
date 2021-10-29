@@ -1,7 +1,6 @@
 import Link from 'next/link';
 import React, {FC} from 'react';
 import {
-	ProductCardStyled,
 	ProductCardLink,
 	ProductCardWrapper,
 	ProductFlex,
@@ -30,18 +29,11 @@ export const ProductCard: FC<Props> = ({
 	<Link passHref href={link}>
 		<ProductCardLink>
 			<ProductCardWrapper>
-				<ProductCardStyled>
-					<ProductFlex>
-						<ProductCardImageWrapper>
-							<ProductCardImage
-								alt="product"
-								src={thumbnail}
-								layout="fill"
-								objectFit="cover"
-							/>
-						</ProductCardImageWrapper>
-					</ProductFlex>
-				</ProductCardStyled>
+				<ProductFlex>
+					<ProductCardImageWrapper>
+						<ProductCardImage alt="product" src={thumbnail} layout="fill" />
+					</ProductCardImageWrapper>
+				</ProductFlex>
 			</ProductCardWrapper>
 			<ProductTitleWrapper>
 				<ProductCardTitle>{title}</ProductCardTitle>
