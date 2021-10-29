@@ -2,11 +2,7 @@ import styled from 'styled-components';
 import React, {FC} from 'react';
 import {redBlueFade, spinnerDash, spinnerRotate} from 'const';
 
-interface Props {
-	isLoading: boolean;
-}
-
-export const LoadingSpinner: FC<Props> = ({isLoading}) =>
+export const LoadingSpinner: FC<{isLoading: boolean}> = ({isLoading}) =>
 	isLoading ? (
 		<Spinner isLoading={isLoading}>
 			<Svg
@@ -27,11 +23,7 @@ export const LoadingSpinner: FC<Props> = ({isLoading}) =>
 		</Spinner>
 	) : null;
 
-interface LoadingSpinnerProps {
-	isLoading: boolean;
-}
-
-const Spinner = styled.div<LoadingSpinnerProps>`
+const Spinner = styled.div<{isLoading: boolean}>`
 	background: rgb(255, 255, 255);
 	position: fixed;
 	top: 0;

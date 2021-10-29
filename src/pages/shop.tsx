@@ -10,7 +10,7 @@ import {LoadingSpinner} from 'components/LoadingSpinner';
 import {ArrowLeft, ArrowRight} from 'assets/svg';
 import {FlexRowWrapper} from 'components/Styled';
 import {NormalizedButton} from 'components/Styled/NormalizedButton';
-import {colors} from 'const';
+import {colors, transitions} from 'const';
 import styled from 'styled-components';
 import {ProductCard} from 'components/ProductCard';
 import {ProductCardGrid} from 'components/ProductCard.styled';
@@ -48,6 +48,7 @@ const Shop: NextPage = () => {
 				<h1>Shop Wooz4</h1>
 				<FlexRowWrapper>
 					<PaginationButton
+						direction="left"
 						type="button"
 						disabled={!products?.pageInfo.hasPreviousPage}
 						onClick={() => {
@@ -73,10 +74,11 @@ const Shop: NextPage = () => {
 					>
 						<FlexRowWrapper>
 							<ArrowLeft />
-							<span>Previous</span>
+							<PaginationText>Prev</PaginationText>
 						</FlexRowWrapper>
 					</PaginationButton>
 					<PaginationButton
+						direction="right"
 						type="button"
 						disabled={!products?.pageInfo.hasNextPage}
 						onClick={() => {
@@ -103,7 +105,7 @@ const Shop: NextPage = () => {
 						}}
 					>
 						<FlexRowWrapper>
-							<span>Next</span>
+							<PaginationText>Next</PaginationText>
 							<ArrowRight />
 						</FlexRowWrapper>
 					</PaginationButton>
@@ -136,8 +138,34 @@ const Shop: NextPage = () => {
 	);
 };
 
-const PaginationButton = styled(NormalizedButton)`
+const PaginationText = styled.span`
+	padding: 0.5rem;
+	text-transform: uppercase;
+	font-style: italic;
+	font-weight: bold;
+`;
+
+const PaginationButton = styled(NormalizedButton)<{
+	direction: 'left' | 'right';
+}>`
 	background-color: ${colors.white};
+	margin: ${props =>
+		props.direction === 'left' ? '0 .5rem 0 0' : '0 0 0 .5rem'};
+	color: ${colors.darkGray};
+	&:disabled {
+		color: ${colors.lightGray};
+		cursor: default;
+	}
+	svg {
+		transition: ${transitions.easeInOutShort};
+	}
+	&:hover {
+		svg {
+			transform: translateX(
+				${props => (props.direction === 'left' ? '-5px' : '5px')}
+			);
+		}
+	}
 `;
 
 export default Shop;
