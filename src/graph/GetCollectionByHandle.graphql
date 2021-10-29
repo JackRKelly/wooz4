@@ -1,4 +1,4 @@
-query GetCollectionById($handle: String) {
+query GetCollectionByHandle($handle: String) {
 	collectionByHandle(handle: $handle) {
 		title
 		description

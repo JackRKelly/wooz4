@@ -1,4 +1,4 @@
-query ($handle: String!) {
+query GetProductByHandle($handle: String!) {
 	productByHandle(handle: $handle) {
 		id
 		title
