@@ -5,11 +5,10 @@ import {
 } from 'graph/@types/GetCollectionById';
 import {useQuery} from '@apollo/client';
 import React from 'react';
-import Link from 'next/link';
-import {colors} from 'const';
 import styled from 'styled-components';
 import {ProductCard, ProductCardGrid} from './ProductCard';
-import {LoadingSpinner} from './LoadingSpinner';
+import {LoadingSpinner} from 'components/LoadingSpinner';
+import {ArrowLink} from 'components/Link';
 
 export const FeaturedCollection = () => {
 	const CURRENT_COLLECTION_ID =
@@ -56,25 +55,14 @@ export const FeaturedCollection = () => {
 			</ProductCardGrid>
 
 			<ViewCollectionLinkWrapper>
-				<Link passHref href={`/collection/${CURRENT_COLLECTION_ID}`}>
-					<ViewCollectionLink>View collection</ViewCollectionLink>
-				</Link>
+				<ArrowLink
+					link={`/collection/${CURRENT_COLLECTION_ID}`}
+					text="View Collection"
+				/>
 			</ViewCollectionLinkWrapper>
 		</section>
 	);
 };
-
-const ViewCollectionLink = styled.a`
-	display: inline-block;
-	color: ${colors.black};
-	text-decoration: none;
-	text-align: right;
-	border: 1px solid ${colors.black};
-	padding: 0.4rem 0.8rem;
-	border-radius: 4px;
-	text-transform: uppercase;
-	font-size: 0.8rem;
-`;
 
 const ViewCollectionLinkWrapper = styled.div`
 	display: flex;
