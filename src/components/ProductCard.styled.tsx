@@ -13,6 +13,8 @@ export const ProductCardStyled = styled.div`
 export const ProductCardImage = styled(Image)`
 	border-radius: 3px;
 	filter: drop-shadow(3px 6px 5px rgba(0, 0, 0, 0.15));
+	//!important to override 'next/image' normalization
+	padding: 0.4rem !important;
 `;
 
 export const ProductCardImageWrapper = styled.div`
