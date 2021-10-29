@@ -13,6 +13,7 @@ import {Select, Option} from 'components/Select';
 import {LoadingSpinner} from 'components/LoadingSpinner';
 import {buildTitle} from 'util/title';
 import reactHtmlParser from 'react-html-parser';
+import {formatPrice} from 'util/formatPrice';
 
 const Product = () => {
 	const router = useRouter();
@@ -32,6 +33,7 @@ const Product = () => {
 		options: productOptions,
 		images,
 	} = productByHandle ?? {};
+	const {minVariantPrice} = priceRange ?? {};
 
 	return (
 		<ContentColumn>
@@ -46,7 +48,11 @@ const Product = () => {
 			<LoadingSpinner isLoading={loading} />
 
 			<h2>
-				{title} - ${priceRange?.minVariantPrice.amount}
+				{title} -{' '}
+				{formatPrice(
+					minVariantPrice?.amount,
+					minVariantPrice?.currencyCode as string,
+				)}
 			</h2>
 			<div>{reactHtmlParser(productByHandle?.descriptionHtml as string)}</div>
 

@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import React, {FC} from 'react';
+import {formatPrice} from 'util/formatPrice';
 import {
 	ProductCardLink,
 	ProductCardWrapper,
@@ -37,12 +38,7 @@ export const ProductCard: FC<Props> = ({
 			</ProductCardWrapper>
 			<ProductTitleWrapper>
 				<ProductCardTitle>{title}</ProductCardTitle>
-				<ProductCardPrice>
-					{new Intl.NumberFormat('en-US', {
-						style: 'currency',
-						currency: currencyCode ?? 'USD',
-					}).format(parseInt(price, 10))}
-				</ProductCardPrice>
+				<ProductCardPrice>{formatPrice(price, currencyCode)}</ProductCardPrice>
 			</ProductTitleWrapper>
 		</ProductCardLink>
 	</Link>
