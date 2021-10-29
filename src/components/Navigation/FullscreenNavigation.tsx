@@ -1,14 +1,16 @@
-import Link from 'next/link';
-import React, {FC} from 'react';
-import {NavigationLink} from 'components/Navigation';
-import styled from 'styled-components';
-import {transitions} from 'const';
-import {Cart, Close, WoozBadge, Search} from 'assets/svg';
-import {FlexRowWrapper, FlexColumnWrapper} from 'components/Flex.styled';
+import {Close, Search, Cart, WoozBadge} from 'assets/svg';
+import {FlexRowWrapper} from 'components/Flex.styled';
 import {
 	NormalizedIconButton,
 	NormalizedIconLink,
 } from 'components/Normalized.styled';
+import Link from 'next/link';
+import React, {FC} from 'react';
+import {
+	StyledFullscreenNavigation,
+	FlexColumnWrapperHeight,
+} from 'components/Navigation/Navigation.styled';
+import {NavigationLink} from 'components/Navigation/NavigationLink';
 
 export const FullscreenNavigation: FC<{
 	open: boolean;
@@ -44,22 +46,3 @@ export const FullscreenNavigation: FC<{
 		</FlexColumnWrapperHeight>
 	</StyledFullscreenNavigation>
 );
-
-export const StyledFullscreenNavigation = styled.div<{open: boolean}>`
-	transition: ${transitions.easeInOutMedium};
-	position: fixed;
-	top: 0;
-
-	width: 100vw;
-	right: ${props => (props.open ? '0' : '-200%')};
-	bottom: 0;
-	background-color: white;
-	z-index: 11;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-`;
-
-const FlexColumnWrapperHeight = styled(FlexColumnWrapper)`
-	height: 50%;
-`;

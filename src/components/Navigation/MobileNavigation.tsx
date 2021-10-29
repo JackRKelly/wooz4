@@ -1,14 +1,12 @@
 import Link from 'next/link';
 import React, {FC, useState} from 'react';
-import {StyledNavigation} from 'components/Navigation';
-import {breakpoints} from 'const';
-import styled from 'styled-components';
 import {Cart, Hamburger, Search, WoozBadge} from 'assets/svg';
 import {FlexRowWrapper} from 'components/Flex.styled';
 import {
 	NormalizedIconButton,
 	NormalizedIconLink,
 } from 'components/Normalized.styled';
+import {StyledMobileNavigation} from 'components/Navigation/Navigation.styled';
 
 export const MobileNavigation: FC<{open: () => void}> = ({open}) => {
 	const [isHoveringSearch, setIsHoveringSearch] = useState(false);
@@ -50,10 +48,3 @@ export const MobileNavigation: FC<{open: () => void}> = ({open}) => {
 		</StyledMobileNavigation>
 	);
 };
-
-const StyledMobileNavigation = styled(StyledNavigation)`
-	display: none;
-	@media (max-width: ${breakpoints.md}px) {
-		display: block;
-	}
-`;

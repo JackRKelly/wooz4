@@ -1,7 +1,5 @@
 import React, {FC, useState} from 'react';
-import {NavigationLink, StyledNavigation} from 'components/Navigation';
-import {breakpoints} from 'const';
-import styled from 'styled-components';
+import {NavigationLink} from 'components/Navigation/NavigationLink';
 import {Cart, Search, WoozBadge} from 'assets/svg';
 import Link from 'next/link';
 import {FlexRowWrapper} from 'components/Flex.styled';
@@ -9,6 +7,7 @@ import {
 	NormalizedIconButton,
 	NormalizedIconLink,
 } from 'components/Normalized.styled';
+import {StyledDesktopNavigation} from 'components/Navigation/Navigation.styled';
 
 export const DesktopNavigation: FC = () => {
 	const [isHoveringSearch, setIsHoveringSearch] = useState(false);
@@ -50,10 +49,3 @@ export const DesktopNavigation: FC = () => {
 		</StyledDesktopNavigation>
 	);
 };
-
-export const StyledDesktopNavigation = styled(StyledNavigation)`
-	display: none;
-	@media (min-width: ${breakpoints.md}px) {
-		display: block;
-	}
-`;
