@@ -34,5 +34,6 @@ module.exports = {
 		'capitalized-comments': 'off',
 		'react/jsx-indent': 'off',
 		'react/jsx-curly-newline': 'off',
+		'padding-line-between-statements': 'off',
 	},
 };
