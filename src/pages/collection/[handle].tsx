@@ -57,7 +57,7 @@ const Collection = () => {
 						<ProductCard
 							key={id}
 							currencyCode={currencyCode}
-							link={`/product/${handle as string}`}
+							link={handle ? `/product/${handle}` : '/products'}
 							price={amount as string}
 							thumbnail={edges[0].node.transformedSrc as string}
 							title={title}
