@@ -43,6 +43,7 @@ const Shop: NextPage = () => {
 			</Head>
 
 			<LoadingSpinner isLoading={loading} />
+
 			<FlexRowWrapper>
 				<h1>Shop Wooz4</h1>
 				<FlexRowWrapper>

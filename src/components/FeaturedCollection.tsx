@@ -9,17 +9,18 @@ import Link from 'next/link';
 import {colors} from 'const';
 import styled from 'styled-components';
 import {ProductCard, ProductCardGrid} from './ProductCard';
+import {LoadingSpinner} from './LoadingSpinner';
 
 export const FeaturedCollection = () => {
 	const CURRENT_COLLECTION_ID =
 		'Z2lkOi8vc2hvcGlmeS9Db2xsZWN0aW9uLzM0OTM1OTQwNzM0Mg==';
 
-	const {data} = useQuery<GetCollectionById, GetCollectionByIdVariables>(
-		GET_COLLECTION_BY_ID,
-		{
-			variables: {id: CURRENT_COLLECTION_ID},
-		},
-	);
+	const {loading, data} = useQuery<
+		GetCollectionById,
+		GetCollectionByIdVariables
+	>(GET_COLLECTION_BY_ID, {
+		variables: {id: CURRENT_COLLECTION_ID},
+	});
 
 	const {collection} = data ?? {};
 	const {title, description, products} = collection ?? {};
@@ -28,6 +29,9 @@ export const FeaturedCollection = () => {
 		<section>
 			<h3>{title}</h3>
 			<p>{description}</p>
+
+			<LoadingSpinner isLoading={loading} />
+
 			<ProductCardGrid>
 				{products?.edges.map(
 					({
