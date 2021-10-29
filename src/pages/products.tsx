@@ -11,8 +11,8 @@ import {ArrowLeft, ArrowRight} from 'assets/svg';
 import {ProductCard} from 'components/ProductCard';
 import {ProductCardGrid} from 'components/ProductCard.styled';
 import {PaginationButton, PaginationText} from 'components/Pagination.styled';
-import {FlexRowWrapper} from 'components/Flex.styled';
-import {GraySpan} from 'components/Text.styled';
+import {FlexRowWrapper, FlexRowWrapperPadded} from 'components/Flex.styled';
+import {H2NoMargin} from 'components/Text.styled';
 
 const PRODUCTS_PER_PAGE = 12;
 
@@ -43,10 +43,8 @@ const Shop: NextPage = () => {
 
 			<LoadingSpinner isLoading={loading} />
 
-			<FlexRowWrapper>
-				<h2>
-					Products <GraySpan>— wooz4.com</GraySpan>
-				</h2>
+			<FlexRowWrapperPadded>
+				<H2NoMargin>Products</H2NoMargin>
 				<FlexRowWrapper>
 					<PaginationButton
 						direction="left"
@@ -111,7 +109,7 @@ const Shop: NextPage = () => {
 						</FlexRowWrapper>
 					</PaginationButton>
 				</FlexRowWrapper>
-			</FlexRowWrapper>
+			</FlexRowWrapperPadded>
 
 			<ProductCardGrid>
 				{products?.edges?.map(

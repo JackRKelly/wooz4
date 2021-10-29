@@ -11,3 +11,7 @@ export const BoldUppercaseText = styled.span`
 	font-style: italic;
 	font-weight: bold;
 `;
+
+export const H2NoMargin = styled.h2`
+	margin: 0;
+`;

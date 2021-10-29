@@ -14,8 +14,6 @@ export const PaginationButton = styled(NormalizedButton)<{
 	direction: 'left' | 'right';
 }>`
 	background-color: ${colors.white};
-	margin: ${props =>
-		props.direction === 'left' ? '0 .5rem 0 0' : '0 0 0 .5rem'};
 	color: ${colors.darkGray};
 	&:disabled {
 		color: ${colors.lightGray};

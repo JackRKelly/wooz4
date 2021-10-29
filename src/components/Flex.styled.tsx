@@ -15,3 +15,7 @@ export const FlexRowWrapper = styled.div`
 	flex-wrap: wrap;
 	flex-direction: row;
 `;
+
+export const FlexRowWrapperPadded = styled(FlexRowWrapper)`
+	padding: 1rem 0;
+`;
