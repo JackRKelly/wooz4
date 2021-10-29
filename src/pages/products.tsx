@@ -1,18 +1,21 @@
 import React from 'react';
 import type {NextPage} from 'next';
 import Head from 'next/head';
-import {ContentColumn} from 'components/ContentColumn';
-import {buildTitle} from 'util/title';
 import {useQuery} from '@apollo/client';
-import {GetProducts, GetProductsVariables} from 'graph/@types/GetProducts';
-import {GET_PRODUCTS} from 'graph';
-import {LoadingSpinner} from 'components/LoadingSpinner';
-import {ArrowLeft, ArrowRight} from 'assets/svg';
-import {ProductCard} from 'components/ProductCard';
-import {ProductCardGrid} from 'components/ProductCard.styled';
-import {PaginationButton, PaginationText} from 'components/Pagination.styled';
-import {FlexRowWrapper, FlexRowWrapperPadded} from 'components/Flex.styled';
-import {H2NoMargin} from 'components/Text.styled';
+import {ArrowLeft, ArrowRight} from '../assets/svg';
+import {ContentColumn} from '../components/ContentColumn';
+import {FlexRowWrapperPadded, FlexRowWrapper} from '../components/Flex.styled';
+import {LoadingSpinner} from '../components/LoadingSpinner';
+import {
+	PaginationButton,
+	PaginationText,
+} from '../components/Pagination.styled';
+import {ProductCard} from '../components/ProductCard';
+import {ProductCardGrid} from '../components/ProductCard.styled';
+import {H2NoMargin} from '../components/Text.styled';
+import {GET_PRODUCTS} from '../graph';
+import {GetProducts, GetProductsVariables} from '../graph/@types/GetProducts';
+import {buildTitle} from '../util/title';
 
 const PRODUCTS_PER_PAGE = 12;
 

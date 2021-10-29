@@ -1,7 +1,7 @@
-import {colors, transitions} from 'const';
 import styled from 'styled-components';
-import {NormalizedButton} from './Normalized.styled';
 
+import {colors, transitions} from '../const';
+import {NormalizedButton} from './Normalized.styled';
 export const PaginationText = styled.span`
 	font-size: 0.8rem;
 	padding: 0.5rem;

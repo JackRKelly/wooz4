@@ -1,16 +1,13 @@
-import {Close, Search, Cart, WoozBadge} from 'assets/svg';
-import {FlexRowWrapper} from 'components/Flex.styled';
-import {
-	NormalizedIconButton,
-	NormalizedIconLink,
-} from 'components/Normalized.styled';
 import Link from 'next/link';
 import React, {FC} from 'react';
+import {Close, Search, Cart, WoozBadge} from '../../assets/svg';
+import {FlexRowWrapper} from '../Flex.styled';
+import {NormalizedIconButton, NormalizedIconLink} from '../Normalized.styled';
 import {
 	StyledFullscreenNavigation,
 	FlexColumnWrapperHeight,
-} from 'components/Navigation/Navigation.styled';
-import {NavigationLink} from 'components/Navigation/NavigationLink';
+} from './Navigation.styled';
+import {NavigationLink} from './NavigationLink';
 
 export const FullscreenNavigation: FC<{
 	open: boolean;

@@ -1,13 +1,10 @@
-import React, {FC, useState} from 'react';
-import {NavigationLink} from 'components/Navigation/NavigationLink';
-import {Cart, Search, WoozBadge} from 'assets/svg';
 import Link from 'next/link';
-import {FlexRowWrapper} from 'components/Flex.styled';
-import {
-	NormalizedIconButton,
-	NormalizedIconLink,
-} from 'components/Normalized.styled';
-import {StyledDesktopNavigation} from 'components/Navigation/Navigation.styled';
+import React, {FC, useState} from 'react';
+import {WoozBadge, Search, Cart} from '../../assets/svg';
+import {FlexRowWrapper} from '../Flex.styled';
+import {NormalizedIconButton, NormalizedIconLink} from '../Normalized.styled';
+import {StyledDesktopNavigation} from './Navigation.styled';
+import {NavigationLink} from './NavigationLink';
 
 export const DesktopNavigation: FC = () => {
 	const [isHoveringSearch, setIsHoveringSearch] = useState(false);

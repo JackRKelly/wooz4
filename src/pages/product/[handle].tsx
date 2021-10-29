@@ -1,19 +1,19 @@
-import {ContentColumn} from 'components/ContentColumn';
+import {useQuery} from '@apollo/client';
+import Head from 'next/head';
 import {useRouter} from 'next/router';
 import React from 'react';
-import {GET_PRODUCT_BY_HANDLE} from 'graph';
-import {useQuery} from '@apollo/client';
+import reactHtmlParser from 'react-html-parser';
+import {ContentColumn} from '../../components/ContentColumn';
+import {LoadingSpinner} from '../../components/LoadingSpinner';
+import {Select, Option} from '../../components/Select';
+import {GET_PRODUCT_BY_HANDLE} from '../../graph';
 import {
 	GetProductByHandle,
 	GetProductByHandleVariables,
-} from 'graph/@types/GetProductByHandle';
+} from '../../graph/@types/GetProductByHandle';
+import {formatPrice} from '../../util/formatPrice';
+import {buildTitle} from '../../util/title';
 import Image from 'next/image';
-import Head from 'next/head';
-import {Select, Option} from 'components/Select';
-import {LoadingSpinner} from 'components/LoadingSpinner';
-import {buildTitle} from 'util/title';
-import reactHtmlParser from 'react-html-parser';
-import {formatPrice} from 'util/formatPrice';
 
 const Product = () => {
 	const router = useRouter();

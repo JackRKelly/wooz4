@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import {useRouter} from 'next/router';
 import React, {FC} from 'react';
-import {StyledLink} from 'components/Navigation/Navigation.styled';
+import {StyledLink} from './Navigation.styled';
 
 interface NavigationLinkProps {
 	route: string;

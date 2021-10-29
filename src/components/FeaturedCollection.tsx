@@ -1,14 +1,15 @@
-import {GET_COLLECTION_BY_HANDLE} from 'graph';
-import {useQuery} from '@apollo/client';
 import React from 'react';
+import {useQuery} from '@apollo/client';
+import {GET_COLLECTION_BY_HANDLE} from '../graph';
 import styled from 'styled-components';
-import {ProductCard, ProductCardGrid} from './ProductCard';
-import {LoadingSpinner} from 'components/LoadingSpinner';
-import {ArrowLink} from 'components/Link';
 import {
 	GetCollectionByHandle,
 	GetCollectionByHandleVariables,
-} from 'graph/@types/GetCollectionByHandle';
+} from '../graph/@types/GetCollectionByHandle';
+import {ArrowLink} from './Link';
+import {LoadingSpinner} from './LoadingSpinner';
+import {ProductCard} from './ProductCard';
+import {ProductCardGrid} from './ProductCard.styled';
 
 export const FeaturedCollection = () => {
 	const CURRENT_COLLECTION_HANDLE = 'sakura-collection';

@@ -1,8 +1,8 @@
 import React from 'react';
 import type {NextPage} from 'next';
 import Head from 'next/head';
-import {ContentColumn} from 'components/ContentColumn';
-import {buildTitle} from 'util/title';
+import {ContentColumn} from '../components/ContentColumn';
+import {buildTitle} from '../util/title';
 
 const Contact: NextPage = () => (
 	<ContentColumn>

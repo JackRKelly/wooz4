@@ -1,6 +1,6 @@
-import {columnWidth} from 'const';
 import React from 'react';
 import styled from 'styled-components';
+import {columnWidth} from '../const';
 
 interface ContentColumnType {
 	children?: React.ReactNode;

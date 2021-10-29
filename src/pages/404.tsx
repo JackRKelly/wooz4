@@ -1,6 +1,6 @@
-import {ContentColumn} from 'components/ContentColumn';
 import Link from 'next/link';
 import React from 'react';
+import {ContentColumn} from '../components/ContentColumn';
 
 const FourOFour = () => (
 	<ContentColumn>

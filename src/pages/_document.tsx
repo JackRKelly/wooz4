@@ -7,8 +7,9 @@ import Document, {
 	Main,
 	NextScript,
 } from 'next/document';
-import {colors} from 'const';
+
 import {ServerStyleSheet} from 'styled-components';
+import {colors} from '../const';
 
 export default class DocumentPage extends Document {
 	static async getInitialProps(

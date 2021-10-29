@@ -1,9 +1,9 @@
 import React from 'react';
 import type {NextPage} from 'next';
 import Head from 'next/head';
-import {ContentColumn} from 'components/ContentColumn';
-import {buildTitle} from 'util/title';
-import {FeaturedCollection} from 'components/FeaturedCollection';
+import {ContentColumn} from '../components/ContentColumn';
+import {FeaturedCollection} from '../components/FeaturedCollection';
+import {buildTitle} from '../util/title';
 
 const Home: NextPage = () => (
 	<ContentColumn>

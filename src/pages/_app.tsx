@@ -1,10 +1,10 @@
 import React, {StrictMode, useEffect} from 'react';
 import type {AppProps} from 'next/app';
 import * as styled from 'styled-components';
-import {Navigation} from 'components/Navigation';
-import {Apollo as ApolloProvider} from 'context/Apollo';
-import {colors} from 'const';
-import ScrollManager from 'components/ScrollManager';
+import {Apollo as ApolloProvider} from '../context/Apollo';
+import {Navigation} from '../components/Navigation';
+import ScrollManager from '../components/ScrollManager';
+import {colors} from '../const';
 
 export const GlobalStyle = styled.createGlobalStyle`
 	html {

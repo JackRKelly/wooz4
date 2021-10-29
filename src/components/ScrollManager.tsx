@@ -1,6 +1,6 @@
 import {useRouter} from 'next/router';
 import {useEffect} from 'react';
-import {debounce} from 'util/debouce';
+import {debounce} from '../util/debouce';
 
 const pathMap = new Map();
 

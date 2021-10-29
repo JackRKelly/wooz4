@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import React, {FC} from 'react';
-import {redBlueFade, spinnerDash, spinnerRotate} from 'const';
+import {spinnerRotate, spinnerDash, redBlueFade} from '../const';
 
 export const LoadingSpinner: FC<{isLoading: boolean}> = ({isLoading}) =>
 	isLoading ? (

@@ -1,12 +1,9 @@
 import Link from 'next/link';
 import React, {FC, useState} from 'react';
-import {Cart, Hamburger, Search, WoozBadge} from 'assets/svg';
-import {FlexRowWrapper} from 'components/Flex.styled';
-import {
-	NormalizedIconButton,
-	NormalizedIconLink,
-} from 'components/Normalized.styled';
-import {StyledMobileNavigation} from 'components/Navigation/Navigation.styled';
+import {WoozBadge, Search, Cart, Hamburger} from '../../assets/svg';
+import {FlexRowWrapper} from '../Flex.styled';
+import {NormalizedIconButton, NormalizedIconLink} from '../Normalized.styled';
+import {StyledMobileNavigation} from './Navigation.styled';
 
 export const MobileNavigation: FC<{open: () => void}> = ({open}) => {
 	const [isHoveringSearch, setIsHoveringSearch] = useState(false);

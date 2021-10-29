@@ -1,6 +1,6 @@
-import {FlexColumnWrapper} from 'components/Flex.styled';
-import {breakpoints, columnWidth, colors, transitions} from 'const';
 import styled from 'styled-components';
+import {columnWidth, breakpoints, colors, transitions} from '../../const';
+import {FlexColumnWrapper} from '../Flex.styled';
 
 export const StyledNavigation = styled.nav`
 	${columnWidth}

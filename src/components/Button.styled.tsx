@@ -1,5 +1,5 @@
-import {colors, transitions} from 'const';
 import styled from 'styled-components';
+import {colors, transitions} from '../const';
 import {NormalizedButton} from './Normalized.styled';
 
 export const ArrowButton = styled(NormalizedButton)`

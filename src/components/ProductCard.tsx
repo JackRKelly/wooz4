@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import React, {FC} from 'react';
-import {formatPrice} from 'util/formatPrice';
+import {formatPrice} from '../util/formatPrice';
+
 import {
 	ProductCardLink,
 	ProductCardWrapper,

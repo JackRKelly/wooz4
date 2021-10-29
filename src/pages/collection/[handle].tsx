@@ -1,16 +1,17 @@
-import {ContentColumn} from 'components/ContentColumn';
-import {useRouter} from 'next/router';
-import React from 'react';
-import {GET_COLLECTION_BY_HANDLE} from 'graph';
 import {useQuery} from '@apollo/client';
 import Head from 'next/head';
-import {LoadingSpinner} from 'components/LoadingSpinner';
-import {buildTitle} from 'util/title';
+import {useRouter} from 'next/router';
+import React from 'react';
+import {ContentColumn} from '../../components/ContentColumn';
+import {LoadingSpinner} from '../../components/LoadingSpinner';
+import {ProductCard} from '../../components/ProductCard';
+import {ProductCardGrid} from '../../components/ProductCard.styled';
+import {GET_COLLECTION_BY_HANDLE} from '../../graph';
 import {
 	GetCollectionByHandle,
 	GetCollectionByHandleVariables,
-} from 'graph/@types/GetCollectionByHandle';
-import {ProductCard, ProductCardGrid} from 'components/ProductCard';
+} from '../../graph/@types/GetCollectionByHandle';
+import {buildTitle} from '../../util/title';
 
 const Collection = () => {
 	const router = useRouter();
@@ -56,7 +57,7 @@ const Collection = () => {
 						<ProductCard
 							key={id}
 							currencyCode={currencyCode}
-							link={`/product/${handle as string}`}
+							link={`/product/${handle}`}
 							price={amount as string}
 							thumbnail={edges[0].node.transformedSrc as string}
 							title={title}

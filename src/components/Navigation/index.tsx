@@ -1,8 +1,8 @@
 import React, {FC, useEffect, useState} from 'react';
-import {DesktopNavigation} from 'components/Navigation/DesktopNavigation';
-import {FullscreenNavigation} from 'components/Navigation/FullscreenNavigation';
-import {MobileNavigation} from 'components/Navigation/MobileNavigation';
-import {NavigationWrapper} from 'components/Navigation/Navigation.styled';
+import {DesktopNavigation} from './DesktopNavigation';
+import {FullscreenNavigation} from './FullscreenNavigation';
+import {MobileNavigation} from './MobileNavigation';
+import {NavigationWrapper} from './Navigation.styled';
 
 export const Navigation: FC = () => {
 	const [isNavigationOpen, setIsNavigationOpen] = useState(false);

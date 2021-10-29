@@ -1,5 +1,5 @@
-import {colors, transitions} from 'const';
 import styled from 'styled-components';
+import {colors, transitions} from '../const';
 import {NormalizedLink} from './Normalized.styled';
 
 export const ArrowLinkWrapper = styled(NormalizedLink)`
