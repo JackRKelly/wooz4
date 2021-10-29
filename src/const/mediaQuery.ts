@@ -1,5 +1,5 @@
-import {breakpoints} from 'const';
 import {css} from 'styled-components';
+import {breakpoints} from './breakpoints';
 
 export const columnWidth = css`
 	width: 87.5%;

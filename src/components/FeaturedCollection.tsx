@@ -46,7 +46,7 @@ export const FeaturedCollection = () => {
 					}) => (
 						<ProductCard
 							key={id}
-							link={`/product/${handle as string}`}
+							link={`/product/${handle}`}
 							currencyCode={currencyCode}
 							price={amount as string}
 							thumbnail={edges[0].node.transformedSrc as string}

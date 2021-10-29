@@ -1,6 +1,6 @@
-import {transitions} from 'const';
 import React, {FC} from 'react';
 import styled from 'styled-components';
+import {transitions} from '../../../const';
 import {SvgFill} from './SvgBase';
 
 export const Search: FC<{active?: boolean}> = ({active}) => (
