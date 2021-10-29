@@ -12,7 +12,7 @@ const Home: NextPage = () => (
 		</Head>
 
 		<section>
-			<h1>Wooz4</h1>
+			<h2>Wooz4</h2>
 			<p>Modern japanese inspired clothing brand</p>
 		</section>
 

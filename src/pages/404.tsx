@@ -4,7 +4,7 @@ import React from 'react';
 
 const FourOFour = () => (
 	<ContentColumn>
-		<h1>404 - Page Not Found</h1>
+		<h2>404 - Page Not Found</h2>
 		<p>This page is under construction</p>
 		<Link href="/">
 			<a>Return Home</a>

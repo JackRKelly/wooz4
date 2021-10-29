@@ -1,7 +1,7 @@
 import {colors, transitions} from 'const';
 import Image from 'next/image';
 import styled from 'styled-components';
-import {FlexRowWrapper} from './Styled';
+import {FlexRowWrapper} from './Flex.styled';
 
 export const ProductCardStyled = styled.div`
 	background-color: ${colors.lighterGray};

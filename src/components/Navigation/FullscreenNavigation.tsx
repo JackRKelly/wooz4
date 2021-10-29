@@ -3,13 +3,12 @@ import React, {FC} from 'react';
 import {NavigationLink} from 'components/Navigation';
 import styled from 'styled-components';
 import {transitions} from 'const';
+import {Cart, Close, RBWoozLogo, Search} from 'assets/svg';
+import {FlexRowWrapper, FlexColumnWrapper} from 'components/Flex.styled';
 import {
-	FlexColumnWrapper,
-	FlexRowWrapper,
 	NormalizedIconButton,
 	NormalizedIconLink,
-} from 'components/Styled';
-import {Cart, Close, RBWoozLogo, Search} from 'assets/svg';
+} from 'components/Normalized.styled';
 
 export const FullscreenNavigation: FC<{
 	open: boolean;
@@ -33,7 +32,8 @@ export const FullscreenNavigation: FC<{
 			</FlexRowWrapper>
 
 			<NavigationLink text="Home" route="/" onClick={close} />
-			<NavigationLink text="Shop" route="/shop" onClick={close} />
+			<NavigationLink text="Products" route="/products" onClick={close} />
+			<NavigationLink text="Collections" route="/collections" onClick={close} />
 			<NavigationLink text="Contact" route="/contact" onClick={close} />
 
 			<Link passHref href="/">

@@ -4,14 +4,14 @@ import {RBWoozLogo} from 'assets/svg/RBWoozLogo';
 import {StyledNavigation} from 'components/Navigation';
 import {breakpoints} from 'const';
 import styled from 'styled-components';
-import {
-	FlexRowWrapper,
-	NormalizedIconButton,
-	NormalizedIconLink,
-} from 'components/Styled';
 import {Hamburger} from 'assets/svg/Icons/Hamburger';
 import {Cart} from 'assets/svg/Icons/Cart';
 import {Search} from 'assets/svg';
+import {FlexRowWrapper} from 'components/Flex.styled';
+import {
+	NormalizedIconButton,
+	NormalizedIconLink,
+} from 'components/Normalized.styled';
 
 export const MobileNavigation: FC<{open: () => void}> = ({open}) => {
 	const [isHoveringSearch, setIsHoveringSearch] = useState(false);

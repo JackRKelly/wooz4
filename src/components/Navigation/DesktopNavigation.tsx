@@ -3,13 +3,13 @@ import {RBWoozLogo} from 'assets/svg/RBWoozLogo';
 import {NavigationLink, StyledNavigation} from 'components/Navigation';
 import {breakpoints} from 'const';
 import styled from 'styled-components';
-import {
-	FlexRowWrapper,
-	NormalizedIconLink,
-	NormalizedIconButton,
-} from 'components/Styled';
 import {Cart, Search} from 'assets/svg';
 import Link from 'next/link';
+import {FlexRowWrapper} from 'components/Flex.styled';
+import {
+	NormalizedIconButton,
+	NormalizedIconLink,
+} from 'components/Normalized.styled';
 
 export const DesktopNavigation: FC = () => {
 	const [isHoveringSearch, setIsHoveringSearch] = useState(false);
@@ -26,7 +26,8 @@ export const DesktopNavigation: FC = () => {
 				</FlexRowWrapper>
 				<FlexRowWrapper>
 					<NavigationLink text="Home" route="/" />
-					<NavigationLink text="Shop" route="/shop" />
+					<NavigationLink text="Products" route="/products" />
+					<NavigationLink text="Collections" route="/collections" />
 					<NavigationLink text="Contact" route="/contact" />
 				</FlexRowWrapper>
 				<FlexRowWrapper>

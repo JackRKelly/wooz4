@@ -9,7 +9,7 @@ const Contact: NextPage = () => (
 		<Head>
 			<title>{buildTitle('Contact', 'after')}</title>
 		</Head>
-		<h1>Contact</h1>
+		<h2>Contact</h2>
 		<p>This page is under construction</p>
 	</ContentColumn>
 );
