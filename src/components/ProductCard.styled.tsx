@@ -42,6 +42,8 @@ export const ProductCardLink = styled.a`
 	width: 100%;
 	height: 100%;
 	display: block;
+	max-width: 25rem;
+	margin: 0 auto;
 `;
 
 export const ProductCardTitle = styled.span`
