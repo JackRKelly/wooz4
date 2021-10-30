@@ -19,7 +19,7 @@ import {
 import {scrollFromTop} from '../../util/scroll';
 import {buildTitle} from '../../util/title';
 
-const PRODUCTS_PER_PAGE = 5;
+const PRODUCTS_PER_PAGE = 12;
 
 const Collection = () => {
 	const productWrapperRef = useRef<HTMLDivElement | null>(null);
