@@ -24,7 +24,20 @@ const authLink = setContext(_ => ({
 
 const client = new ApolloClient({
 	link: authLink.concat(httpLink),
-	cache: new InMemoryCache({addTypename: false}),
+	cache: new InMemoryCache({
+		addTypename: false,
+		typePolicies: {
+			collectionByHandle: {
+				keyFields: ['handle', 'id'],
+			},
+			productByByHandle: {
+				keyFields: ['handle', 'id'],
+			},
+			products: {
+				keyFields: false,
+			},
+		},
+	}),
 });
 interface Props {
 	children: React.ReactNode;
