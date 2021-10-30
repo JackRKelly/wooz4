@@ -8,10 +8,13 @@ export const FlexColumnWrapper = styled.div`
 	flex-direction: column;
 `;
 
-export const FlexRowWrapper = styled.div`
+export const FlexRowWrapper = styled.div<{
+	justifyContent?: 'space-between' | 'center' | 'flex-start' | 'flex-end';
+}>`
 	display: flex;
 	align-items: center;
-	justify-content: space-between;
+	justify-content: ${props =>
+		props.justifyContent ? props.justifyContent : 'space-between'};
 	flex-wrap: wrap;
 	flex-direction: row;
 `;

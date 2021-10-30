@@ -18,7 +18,7 @@ export const FeaturedCollection = () => {
 		GetCollectionByHandle,
 		GetCollectionByHandleVariables
 	>(GET_COLLECTION_BY_HANDLE, {
-		variables: {handle: CURRENT_COLLECTION_HANDLE},
+		variables: {handle: CURRENT_COLLECTION_HANDLE, first: 8},
 	});
 
 	const {collectionByHandle} = data ?? {};

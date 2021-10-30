@@ -20,6 +20,18 @@ export interface GetCollectionByHandle_collectionByHandle_image {
   transformedSrc: any;
 }
 
+export interface GetCollectionByHandle_collectionByHandle_products_pageInfo {
+  __typename: "PageInfo";
+  /**
+   * Indicates if there are more pages to fetch.
+   */
+  hasNextPage: boolean;
+  /**
+   * Indicates if there are any pages prior to the current page.
+   */
+  hasPreviousPage: boolean;
+}
+
 export interface GetCollectionByHandle_collectionByHandle_products_edges_node_images_edges_node {
   __typename: "Image";
   /**
@@ -99,6 +111,10 @@ export interface GetCollectionByHandle_collectionByHandle_products_edges_node {
 export interface GetCollectionByHandle_collectionByHandle_products_edges {
   __typename: "ProductEdge";
   /**
+   * A cursor for use in pagination.
+   */
+  cursor: string;
+  /**
    * The item at the end of ProductEdge.
    */
   node: GetCollectionByHandle_collectionByHandle_products_edges_node;
@@ -106,6 +122,10 @@ export interface GetCollectionByHandle_collectionByHandle_products_edges {
 
 export interface GetCollectionByHandle_collectionByHandle_products {
   __typename: "ProductConnection";
+  /**
+   * Information to aid in pagination.
+   */
+  pageInfo: GetCollectionByHandle_collectionByHandle_products_pageInfo;
   /**
    * A list of edges.
    */
@@ -141,4 +161,8 @@ export interface GetCollectionByHandle {
 
 export interface GetCollectionByHandleVariables {
   handle: string;
+  first?: number | null;
+  last?: number | null;
+  after?: string | null;
+  before?: string | null;
 }

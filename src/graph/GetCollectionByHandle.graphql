@@ -1,12 +1,23 @@
-query GetCollectionByHandle($handle: String!) {
+query GetCollectionByHandle(
+	$handle: String!
+	$first: Int
+	$last: Int
+	$after: String
+	$before: String
+) {
 	collectionByHandle(handle: $handle) {
 		title
 		description
 		image {
 			transformedSrc
 		}
-		products(first: 8) {
+		products(first: $first, last: $last, after: $after, before: $before) {
+			pageInfo {
+				hasNextPage
+				hasPreviousPage
+			}
 			edges {
+				cursor
 				node {
 					id
 					title

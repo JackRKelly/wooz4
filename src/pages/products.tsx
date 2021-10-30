@@ -2,20 +2,16 @@ import React from 'react';
 import type {NextPage} from 'next';
 import Head from 'next/head';
 import {useQuery} from '@apollo/client';
-import {ArrowLeft, ArrowRight} from '../assets/svg';
 import {ContentColumn} from '../components/ContentColumn';
-import {FlexRowWrapperPadded, FlexRowWrapper} from '../components/Flex.styled';
+import {FlexRowWrapperPadded} from '../components/Flex.styled';
 import {LoadingSpinner} from '../components/LoadingSpinner';
-import {
-	PaginationButton,
-	PaginationText,
-} from '../components/Pagination.styled';
 import {ProductCard} from '../components/ProductCard';
 import {ProductCardGrid} from '../components/ProductCard.styled';
 import {H2NoMargin} from '../components/Text.styled';
 import {GET_PRODUCTS} from '../graph';
 import {GetProducts, GetProductsVariables} from '../graph/@types/GetProducts';
 import {buildTitle} from '../util/title';
+import {Pagination} from '../components/Pagination';
 
 const PRODUCTS_PER_PAGE = 12;
 
@@ -38,6 +34,41 @@ const Shop: NextPage = () => {
 
 	const {products} = data ?? {};
 
+	const next = () => {
+		void fetchMore({
+			variables: {
+				first: PRODUCTS_PER_PAGE,
+				after:
+					products?.edges[(products?.edges?.length ?? 1) - 1]?.cursor ?? null,
+				last: null,
+				before: null,
+			},
+			updateQuery: (prevResult, {fetchMoreResult}) => {
+				if (!fetchMoreResult || fetchMoreResult.products.edges.length === 0) {
+					return prevResult;
+				}
+				return fetchMoreResult;
+			},
+		});
+	};
+
+	const prev = () => {
+		void fetchMore({
+			variables: {
+				first: null,
+				after: null,
+				last: PRODUCTS_PER_PAGE,
+				before: products?.edges[0]?.cursor ?? null,
+			},
+			updateQuery: (prevResult, {fetchMoreResult}) => {
+				if (!fetchMoreResult || fetchMoreResult.products.edges.length === 0) {
+					return prevResult;
+				}
+				return fetchMoreResult;
+			},
+		});
+	};
+
 	return (
 		<ContentColumn>
 			<Head>
@@ -48,70 +79,12 @@ const Shop: NextPage = () => {
 
 			<FlexRowWrapperPadded>
 				<H2NoMargin>Products</H2NoMargin>
-				<FlexRowWrapper>
-					<PaginationButton
-						direction="left"
-						type="button"
-						disabled={!products?.pageInfo.hasPreviousPage}
-						onClick={() => {
-							void new Audio('/pop.mp3').play().catch(() => null);
-							void fetchMore({
-								variables: {
-									first: null,
-									after: null,
-									last: PRODUCTS_PER_PAGE,
-									before: products?.edges[0]?.cursor ?? null,
-								},
-								updateQuery: (prevResult, {fetchMoreResult}) => {
-									if (
-										!fetchMoreResult ||
-										fetchMoreResult.products.edges.length === 0
-									) {
-										return prevResult;
-									}
-									return fetchMoreResult;
-								},
-							});
-						}}
-					>
-						<FlexRowWrapper>
-							<ArrowLeft />
-							<PaginationText>Prev</PaginationText>
-						</FlexRowWrapper>
-					</PaginationButton>
-					<PaginationButton
-						direction="right"
-						type="button"
-						disabled={!products?.pageInfo.hasNextPage}
-						onClick={() => {
-							void new Audio('/pop.mp3').play().catch(() => null);
-							void fetchMore({
-								variables: {
-									first: PRODUCTS_PER_PAGE,
-									after:
-										products?.edges[(products?.edges?.length ?? 1) - 1]
-											?.cursor ?? null,
-									last: null,
-									before: null,
-								},
-								updateQuery: (prevResult, {fetchMoreResult}) => {
-									if (
-										!fetchMoreResult ||
-										fetchMoreResult.products.edges.length === 0
-									) {
-										return prevResult;
-									}
-									return fetchMoreResult;
-								},
-							});
-						}}
-					>
-						<FlexRowWrapper>
-							<PaginationText>Next</PaginationText>
-							<ArrowRight />
-						</FlexRowWrapper>
-					</PaginationButton>
-				</FlexRowWrapper>
+				<Pagination
+					hasNextPage={Boolean(products?.pageInfo.hasNextPage)}
+					hasPreviousPage={Boolean(products?.pageInfo.hasPreviousPage)}
+					next={next}
+					prev={prev}
+				/>
 			</FlexRowWrapperPadded>
 
 			<ProductCardGrid>
