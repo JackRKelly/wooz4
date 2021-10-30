@@ -8,7 +8,8 @@ export const StyledNavigation = styled.nav`
 
 export const StyledMobileNavigation = styled(StyledNavigation)`
 	display: none;
-	@media (max-width: ${breakpoints.md}px) {
+
+	@media (max-width: ${breakpoints.lg}px) {
 		display: block;
 	}
 `;
@@ -24,6 +25,7 @@ export const NavigationWrapper = styled.div`
 	right: 0;
 	background: rgba(255, 255, 255, 1);
 	box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.04);
+
 	@supports (-webkit-backdrop-filter: none) or (backdrop-filter: none) {
 		background: rgba(255, 255, 255, 0.7);
 		-webkit-backdrop-filter: blur(10px);
@@ -72,7 +74,6 @@ export const StyledFullscreenNavigation = styled.div<{open: boolean}>`
 	transition: ${transitions.easeInOutMedium};
 	position: fixed;
 	top: 0;
-
 	width: 100vw;
 	right: ${props => (props.open ? '0' : '-200%')};
 	bottom: 0;
@@ -88,7 +89,8 @@ export const FlexColumnWrapperHeight = styled(FlexColumnWrapper)`
 `;
 export const StyledDesktopNavigation = styled(StyledNavigation)`
 	display: none;
-	@media (min-width: ${breakpoints.md}px) {
+
+	@media (min-width: ${breakpoints.lg}px) {
 		display: block;
 	}
 `;
