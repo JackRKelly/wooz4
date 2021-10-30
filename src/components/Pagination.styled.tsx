@@ -1,13 +1,19 @@
 import styled from 'styled-components';
-
-import {colors, transitions} from '../const';
+import {breakpoints, colors, transitions} from '../const';
 import {NormalizedButton} from './Normalized.styled';
+
 export const PaginationText = styled.span`
 	font-size: 0.8rem;
 	padding: 0.5rem;
 	text-transform: uppercase;
 	font-style: italic;
 	font-weight: bold;
+`;
+
+export const MobilePaginationWrapper = styled.div`
+	@media (min-width: ${breakpoints.md}px) {
+		display: none;
+	}
 `;
 
 export const PaginationButton = styled(NormalizedButton)<{

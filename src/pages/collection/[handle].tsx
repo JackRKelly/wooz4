@@ -1,12 +1,13 @@
 import {useQuery} from '@apollo/client';
 import Head from 'next/head';
 import {useRouter} from 'next/router';
-import React from 'react';
+import React, {useRef} from 'react';
 import styled from 'styled-components';
 import {ContentColumn} from '../../components/ContentColumn';
-import {FlexRowWrapperPadded} from '../../components/Flex.styled';
+import {FlexRowWrapper} from '../../components/Flex.styled';
 import {LoadingSpinner} from '../../components/LoadingSpinner';
 import {Pagination} from '../../components/Pagination';
+import {MobilePaginationWrapper} from '../../components/Pagination.styled';
 import {ProductCard} from '../../components/ProductCard';
 import {ProductCardGrid} from '../../components/ProductCard.styled';
 import {colors} from '../../const';
@@ -15,14 +16,15 @@ import {
 	GetCollectionByHandle,
 	GetCollectionByHandleVariables,
 } from '../../graph/@types/GetCollectionByHandle';
+import {scrollFromTop} from '../../util/scroll';
 import {buildTitle} from '../../util/title';
 
-const PRODUCTS_PER_PAGE = 8;
+const PRODUCTS_PER_PAGE = 5;
 
 const Collection = () => {
+	const productWrapperRef = useRef<HTMLDivElement | null>(null);
 	const router = useRouter();
 	const {handle} = router.query;
-
 	const {loading, data, fetchMore} = useQuery<
 		GetCollectionByHandle,
 		GetCollectionByHandleVariables
@@ -59,6 +61,7 @@ const Collection = () => {
 				return fetchMoreResult;
 			},
 		});
+		scrollFromTop(productWrapperRef?.current?.offsetTop ?? 0);
 	};
 
 	const prev = () => {
@@ -80,10 +83,21 @@ const Collection = () => {
 				return fetchMoreResult;
 			},
 		});
+		scrollFromTop(productWrapperRef?.current?.offsetTop ?? 0);
 	};
 
 	return (
 		<>
+			<Head>
+				<title>
+					{title
+						? buildTitle(`${title}`, 'after')
+						: buildTitle('Loading...', 'before')}
+				</title>
+			</Head>
+
+			<LoadingSpinner isLoading={loading} />
+
 			<SectionWithBackgroundImage
 				backgroundImage={image?.transformedSrc as string}
 			>
@@ -92,24 +106,16 @@ const Collection = () => {
 					<SectionDescription>{description}</SectionDescription>
 				</ContentColumn>
 			</SectionWithBackgroundImage>
-			<ContentColumn padding="0 0 3.5rem 0">
-				<Head>
-					<title>
-						{title
-							? buildTitle(`${title}`, 'after')
-							: buildTitle('Loading...', 'before')}
-					</title>
-				</Head>
-				<LoadingSpinner isLoading={loading} />
 
-				<FlexRowWrapperPadded justifyContent="flex-end">
+			<ContentColumn ref={productWrapperRef} padding="0 0 3.5rem 0">
+				<FlexRowWrapper padding="1rem 0" justifyContent="flex-end">
 					<Pagination
 						hasPreviousPage={Boolean(products?.pageInfo.hasPreviousPage)}
 						hasNextPage={Boolean(products?.pageInfo.hasNextPage)}
 						next={next}
 						prev={prev}
 					/>
-				</FlexRowWrapperPadded>
+				</FlexRowWrapper>
 				<ProductCardGrid>
 					{products?.edges.map(
 						({
@@ -134,6 +140,16 @@ const Collection = () => {
 						),
 					)}
 				</ProductCardGrid>
+				<FlexRowWrapper padding="1rem 0" justifyContent="flex-end">
+					<MobilePaginationWrapper>
+						<Pagination
+							hasNextPage={Boolean(products?.pageInfo.hasNextPage)}
+							hasPreviousPage={Boolean(products?.pageInfo.hasPreviousPage)}
+							next={next}
+							prev={prev}
+						/>
+					</MobilePaginationWrapper>
+				</FlexRowWrapper>
 			</ContentColumn>
 		</>
 	);

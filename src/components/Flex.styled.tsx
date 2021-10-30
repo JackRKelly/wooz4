@@ -10,15 +10,13 @@ export const FlexColumnWrapper = styled.div`
 
 export const FlexRowWrapper = styled.div<{
 	justifyContent?: 'space-between' | 'center' | 'flex-start' | 'flex-end';
+	padding?: string;
 }>`
 	display: flex;
 	align-items: center;
 	justify-content: ${props =>
 		props.justifyContent ? props.justifyContent : 'space-between'};
+	padding: ${props => (props.padding ? props.padding : 'none')};
 	flex-wrap: wrap;
 	flex-direction: row;
-`;
-
-export const FlexRowWrapperPadded = styled(FlexRowWrapper)`
-	padding: 1rem 0;
 `;

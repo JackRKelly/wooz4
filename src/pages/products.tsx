@@ -1,9 +1,9 @@
-import React from 'react';
+import React, {useRef} from 'react';
 import type {NextPage} from 'next';
 import Head from 'next/head';
 import {useQuery} from '@apollo/client';
 import {ContentColumn} from '../components/ContentColumn';
-import {FlexRowWrapperPadded} from '../components/Flex.styled';
+import {FlexRowWrapper} from '../components/Flex.styled';
 import {LoadingSpinner} from '../components/LoadingSpinner';
 import {ProductCard} from '../components/ProductCard';
 import {ProductCardGrid} from '../components/ProductCard.styled';
@@ -12,10 +12,13 @@ import {GET_PRODUCTS} from '../graph';
 import {GetProducts, GetProductsVariables} from '../graph/@types/GetProducts';
 import {buildTitle} from '../util/title';
 import {Pagination} from '../components/Pagination';
+import {MobilePaginationWrapper} from '../components/Pagination.styled';
+import {scrollFromTop} from '../util/scroll';
 
 const PRODUCTS_PER_PAGE = 12;
 
 const Shop: NextPage = () => {
+	const productWrapperRef = useRef<HTMLDivElement | null>(null);
 	const {loading, error, data, fetchMore} = useQuery<
 		GetProducts,
 		GetProductsVariables
@@ -50,6 +53,7 @@ const Shop: NextPage = () => {
 				return fetchMoreResult;
 			},
 		});
+		scrollFromTop(productWrapperRef?.current?.offsetTop ?? 0);
 	};
 
 	const prev = () => {
@@ -67,51 +71,63 @@ const Shop: NextPage = () => {
 				return fetchMoreResult;
 			},
 		});
+		scrollFromTop(productWrapperRef?.current?.offsetTop ?? 0);
 	};
 
 	return (
-		<ContentColumn>
+		<>
 			<Head>
 				<title>{buildTitle('Shop', 'after')}</title>
 			</Head>
 
 			<LoadingSpinner isLoading={loading} />
 
-			<FlexRowWrapperPadded>
-				<H2NoMargin>Products</H2NoMargin>
-				<Pagination
-					hasNextPage={Boolean(products?.pageInfo.hasNextPage)}
-					hasPreviousPage={Boolean(products?.pageInfo.hasPreviousPage)}
-					next={next}
-					prev={prev}
-				/>
-			</FlexRowWrapperPadded>
-
-			<ProductCardGrid>
-				{products?.edges?.map(
-					({
-						node: {
-							id,
-							title,
-							handle,
-							images: {edges},
-							priceRange: {
-								minVariantPrice: {amount, currencyCode},
+			<ContentColumn ref={productWrapperRef}>
+				<FlexRowWrapper padding="1rem 0">
+					<H2NoMargin>Products</H2NoMargin>
+					<Pagination
+						hasNextPage={Boolean(products?.pageInfo.hasNextPage)}
+						hasPreviousPage={Boolean(products?.pageInfo.hasPreviousPage)}
+						next={next}
+						prev={prev}
+					/>
+				</FlexRowWrapper>
+				<ProductCardGrid>
+					{products?.edges?.map(
+						({
+							node: {
+								id,
+								title,
+								handle,
+								images: {edges},
+								priceRange: {
+									minVariantPrice: {amount, currencyCode},
+								},
 							},
-						},
-					}) => (
-						<ProductCard
-							key={id}
-							link={`/product/${handle}`}
-							price={amount as string}
-							currencyCode={currencyCode}
-							thumbnail={edges[0].node.transformedSrc as string}
-							title={title}
+						}) => (
+							<ProductCard
+								key={id}
+								link={`/product/${handle}`}
+								price={amount as string}
+								currencyCode={currencyCode}
+								thumbnail={edges[0].node.transformedSrc as string}
+								title={title}
+							/>
+						),
+					)}
+				</ProductCardGrid>
+				<FlexRowWrapper padding="1rem 0" justifyContent="flex-end">
+					<MobilePaginationWrapper>
+						<Pagination
+							hasNextPage={Boolean(products?.pageInfo.hasNextPage)}
+							hasPreviousPage={Boolean(products?.pageInfo.hasPreviousPage)}
+							next={next}
+							prev={prev}
 						/>
-					),
-				)}
-			</ProductCardGrid>
-		</ContentColumn>
+					</MobilePaginationWrapper>
+				</FlexRowWrapper>
+			</ContentColumn>
+		</>
 	);
 };
 
