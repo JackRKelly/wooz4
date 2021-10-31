@@ -1,6 +1,5 @@
 import React, {StrictMode, useEffect} from 'react';
 import type {AppProps} from 'next/app';
-import {Apollo as ApolloProvider} from '../context/Apollo';
 import {Navigation} from '../components/Navigation';
 import ScrollManager from '../components/ScrollManager';
 import {colors} from '../const';
@@ -98,13 +97,13 @@ const App = ({Component, pageProps, router}: AppProps) => {
 
 	return (
 		<StrictMode>
-			<ApolloProvider>
+			<>
 				<NavigationPlaceholder />
 				<Navigation />
 				<GlobalStyle />
 				<Component {...pageProps} />
 				<ScrollManager />
-			</ApolloProvider>
+			</>
 		</StrictMode>
 	);
 };
