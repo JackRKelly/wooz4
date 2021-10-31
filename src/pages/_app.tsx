@@ -1,12 +1,12 @@
 import React, {StrictMode, useEffect} from 'react';
 import type {AppProps} from 'next/app';
-import * as styled from 'styled-components';
 import {Apollo as ApolloProvider} from '../context/Apollo';
 import {Navigation} from '../components/Navigation';
 import ScrollManager from '../components/ScrollManager';
 import {colors} from '../const';
+import styled, {createGlobalStyle} from 'styled-components';
 
-export const GlobalStyle = styled.createGlobalStyle`
+export const GlobalStyle = createGlobalStyle`
 	html {
 		box-sizing: border-box;
 		scroll-behavior: smooth;
@@ -99,6 +99,7 @@ const App = ({Component, pageProps, router}: AppProps) => {
 	return (
 		<StrictMode>
 			<ApolloProvider>
+				<NavigationPlaceholder />
 				<Navigation />
 				<GlobalStyle />
 				<Component {...pageProps} />
@@ -107,5 +108,11 @@ const App = ({Component, pageProps, router}: AppProps) => {
 		</StrictMode>
 	);
 };
+
+const NavigationPlaceholder = styled.div`
+	height: 3.125rem;
+	background-color: ${colors.white};
+	width: 100%;
+`;
 
 export default App;

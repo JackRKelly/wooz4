@@ -101,7 +101,7 @@ const Collection = () => {
 			<SectionWithBackgroundImage
 				backgroundImage={image?.transformedSrc as string}
 			>
-				<ContentColumn padding="8.5rem 0 5.25rem 0">
+				<ContentColumn padding="5.25rem 0 5.25rem 0">
 					<SectionTitle>{title}</SectionTitle>
 					<SectionDescription>{description}</SectionDescription>
 				</ContentColumn>
