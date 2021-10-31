@@ -64,8 +64,8 @@ export const CartListItem: React.FC<Props> = ({item}) => {
 					<Image
 						src={item.variant.image.src}
 						alt={item.variant.image.alt}
-						width={30}
-						height={40}
+						width={200}
+						height={200}
 					/>
 				</a>
 			</Link>

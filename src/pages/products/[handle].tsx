@@ -1,17 +1,17 @@
 import React from 'react';
-import Image from 'next/image';
+// import Image from 'next/image';
 import {useImmer} from 'use-immer';
 import truncate from 'lodash/truncate';
 import {useQueryClient, useMutation} from 'react-query';
-import {
-	A11y,
-	Keyboard,
-	Mousewheel,
-	Navigation,
-	Pagination,
-	Swiper,
-} from 'swiper';
-import {Swiper as SwiperSlider, SwiperSlide} from 'swiper/react';
+// import {
+// 	A11y,
+// 	Keyboard,
+// 	Mousewheel,
+// 	Navigation,
+// 	Pagination,
+// 	Swiper,
+// } from 'swiper';
+// import {Swiper as SwiperSlider, SwiperSlide} from 'swiper/react';
 import {CART_ITEM_COUNT_QUERY} from '../../const/query';
 import {formatPrice} from '../../util/intl';
 import {NextPageContext} from 'next';
@@ -29,7 +29,7 @@ interface State {
 }
 
 const Product = ({product}: Props) => {
-	const [swiper, setSwiper] = React.useState<Swiper>();
+	// const [swiper, setSwiper] = React.useState<Swiper>();
 	const [state, setState] = useImmer<State>({
 		variant: product.variants[0],
 		quantity: 1,
@@ -46,23 +46,21 @@ const Product = ({product}: Props) => {
 			<p>{truncate(product.description, {length: 120})}</p>
 			<p>{formatPrice(state.variant.price)}</p>
 
-			<SwiperSlider
+			<p>images temp disabled</p>
+			{/* <SwiperSlider
 				preloadImages
 				pagination={{clickable: true}}
 				spaceBetween={50}
 				modules={[Navigation, Pagination, A11y, Keyboard, Mousewheel]}
 				slidesPerView={1}
 				onSwiper={setSwiper}
-				onSlideChange={() => {
-					console.log('slide change');
-				}}
 			>
 				{product.images.map(({id, src, alt}) => (
 					<SwiperSlide key={id}>
 						<Image src={src} alt={alt} width="500" height="500" />
 					</SwiperSlide>
 				))}
-			</SwiperSlider>
+			</SwiperSlider> */}
 
 			<form>
 				<label id="product-variants-label">Variants</label>
@@ -75,13 +73,13 @@ const Product = ({product}: Props) => {
 						const variant = product.variants.find(
 							({id}) => id === event.target.value,
 						);
-						const slideIndex = product.images.findIndex(
-							image => image.id === variant?.image,
-						);
+						// const slideIndex = product.images.findIndex(
+						// 	image => image.id === variant?.image,
+						// );
 
-						if (slideIndex !== -1 && swiper) {
-							swiper.slideTo(slideIndex);
-						}
+						// if (slideIndex !== -1 && swiper) {
+						// 	swiper.slideTo(slideIndex);
+						// }
 
 						setState(draft => {
 							draft.variant = variant!;
