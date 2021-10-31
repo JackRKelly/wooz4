@@ -1,7 +1,8 @@
-query getColletionList($after: String) {
-	collections(first: 12, after: $after) {
+query getCollectionList($limit: Int = 12, $after: String) {
+	collections(first: $limit, after: $after) {
 		edges {
 			node {
+				id
 				title
 				description
 				image {

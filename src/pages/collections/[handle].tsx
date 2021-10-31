@@ -9,7 +9,7 @@ import {PageLoader} from '../../components/PageLoading';
 import {ProductCard} from '../../components/ProductCard';
 import {ProductCardGrid} from '../../components/ProductCard.styled';
 import {colors} from '../../const';
-import {COLLECTION_LIST_QUERY} from '../../const/query';
+import {COLLECTION_PRODUCT_LIST_QUERY} from '../../const/query';
 import {
 	SingleCollection,
 	getSingleCollection,
@@ -26,7 +26,7 @@ interface Props {
 
 const Collection = ({collection, initialData, handle}: Props) => {
 	const productList = useInfiniteQuery(
-		COLLECTION_LIST_QUERY,
+		COLLECTION_PRODUCT_LIST_QUERY,
 		async ({pageParam}: {pageParam?: string}) =>
 			getCollectionProducts({handle, after: pageParam}),
 		{

@@ -6184,12 +6184,13 @@ export type RemoveCartItemMutationVariables = Exact<{
 
 export type RemoveCartItemMutation = { __typename?: 'Mutation', checkoutLineItemsRemove?: { __typename?: 'CheckoutLineItemsRemovePayload', checkout?: { __typename?: 'Checkout', id: string } | null | undefined } | null | undefined };
 
-export type GetColletionListQueryVariables = Exact<{
+export type GetCollectionListQueryVariables = Exact<{
+  limit?: Maybe<Scalars['Int']>;
   after?: Maybe<Scalars['String']>;
 }>;
 
 
-export type GetColletionListQuery = { __typename?: 'QueryRoot', collections: { __typename?: 'CollectionConnection', edges: Array<{ __typename?: 'CollectionEdge', cursor: string, node: { __typename?: 'Collection', title: string, description: string, handle: string, image?: { __typename?: 'Image', transformedSrc: string } | null | undefined } }>, pageInfo: { __typename?: 'PageInfo', hasNextPage: boolean } } };
+export type GetCollectionListQuery = { __typename?: 'QueryRoot', collections: { __typename?: 'CollectionConnection', edges: Array<{ __typename?: 'CollectionEdge', cursor: string, node: { __typename?: 'Collection', id: string, title: string, description: string, handle: string, image?: { __typename?: 'Image', transformedSrc: string } | null | undefined } }>, pageInfo: { __typename?: 'PageInfo', hasNextPage: boolean } } };
 
 export type GetCollectionSingleQueryVariables = Exact<{
   handle: Scalars['String'];
@@ -6326,11 +6327,12 @@ export const RemoveCartItemDocument = gql`
   }
 }
     `;
-export const GetColletionListDocument = gql`
-    query getColletionList($after: String) {
-  collections(first: 12, after: $after) {
+export const GetCollectionListDocument = gql`
+    query getCollectionList($limit: Int = 12, $after: String) {
+  collections(first: $limit, after: $after) {
     edges {
       node {
+        id
         title
         description
         image {
@@ -6489,8 +6491,8 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     removeCartItem(variables: RemoveCartItemMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<RemoveCartItemMutation> {
       return withWrapper((wrappedRequestHeaders) => client.request<RemoveCartItemMutation>(RemoveCartItemDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'removeCartItem');
     },
-    getColletionList(variables?: GetColletionListQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<GetColletionListQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<GetColletionListQuery>(GetColletionListDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'getColletionList');
+    getCollectionList(variables?: GetCollectionListQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<GetCollectionListQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<GetCollectionListQuery>(GetCollectionListDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'getCollectionList');
     },
     getCollectionSingle(variables: GetCollectionSingleQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<GetCollectionSingleQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<GetCollectionSingleQuery>(GetCollectionSingleDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'getCollectionSingle');

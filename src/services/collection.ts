@@ -3,11 +3,13 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import formatTitle from 'title';
 import {
+	GetCollectionListQueryVariables,
 	GetCollectionProductsQueryVariables,
 	GetProductListQuery,
 	ShopifyService,
 } from './shopify';
 import {ProductList} from './product';
+import {Merge} from 'type-fest';
 
 export interface SingleCollection {
 	title: string;
@@ -75,48 +77,40 @@ export async function getCollectionProducts(
 	};
 }
 
-// export interface ListItem {
-// 	id: string;
-// 	url: string;
-// 	title: string;
-// 	description: string;
-// 	image: {
-// 		src: string;
-// 		alt: string;
-// 	};
-// 	price: {
-// 		amount: number;
-// 		currencyCode: CurrencyCode;
-// 	};
-// }
+export interface CollectionListItem {
+	id: string;
+	title: string;
+	description: string;
+	image: {
+		src: string;
+	};
+	handle: string;
+}
 
-// export interface List {
-// 	products: Array<Merge<ListItem, {cursor: string}>>;
-// 	pageInfo: GetProductListQuery['products']['pageInfo'];
-// }
+export interface CollectionList {
+	collections: Array<Merge<CollectionListItem, {cursor: string}>>;
+	pageInfo: GetProductListQuery['products']['pageInfo'];
+}
 
-// export async function getList(
-// 	variables?: GetProductListQueryVariables,
-// ): Promise<List> {
-// 	const {
-// 		products: {edges, pageInfo},
-// 	} = await ShopifyService.getProductList(variables);
+export async function getCollectionList(
+	variables?: GetCollectionListQueryVariables,
+): Promise<CollectionList> {
+	const {
+		collections: {edges, pageInfo},
+	} = await ShopifyService.getCollectionList(variables);
 
-// 	const products: List['products'] = edges.map(({node, cursor}) => ({
-// 		id: node.id,
-// 		cursor,
-// 		url: `/products/${node.handle}`,
-// 		title: formatTitle(node.title),
-// 		description: node.description,
-// 		image: {
-// 			src: node.images.edges[0].node.transformedSrc,
-// 			alt: node.images.edges[0].node.altText ?? '',
-// 		},
-// 		price: {
-// 			amount: Number(node.priceRange.minVariantPrice.amount),
-// 			currencyCode: node.priceRange.minVariantPrice.currencyCode,
-// 		},
-// 	}));
+	const collections: CollectionList['collections'] = edges.map(
+		({node, cursor}) => ({
+			id: node.id,
+			title: node.title,
+			description: node.description,
+			image: {
+				src: node.image?.transformedSrc as string,
+			},
+			handle: node.handle,
+			cursor,
+		}),
+	);
 
-// 	return {products, pageInfo};
-// }
+	return {collections, pageInfo};
+}
