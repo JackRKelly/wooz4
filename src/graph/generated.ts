@@ -6260,12 +6260,7 @@ export const GetCartDocument = gql`
               }
               image {
                 altText
-                transformedSrc(
-                  maxWidth: 300
-                  maxHeight: 400
-                  crop: CENTER
-                  preferredContentType: JPG
-                )
+                transformedSrc
               }
             }
           }
@@ -6336,7 +6331,7 @@ export const GetCollectionListDocument = gql`
         title
         description
         image {
-          transformedSrc(maxWidth: 768, maxHeight: 1024, crop: CENTER)
+          transformedSrc
         }
         handle
       }
@@ -6382,7 +6377,7 @@ export const GetCollectionProductsDocument = gql`
               node {
                 id
                 altText
-                transformedSrc(maxWidth: 768, maxHeight: 1024, crop: CENTER)
+                transformedSrc
               }
             }
           }
@@ -6416,7 +6411,7 @@ export const GetProductListDocument = gql`
             node {
               id
               altText
-              transformedSrc(maxWidth: 768, maxHeight: 1024, crop: CENTER)
+              transformedSrc
             }
           }
         }
@@ -6443,7 +6438,7 @@ export const GetProductSingleDocument = gql`
         node {
           id
           altText
-          transformedSrc(maxWidth: 768, maxHeight: 1024, crop: CENTER)
+          transformedSrc
         }
       }
     }

@@ -1,8 +1,8 @@
 import Image from 'next/image';
 import styled from 'styled-components';
-
 import {colors, transitions} from '../const';
 import {FlexRowWrapper} from './Flex.styled';
+
 export const ProductCardImage = styled(Image)`
 	border-radius: 3px;
 	filter: drop-shadow(3px 6px 5px rgba(0, 0, 0, 0.15));
