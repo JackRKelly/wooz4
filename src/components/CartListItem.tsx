@@ -38,7 +38,10 @@ export const CartListItem: React.FC<Props> = ({item}) => {
 	);
 
 	const remove = useMutation(removeCartItem, {
-		onSuccess: refetchCart,
+		onSuccess: () => {
+			void new Audio('/success.mp3').play().catch(() => null);
+			refetchCart();
+		},
 	});
 
 	// eslint-disable-next-line @typescript-eslint/no-unsafe-call
