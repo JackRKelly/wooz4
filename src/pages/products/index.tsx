@@ -12,7 +12,7 @@ interface Props {
 	initialData: InfiniteData<ProductList>;
 }
 
-const Shop: NextPage<Props> = ({initialData}: Props) => {
+const Products: NextPage<Props> = ({initialData}: Props) => {
 	const productList = useInfiniteQuery(
 		PRODUCT_LIST_QUERY,
 		// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
@@ -42,7 +42,7 @@ const Shop: NextPage<Props> = ({initialData}: Props) => {
 	);
 };
 
-Shop.getInitialProps = async (): Promise<Props> => {
+Products.getInitialProps = async (): Promise<Props> => {
 	const firstPage = await getProductList();
 
 	return {
@@ -50,4 +50,4 @@ Shop.getInitialProps = async (): Promise<Props> => {
 	};
 };
 
-export default Shop;
+export default Products;

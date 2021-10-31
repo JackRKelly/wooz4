@@ -1,6 +1,6 @@
 import type {NextPage} from 'next';
 
-const Shop: NextPage = () =>
+const Collections: NextPage = () =>
 	// <ContentColumn>
 	// 	<Head>
 	// 		<title>{buildTitle('Shop', 'after')}</title>
@@ -11,4 +11,4 @@ const Shop: NextPage = () =>
 	// </ContentColumn>
 	null;
 
-export default Shop;
+export default Collections;
