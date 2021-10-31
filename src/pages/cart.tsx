@@ -8,6 +8,7 @@ import {CART_QUERY} from '../const/query';
 import {getCart} from '../services/cart';
 import Link from 'next/link';
 import {formatPrice} from '../util/intl';
+import {CartListItem} from '../components/CartListItem';
 
 const Cart: NextPage = () => {
 	const cart = useQuery(CART_QUERY, async () => getCart());
@@ -20,31 +21,23 @@ const Cart: NextPage = () => {
 			<h1>Cart</h1>
 			<p>This page is under construction</p>
 
-			{/* <Table>
-      <TableHead>
-        <TableRow>
-          <TableCell sx={{ fontWeight: 'bold' }}>Image</TableCell>
-          <TableCell sx={{ fontWeight: 'bold' }}>Title</TableCell>
-          <TableCell sx={{ fontWeight: 'bold' }} align="center">
-            Quantity
-          </TableCell>
-          <TableCell sx={{ fontWeight: 'bold', whiteSpace: 'nowrap' }} align="center">
-            Unit Price
-          </TableCell>
-          <TableCell sx={{ fontWeight: 'bold', whiteSpace: 'nowrap' }} align="center">
-            Total Price
-          </TableCell>
-          <TableCell sx={{ fontWeight: 'bold' }} align="right">
-            Remove
-          </TableCell>
-        </TableRow>
-      </TableHead>
-      <TableBody>
-        {items.map((item) => (
-          <CartItem key={item.id} item={item} />
-        ))}
-      </TableBody>
-    </Table> */}
+			<table>
+				<thead>
+					<tr>
+						<th>Image</th>
+						<th>Title</th>
+						<th>Quantity</th>
+						<th>Unit Price</th>
+						<th>Total Price</th>
+						<th>Remove</th>
+					</tr>
+				</thead>
+				<tbody>
+					{cart.data?.items.map(item => (
+						<CartListItem key={item.id} item={item} />
+					))}
+				</tbody>
+			</table>
 
 			{cart.data?.items.length ? (
 				<section>
