@@ -94,3 +94,9 @@ export const StyledDesktopNavigation = styled(StyledNavigation)`
 		display: block;
 	}
 `;
+
+export const NavigationPlaceholder = styled.div`
+	height: 3.125rem;
+	background-color: ${colors.white};
+	width: 100%;
+`;
