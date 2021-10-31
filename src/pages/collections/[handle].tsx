@@ -20,7 +20,7 @@ import {buildTitle} from '../../util/title';
 
 const PRODUCTS_PER_PAGE = 12;
 
-const Collection = () => {
+const Collection = () =>
 	// const productWrapperRef = useRef<HTMLDivElement | null>(null);
 	// const router = useRouter();
 	// const {handle} = router.query;
@@ -145,9 +145,7 @@ const Collection = () => {
 	// 		</ContentColumn>
 	// 	</>
 	// );
-	return null;
-};
-
+	 null;
 const SectionWithBackgroundImage = styled.section<{backgroundImage: string}>`
 	background-image: linear-gradient(
 			45deg,

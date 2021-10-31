@@ -14,7 +14,7 @@ import {formatPrice} from '../../util/formatPrice';
 import {buildTitle} from '../../util/title';
 import Image from 'next/image';
 
-const Product = () => {
+const Product = () =>
 	// const router = useRouter();
 	// const {handle} = router.query;
 	// const {loading, data} = useQuery<
@@ -72,7 +72,5 @@ const Product = () => {
 	// 		))}
 	// 	</ContentColumn>
 	// );
-	return null;
-};
-
+	 null;
 export default Product;

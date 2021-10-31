@@ -4,6 +4,8 @@ import {Navigation} from '../components/Navigation';
 import ScrollManager from '../components/ScrollManager';
 import {colors} from '../const';
 import styled, {createGlobalStyle} from 'styled-components';
+import {QueryClient, QueryClientProvider} from 'react-query';
+import {isProd} from '../util/env';
 
 export const GlobalStyle = createGlobalStyle`
 	html {
@@ -90,6 +92,16 @@ export const GlobalStyle = createGlobalStyle`
 	}
 `;
 
+const queryClient = new QueryClient({
+	defaultOptions: {
+		queries: {
+			retry: isProd(),
+			refetchIntervalInBackground: isProd(),
+			refetchOnWindowFocus: isProd(),
+		},
+	},
+});
+
 const App = ({Component, pageProps, router}: AppProps) => {
 	useEffect(() => {
 		void new Audio('/pop.mp3').play().catch(() => null);
@@ -97,13 +109,13 @@ const App = ({Component, pageProps, router}: AppProps) => {
 
 	return (
 		<StrictMode>
-			<>
+			<QueryClientProvider client={queryClient}>
 				<NavigationPlaceholder />
 				<Navigation />
 				<GlobalStyle />
 				<Component {...pageProps} />
 				<ScrollManager />
-			</>
+			</QueryClientProvider>
 		</StrictMode>
 	);
 };

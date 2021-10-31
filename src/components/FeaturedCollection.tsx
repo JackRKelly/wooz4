@@ -11,7 +11,7 @@ import {LoadingSpinner} from './LoadingSpinner';
 import {ProductCard} from './ProductCard';
 import {ProductCardGrid} from './ProductCard.styled';
 
-export const FeaturedCollection = () => {
+export const FeaturedCollection = () =>
 	// const CURRENT_COLLECTION_HANDLE = 'sakura-collection';
 	// const {loading, data} = useQuery<
 	// 	GetCollectionByHandle,
@@ -58,9 +58,7 @@ export const FeaturedCollection = () => {
 	// 		</ViewCollectionLinkWrapper>
 	// 	</section>
 	// );
-	return null;
-};
-
+	 null;
 const ViewCollectionLinkWrapper = styled.div`
 	display: flex;
 	justify-content: flex-end;

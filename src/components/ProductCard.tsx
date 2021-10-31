@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import React, {FC} from 'react';
-import {formatPrice} from '../util/formatPrice';
-
+import {ListItem} from '../services/product';
+import {formatPrice} from '../util/intl';
 import {
 	ProductCardLink,
 	ProductCardWrapper,
@@ -14,32 +14,26 @@ import {
 } from './ProductCard.styled';
 
 interface Props {
-	link: string;
-	title: string;
-	price: string;
-	currencyCode: string;
-	thumbnail: string;
+	product: ListItem;
 }
 
-export const ProductCard: FC<Props> = ({
-	link,
-	title,
-	price,
-	currencyCode,
-	thumbnail,
-}) => (
-	<Link passHref href={link}>
+export const ProductCard: FC<Props> = ({product}) => (
+	<Link passHref href={product.url}>
 		<ProductCardLink>
 			<ProductCardWrapper>
 				<ProductFlex>
 					<ProductCardImageWrapper>
-						<ProductCardImage alt="product" src={thumbnail} layout="fill" />
+						<ProductCardImage
+							alt={product.image.alt}
+							src={product.image.src}
+							layout="fill"
+						/>
 					</ProductCardImageWrapper>
 				</ProductFlex>
 			</ProductCardWrapper>
 			<ProductTitleWrapper>
-				<ProductCardTitle>{title}</ProductCardTitle>
-				<ProductCardPrice>{formatPrice(price, currencyCode)}</ProductCardPrice>
+				<ProductCardTitle>{product.title}</ProductCardTitle>
+				<ProductCardPrice>{formatPrice(product.price)}</ProductCardPrice>
 			</ProductTitleWrapper>
 		</ProductCardLink>
 	</Link>
