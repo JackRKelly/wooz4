@@ -1,5 +1,8 @@
 import React from 'react';
 import {UseInfiniteQueryResult} from 'react-query';
+import {FlexRowWrapper} from './Flex.styled';
+import {NormalizedButton} from './Normalized.styled';
+import {BoldUppercaseText} from './Text.styled';
 
 export type PageLoaderProps = Pick<
 	UseInfiniteQueryResult,
@@ -10,29 +13,41 @@ export const PageLoader: React.FC<PageLoaderProps> = props => (
 	<div>
 		{(() => {
 			if (props.isFetchingNextPage) {
-				return <button type="button">Loading...</button>;
+				return (
+					<NormalizedButton type="button">
+						<BoldUppercaseText>Loading...</BoldUppercaseText>
+					</NormalizedButton>
+				);
 			}
 
 			if (props.error) {
 				return (
-					<button type="button" onClick={async () => props.fetchNextPage()}>
-						Try Again to Load More
-					</button>
+					<NormalizedButton
+						type="button"
+						onClick={async () => props.fetchNextPage()}
+					>
+						<BoldUppercaseText>Try Again to Load More</BoldUppercaseText>
+					</NormalizedButton>
 				);
 			}
 
 			if (props.hasNextPage) {
 				return (
-					<button type="button" onClick={async () => props.fetchNextPage()}>
-						Load More
-					</button>
+					<NormalizedButton
+						type="button"
+						onClick={async () => props.fetchNextPage()}
+					>
+						<BoldUppercaseText>Load More</BoldUppercaseText>
+					</NormalizedButton>
 				);
 			}
 
 			return (
-				<button disabled type="button">
-					Nothing more to load
-				</button>
+				<FlexRowWrapper justifyContent="flex-end" padding="1rem 0">
+					<NormalizedButton disabled type="button">
+						<BoldUppercaseText>Nothing more to load</BoldUppercaseText>
+					</NormalizedButton>
+				</FlexRowWrapper>
 			);
 		})()}
 	</div>
