@@ -1,5 +1,6 @@
 query GetCollectionById($id: ID!) {
 	collection(id: $id) {
+		__typename
 		title
 		description
 		image {
@@ -8,6 +9,7 @@ query GetCollectionById($id: ID!) {
 		products(first: 8) {
 			edges {
 				node {
+					__typename
 					id
 					title
 					handle

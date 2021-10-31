@@ -6,6 +6,7 @@ query GetCollectionByHandle(
 	$before: String
 ) {
 	collectionByHandle(handle: $handle) {
+		__typename
 		title
 		description
 		image {
@@ -19,6 +20,7 @@ query GetCollectionByHandle(
 			edges {
 				cursor
 				node {
+					__typename
 					id
 					title
 					handle

@@ -1,5 +1,6 @@
 query GetProductByHandle($handle: String!) {
 	productByHandle(handle: $handle) {
+		__typename
 		id
 		title
 		onlineStoreUrl

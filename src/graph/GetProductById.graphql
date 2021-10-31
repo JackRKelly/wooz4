@@ -1,5 +1,6 @@
 query GetProductById($id: ID!) {
 	product(id: $id) {
+		__typename
 		id
 		title
 		onlineStoreUrl
