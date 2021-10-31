@@ -1,14 +1,11 @@
 import type {NextPage} from 'next';
+import React from 'react';
+import {ContentColumn} from '../../components/ContentColumn';
 
-const Collections: NextPage = () =>
-	// <ContentColumn>
-	// 	<Head>
-	// 		<title>{buildTitle('Shop', 'after')}</title>
-	// 	</Head>
-
-	// 	<h2>Collections</h2>
-	// 	<p>This page is under construction</p>
-	// </ContentColumn>
-	null;
+const Collections: NextPage = () => (
+	<ContentColumn>
+		<p>This page is under construction</p>
+	</ContentColumn>
+);
 
 export default Collections;

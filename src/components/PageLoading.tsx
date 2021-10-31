@@ -1,5 +1,6 @@
 import React from 'react';
 import {UseInfiniteQueryResult} from 'react-query';
+import {colors} from '../const';
 import {FlexRowWrapper} from './Flex.styled';
 import {NormalizedButton} from './Normalized.styled';
 import {BoldUppercaseText} from './Text.styled';
@@ -10,12 +11,14 @@ export type PageLoaderProps = Pick<
 >;
 
 export const PageLoader: React.FC<PageLoaderProps> = props => (
-	<div>
+	<FlexRowWrapper justifyContent="flex-end" padding="2rem 0">
 		{(() => {
 			if (props.isFetchingNextPage) {
 				return (
 					<NormalizedButton type="button">
-						<BoldUppercaseText>Loading...</BoldUppercaseText>
+						<BoldUppercaseText color={colors.gray}>
+							Loading...
+						</BoldUppercaseText>
 					</NormalizedButton>
 				);
 			}
@@ -24,9 +27,12 @@ export const PageLoader: React.FC<PageLoaderProps> = props => (
 				return (
 					<NormalizedButton
 						type="button"
+						cursor="pointer"
 						onClick={async () => props.fetchNextPage()}
 					>
-						<BoldUppercaseText>Try Again to Load More</BoldUppercaseText>
+						<BoldUppercaseText color={colors.darkGray}>
+							Try Again to Load More
+						</BoldUppercaseText>
 					</NormalizedButton>
 				);
 			}
@@ -35,20 +41,23 @@ export const PageLoader: React.FC<PageLoaderProps> = props => (
 				return (
 					<NormalizedButton
 						type="button"
+						cursor="pointer"
 						onClick={async () => props.fetchNextPage()}
 					>
-						<BoldUppercaseText>Load More</BoldUppercaseText>
+						<BoldUppercaseText color={colors.darkGray}>
+							Load More
+						</BoldUppercaseText>
 					</NormalizedButton>
 				);
 			}
 
 			return (
-				<FlexRowWrapper justifyContent="flex-end" padding="1rem 0">
-					<NormalizedButton disabled type="button">
-						<BoldUppercaseText>Nothing more to load</BoldUppercaseText>
-					</NormalizedButton>
-				</FlexRowWrapper>
+				<NormalizedButton disabled type="button">
+					<BoldUppercaseText color={colors.lightGray}>
+						Nothing more to load
+					</BoldUppercaseText>
+				</NormalizedButton>
 			);
 		})()}
-	</div>
+	</FlexRowWrapper>
 );

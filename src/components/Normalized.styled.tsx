@@ -15,11 +15,11 @@ export const NormalizedIconLink = styled(NormalizedLink)`
 	justify-content: center;
 `;
 
-export const NormalizedButton = styled.button`
+export const NormalizedButton = styled.button<{cursor?: 'pointer' | 'none'}>`
 	background-color: transparent;
 	border-radius: 0;
+	cursor: ${props => props.cursor ?? 'auto'};
 	border: none;
-	cursor: pointer;
 	color: black;
 	padding: 0;
 `;

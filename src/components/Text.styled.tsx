@@ -5,12 +5,12 @@ export const GraySpan = styled.span`
 	color: ${colors.lightGray};
 `;
 
-export const BoldUppercaseText = styled.span`
+export const BoldUppercaseText = styled.span<{color?: string}>`
 	padding: 0.5rem;
 	text-transform: uppercase;
 	font-style: italic;
 	font-weight: bold;
-	color: ${colors.black};
+	color: ${props => (props.color ? props.color : colors.black)};
 `;
 
 export const H2NoMargin = styled.h2`
