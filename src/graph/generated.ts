@@ -6347,7 +6347,7 @@ export const GetCollectionSingleDocument = gql`
       src
       altText
     }
-    products(first: 5, after: $after) {
+    products(first: 12, after: $after) {
       edges {
         node {
           id
