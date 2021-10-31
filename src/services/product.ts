@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-call */
 import formatTitle from 'title';
 import {Merge} from 'type-fest';
 import truncate from 'lodash/truncate';
@@ -37,13 +36,11 @@ export async function getSingle(handle: string): Promise<Single> {
 	const {title, description, seo, images, variants} = productByHandle!;
 
 	const product: Single = {
-		// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
 		title: formatTitle(title),
 		description,
 		seo: {
-			// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
 			title: formatTitle(seo.title ?? title),
-			// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+
 			description: seo.description ?? truncate(description, {length: 256}),
 		},
 		images: images.edges.map(({node}) => ({

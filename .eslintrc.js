@@ -21,7 +21,7 @@ module.exports = {
 		project: './tsconfig.json',
 	},
 	plugins: ['react', '@typescript-eslint'],
-	ignorePatterns: ['**/*.js', '*/**/types/generated/*'],
+	ignorePatterns: ['**/*.js', 'src/graph/generated.ts'],
 	rules: {
 		'@typescript-eslint/triple-slash-reference': 'off',
 		'react/function-component-definition': 'off',

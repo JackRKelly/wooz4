@@ -7,6 +7,9 @@ import styled, {createGlobalStyle} from 'styled-components';
 import {QueryClient, QueryClientProvider} from 'react-query';
 import {isProd} from '../util/env';
 
+import 'swiper/css';
+import 'swiper/css/pagination';
+
 export const GlobalStyle = createGlobalStyle`
 	html {
 		box-sizing: border-box;
