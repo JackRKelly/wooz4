@@ -3,12 +3,15 @@ import {NextPageContext} from 'next';
 import Head from 'next/head';
 import React from 'react';
 import {InfiniteData, useInfiniteQuery} from 'react-query';
-import styled from 'styled-components';
 import {ContentColumn} from '../../components/ContentColumn';
+import {
+	HeroWrapper,
+	HeroTitle,
+	HeroDescription,
+} from '../../components/Hero.styled';
 import {PageLoader} from '../../components/PageLoading';
 import {ProductCard} from '../../components/ProductCard';
 import {ProductCardGrid} from '../../components/ProductCard.styled';
-import {colors} from '../../const';
 import {COLLECTION_PRODUCT_LIST_QUERY} from '../../const/query';
 import {
 	SingleCollection,
@@ -51,12 +54,12 @@ const Collection = ({collection, initialData, handle}: Props) => {
 				</title>
 			</Head>
 
-			<SectionWithBackgroundImage backgroundImage={image?.src}>
+			<HeroWrapper backgroundImage={image?.src}>
 				<ContentColumn padding="5.25rem 0 5.25rem 0">
-					<SectionTitle>{title}</SectionTitle>
-					<SectionDescription>{description}</SectionDescription>
+					<HeroTitle>{title}</HeroTitle>
+					<HeroDescription>{description}</HeroDescription>
 				</ContentColumn>
-			</SectionWithBackgroundImage>
+			</HeroWrapper>
 			<ContentColumn>
 				<ProductCardGrid>
 					{productList.data?.pages
@@ -84,29 +87,5 @@ Collection.getInitialProps = async ({
 		initialData: {pages: [firstPage], pageParams: [null]},
 	};
 };
-
-const SectionWithBackgroundImage = styled.section<{backgroundImage: string}>`
-	background-image: linear-gradient(
-			45deg,
-			rgba(0, 0, 0, 0.727),
-			rgba(0, 0, 0, 0.5)
-		),
-		url('${props => props.backgroundImage ?? 'none'}');
-	background-size: cover;
-	background-position: left;
-`;
-
-const SectionTitle = styled.h2`
-	color: ${colors.white};
-	text-align: center;
-	margin-top: 0;
-`;
-
-const SectionDescription = styled.p`
-	color: ${colors.white};
-	max-width: 800px;
-	margin: 0 auto;
-	text-align: center;
-`;
 
 export default Collection;
