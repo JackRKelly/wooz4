@@ -40,6 +40,7 @@ const Home: NextPage<Props> = ({collection, collectionProductList}: Props) => (
 Home.getInitialProps = async (): Promise<Props> => {
 	const collection = await getSingleCollection(FEATURED_COLLECTION_HANDLE);
 	const collectionProductList = await getCollectionProducts({
+		limit: 8,
 		handle: FEATURED_COLLECTION_HANDLE,
 	});
 

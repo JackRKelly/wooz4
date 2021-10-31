@@ -29,9 +29,13 @@ query getCollectionSingle($handle: String!) {
 	}
 }
 
-query getCollectionProducts($handle: String!, $after: String) {
+query getCollectionProducts(
+	$limit: Int = 12
+	$handle: String!
+	$after: String
+) {
 	collectionByHandle(handle: $handle) {
-		products(first: 2, after: $after) {
+		products(first: $limit, after: $after) {
 			edges {
 				node {
 					id

@@ -15,8 +15,9 @@ interface Props {
 const Products: NextPage<Props> = ({initialData}: Props) => {
 	const productList = useInfiniteQuery(
 		PRODUCT_LIST_QUERY,
-		// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-		async ({pageParam}) => getProductList({after: pageParam}),
+
+		async ({pageParam}: {pageParam?: string}) =>
+			getProductList({after: pageParam}),
 		{
 			initialData,
 			getNextPageParam: lastPage => {
@@ -36,8 +37,8 @@ const Products: NextPage<Props> = ({initialData}: Props) => {
 					.map(product => (
 						<ProductCard key={product.id} product={product} />
 					))}
-				<PageLoader {...productList} />
 			</ProductCardGrid>
+			<PageLoader {...productList} />
 		</ContentColumn>
 	);
 };

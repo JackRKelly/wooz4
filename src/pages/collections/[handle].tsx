@@ -27,8 +27,8 @@ interface Props {
 const Collection = ({collection, initialData, handle}: Props) => {
 	const productList = useInfiniteQuery(
 		PRODUCT_LIST_QUERY,
-		// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-		async ({pageParam}) => getCollectionProducts({handle, after: pageParam}),
+		async ({pageParam}: {pageParam?: string}) =>
+			getCollectionProducts({handle, after: pageParam}),
 		{
 			initialData,
 			getNextPageParam: lastPage => {

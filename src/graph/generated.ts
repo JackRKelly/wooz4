@@ -6199,6 +6199,7 @@ export type GetCollectionSingleQueryVariables = Exact<{
 export type GetCollectionSingleQuery = { __typename?: 'QueryRoot', collectionByHandle?: { __typename?: 'Collection', title: string, description: string, image?: { __typename?: 'Image', id?: string | null | undefined, src: string, altText?: string | null | undefined } | null | undefined } | null | undefined };
 
 export type GetCollectionProductsQueryVariables = Exact<{
+  limit?: Maybe<Scalars['Int']>;
   handle: Scalars['String'];
   after?: Maybe<Scalars['String']>;
 }>;
@@ -6207,6 +6208,7 @@ export type GetCollectionProductsQueryVariables = Exact<{
 export type GetCollectionProductsQuery = { __typename?: 'QueryRoot', collectionByHandle?: { __typename?: 'Collection', products: { __typename?: 'ProductConnection', edges: Array<{ __typename?: 'ProductEdge', cursor: string, node: { __typename?: 'Product', id: string, handle: string, title: string, description: string, priceRange: { __typename?: 'ProductPriceRange', minVariantPrice: { __typename?: 'MoneyV2', amount: string, currencyCode: CurrencyCode } }, images: { __typename?: 'ImageConnection', edges: Array<{ __typename?: 'ImageEdge', node: { __typename?: 'Image', id?: string | null | undefined, altText?: string | null | undefined, transformedSrc: string } }> } } }>, pageInfo: { __typename?: 'PageInfo', hasNextPage: boolean } } } | null | undefined };
 
 export type GetProductListQueryVariables = Exact<{
+  limit?: Maybe<Scalars['Int']>;
   after?: Maybe<Scalars['String']>;
 }>;
 
@@ -6358,9 +6360,9 @@ export const GetCollectionSingleDocument = gql`
 }
     `;
 export const GetCollectionProductsDocument = gql`
-    query getCollectionProducts($handle: String!, $after: String) {
+    query getCollectionProducts($limit: Int = 12, $handle: String!, $after: String) {
   collectionByHandle(handle: $handle) {
-    products(first: 2, after: $after) {
+    products(first: $limit, after: $after) {
       edges {
         node {
           id
@@ -6393,8 +6395,8 @@ export const GetCollectionProductsDocument = gql`
 }
     `;
 export const GetProductListDocument = gql`
-    query getProductList($after: String) {
-  products(first: 12, after: $after) {
+    query getProductList($limit: Int = 12, $after: String) {
+  products(first: $limit, after: $after) {
     edges {
       node {
         id
