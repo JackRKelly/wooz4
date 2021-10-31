@@ -21,23 +21,9 @@ const Cart: NextPage = () => {
 			<h1>Cart</h1>
 			<p>This page is under construction</p>
 
-			<table>
-				<thead>
-					<tr>
-						<th>Image</th>
-						<th>Title</th>
-						<th>Quantity</th>
-						<th>Unit Price</th>
-						<th>Total Price</th>
-						<th>Remove</th>
-					</tr>
-				</thead>
-				<tbody>
-					{cart.data?.items.map(item => (
-						<CartListItem key={item.id} item={item} />
-					))}
-				</tbody>
-			</table>
+			{cart.data?.items.map(item => (
+				<CartListItem key={item.id} item={item} />
+			))}
 
 			{cart.data?.items.length ? (
 				<section>

@@ -58,54 +58,50 @@ export const CartListItem: React.FC<Props> = ({item}) => {
 	const disabled = updateQuantity.isLoading || remove.isLoading;
 
 	return (
-		<tr key={item.id}>
-			<td>
-				<Link passHref href={item.variant.url}>
-					<a>
-						<Image
-							src={item.variant.image.src}
-							alt={item.variant.image.alt}
-							width={30}
-							height={40}
-						/>
-					</a>
-				</Link>
-			</td>
-			<td>
-				<Link href={item.variant.url}>
-					<a>
-						{item.title} ({item.variant.title})
-					</a>
-				</Link>
-			</td>
-			<td>
-				<input
-					type="number"
-					disabled={disabled}
-					value={state.quantity}
-					onChange={event => {
-						setState(draft => {
-							draft.quantity = Number(event.target.value) || 1;
-						});
-					}}
-				/>
-			</td>
-			<td>{formatPrice(item.variant.price)}</td>
-			<td>
+		<div>
+			<Link passHref href={item.variant.url}>
+				<a>
+					<Image
+						src={item.variant.image.src}
+						alt={item.variant.image.alt}
+						width={30}
+						height={40}
+					/>
+				</a>
+			</Link>
+
+			<Link href={item.variant.url}>
+				<a>
+					{item.title} ({item.variant.title})
+				</a>
+			</Link>
+
+			<input
+				type="number"
+				disabled={disabled}
+				value={state.quantity}
+				onChange={event => {
+					setState(draft => {
+						draft.quantity = Number(event.target.value) || 1;
+					});
+				}}
+			/>
+
+			<span>{formatPrice(item.variant.price)}</span>
+			<span>
 				{formatPrice({
 					amount: item.variant.price.amount * item.quantity,
 					currencyCode: item.variant.price.currencyCode,
 				})}
-			</td>
-			<td align="right">
-				<button
-					type="button"
-					disabled={disabled}
-					onClick={async () => remove.mutateAsync(item.id)}
-				>
-					deleteicon
-				</button>
-			</td>
-		</tr>
+			</span>
+
+			<button
+				type="button"
+				disabled={disabled}
+				onClick={async () => remove.mutateAsync(item.id)}
+			>
+				deleteicon
+			</button>
+		</div>
 	);
 };
