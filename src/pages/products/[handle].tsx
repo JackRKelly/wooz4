@@ -47,6 +47,7 @@ const Product = ({product}: Props) => {
 			<p>{formatPrice(state.variant.price)}</p>
 
 			<SwiperSlider
+				preloadImages
 				pagination={{clickable: true}}
 				spaceBetween={50}
 				modules={[Navigation, Pagination, A11y, Keyboard, Mousewheel]}
@@ -118,6 +119,7 @@ const Product = ({product}: Props) => {
 					setState(draft => {
 						draft.quantity = 1;
 					});
+					void new Audio('/success.mp3').play().catch(() => null);
 				}}
 			>
 				Add to cart

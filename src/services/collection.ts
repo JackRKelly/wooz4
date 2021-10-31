@@ -105,7 +105,7 @@ export async function getCollectionList(
 			title: node.title,
 			description: node.description,
 			image: {
-				src: node.image?.transformedSrc as string,
+				src: node.image?.transformedSrc ?? '',
 			},
 			handle: node.handle,
 			cursor,
