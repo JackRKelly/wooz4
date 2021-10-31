@@ -42,12 +42,15 @@ export const DesktopNavigation: FC = () => {
 							setIsHoveringSearch(false);
 						}}
 					>
+						{/* https://www.shopify.com/partners/blog/query-argument-graphql */}
 						<Search active={isHoveringSearch} />
 					</NormalizedIconButton>
 					<Link passHref href="/cart">
 						<CartIconLink>
 							<Cart />
-							<CartIconCount>{itemCount.data}</CartIconCount>
+							{itemCount.data === 0 ? null : (
+								<CartIconCount>{itemCount.data}</CartIconCount>
+							)}
 						</CartIconLink>
 					</Link>
 				</FlexRowWrapper>
