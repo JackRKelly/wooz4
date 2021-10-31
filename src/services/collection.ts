@@ -2,8 +2,12 @@
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import formatTitle from 'title';
-import {ShopifyService} from './shopify';
-import {ProductListItem} from './product';
+import {
+	GetCollectionProductsQueryVariables,
+	GetProductListQuery,
+	ShopifyService,
+} from './shopify';
+import {ProductList} from './product';
 
 export interface SingleCollection {
 	title: string;
@@ -13,7 +17,6 @@ export interface SingleCollection {
 		src: string;
 		alt: string;
 	};
-	products: ProductListItem[];
 }
 
 export async function getSingleCollection(
@@ -22,7 +25,7 @@ export async function getSingleCollection(
 	const {collectionByHandle} = await ShopifyService.getCollectionSingle({
 		handle,
 	});
-	const {title, description, products, image} = collectionByHandle ?? {};
+	const {title, description, image} = collectionByHandle ?? {};
 
 	const {id: imageId, src: imageSrc, altText: imgAltText} = image ?? {};
 
@@ -34,7 +37,22 @@ export async function getSingleCollection(
 			src: imageSrc!,
 			alt: imgAltText!,
 		},
-		products: products?.edges.map(({node, cursor}) => ({
+	};
+
+	return collection;
+}
+
+export async function getCollectionProducts(
+	variables: GetCollectionProductsQueryVariables,
+): Promise<ProductList> {
+	const {collectionByHandle} = await ShopifyService.getCollectionProducts(
+		variables,
+	);
+
+	const {products} = collectionByHandle ?? {};
+
+	const collectionProducts: ProductList['products'] = products?.edges.map(
+		({node, cursor}) => ({
 			id: node.id,
 			cursor,
 			url: `/products/${node.handle}`,
@@ -42,16 +60,19 @@ export async function getSingleCollection(
 			description: node.description,
 			image: {
 				src: node.images.edges[0].node.transformedSrc,
-				alt: node.images.edges[0].node.altText!,
+				alt: node.images.edges[0].node.altText,
 			},
 			price: {
 				amount: Number(node.priceRange.minVariantPrice.amount),
 				currencyCode: node.priceRange.minVariantPrice.currencyCode,
 			},
-		})) as ProductListItem[],
-	};
+		}),
+	) as ProductList['products'];
 
-	return collection;
+	return {
+		products: collectionProducts,
+		pageInfo: products?.pageInfo as GetProductListQuery['products']['pageInfo'],
+	};
 }
 
 // export interface ListItem {

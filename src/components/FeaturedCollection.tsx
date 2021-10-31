@@ -6,21 +6,27 @@ import {ProductCardGrid} from './ProductCard.styled';
 import styled from 'styled-components';
 import {ArrowLink} from './Link';
 import {SingleCollection} from '../services/collection';
+import {ProductList} from '../services/product';
 
 interface Props {
 	collection: SingleCollection;
+	productList: ProductList;
 	handle: string;
 }
 
-export const FeaturedCollection = ({collection, handle}: Props) => {
-	const {description, products, title} = collection;
+export const FeaturedCollection = ({
+	collection,
+	handle,
+	productList,
+}: Props) => {
+	const {description, title} = collection;
 
 	return (
 		<section>
 			<h3>{title}</h3>
 			<p>{description}</p>
 			<ProductCardGrid>
-				{products.map(product => (
+				{productList.products.map(product => (
 					<ProductCard key={product.id} product={product} />
 				))}
 			</ProductCardGrid>

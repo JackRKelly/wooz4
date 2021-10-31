@@ -101,7 +101,7 @@ export async function getProductList(
 		description: node.description,
 		image: {
 			src: node.images.edges[0].node.transformedSrc,
-			alt: node.images.edges[0].node.altText ?? '',
+			alt: node.images.edges[0].node.altText!,
 		},
 		price: {
 			amount: Number(node.priceRange.minVariantPrice.amount),

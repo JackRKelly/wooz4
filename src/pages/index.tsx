@@ -4,15 +4,21 @@ import Head from 'next/head';
 import {ContentColumn} from '../components/ContentColumn';
 import {FeaturedCollection} from '../components/FeaturedCollection';
 import {buildTitle} from '../util/title';
-import {getSingleCollection, SingleCollection} from '../services/collection';
+import {
+	getCollectionProducts,
+	getSingleCollection,
+	SingleCollection,
+} from '../services/collection';
+import {ProductList} from '../services/product';
 
 const FEATURED_COLLECTION_HANDLE = 'sakura-collection';
 
 interface Props {
-	featuredCollection: SingleCollection;
+	collection: SingleCollection;
+	collectionProductList: ProductList;
 }
 
-const Home: NextPage<Props> = ({featuredCollection}: Props) => (
+const Home: NextPage<Props> = ({collection, collectionProductList}: Props) => (
 	<ContentColumn>
 		<Head>
 			<title>{buildTitle('Home', 'after')}</title>
@@ -24,18 +30,20 @@ const Home: NextPage<Props> = ({featuredCollection}: Props) => (
 		</section>
 
 		<FeaturedCollection
-			collection={featuredCollection}
+			collection={collection}
+			productList={collectionProductList}
 			handle={FEATURED_COLLECTION_HANDLE}
 		/>
 	</ContentColumn>
 );
 
 Home.getInitialProps = async (): Promise<Props> => {
-	const featuredCollection = await getSingleCollection(
-		FEATURED_COLLECTION_HANDLE,
-	);
+	const collection = await getSingleCollection(FEATURED_COLLECTION_HANDLE);
+	const collectionProductList = await getCollectionProducts({
+		handle: FEATURED_COLLECTION_HANDLE,
+	});
 
-	return {featuredCollection};
+	return {collection, collectionProductList};
 };
 
 export default Home;

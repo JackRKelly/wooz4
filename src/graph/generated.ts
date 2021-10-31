@@ -6193,11 +6193,18 @@ export type GetColletionListQuery = { __typename?: 'QueryRoot', collections: { _
 
 export type GetCollectionSingleQueryVariables = Exact<{
   handle: Scalars['String'];
+}>;
+
+
+export type GetCollectionSingleQuery = { __typename?: 'QueryRoot', collectionByHandle?: { __typename?: 'Collection', title: string, description: string, image?: { __typename?: 'Image', id?: string | null | undefined, src: string, altText?: string | null | undefined } | null | undefined } | null | undefined };
+
+export type GetCollectionProductsQueryVariables = Exact<{
+  handle: Scalars['String'];
   after?: Maybe<Scalars['String']>;
 }>;
 
 
-export type GetCollectionSingleQuery = { __typename?: 'QueryRoot', collectionByHandle?: { __typename?: 'Collection', title: string, description: string, image?: { __typename?: 'Image', id?: string | null | undefined, src: string, altText?: string | null | undefined } | null | undefined, products: { __typename?: 'ProductConnection', edges: Array<{ __typename?: 'ProductEdge', cursor: string, node: { __typename?: 'Product', id: string, handle: string, title: string, description: string, priceRange: { __typename?: 'ProductPriceRange', minVariantPrice: { __typename?: 'MoneyV2', amount: string, currencyCode: CurrencyCode } }, images: { __typename?: 'ImageConnection', edges: Array<{ __typename?: 'ImageEdge', node: { __typename?: 'Image', id?: string | null | undefined, altText?: string | null | undefined, transformedSrc: string } }> } } }>, pageInfo: { __typename?: 'PageInfo', hasNextPage: boolean } } } | null | undefined };
+export type GetCollectionProductsQuery = { __typename?: 'QueryRoot', collectionByHandle?: { __typename?: 'Collection', products: { __typename?: 'ProductConnection', edges: Array<{ __typename?: 'ProductEdge', cursor: string, node: { __typename?: 'Product', id: string, handle: string, title: string, description: string, priceRange: { __typename?: 'ProductPriceRange', minVariantPrice: { __typename?: 'MoneyV2', amount: string, currencyCode: CurrencyCode } }, images: { __typename?: 'ImageConnection', edges: Array<{ __typename?: 'ImageEdge', node: { __typename?: 'Image', id?: string | null | undefined, altText?: string | null | undefined, transformedSrc: string } }> } } }>, pageInfo: { __typename?: 'PageInfo', hasNextPage: boolean } } } | null | undefined };
 
 export type GetProductListQueryVariables = Exact<{
   after?: Maybe<Scalars['String']>;
@@ -6338,7 +6345,7 @@ export const GetColletionListDocument = gql`
 }
     `;
 export const GetCollectionSingleDocument = gql`
-    query getCollectionSingle($handle: String!, $after: String) {
+    query getCollectionSingle($handle: String!) {
   collectionByHandle(handle: $handle) {
     title
     description
@@ -6347,7 +6354,13 @@ export const GetCollectionSingleDocument = gql`
       src
       altText
     }
-    products(first: 12, after: $after) {
+  }
+}
+    `;
+export const GetCollectionProductsDocument = gql`
+    query getCollectionProducts($handle: String!, $after: String) {
+  collectionByHandle(handle: $handle) {
+    products(first: 2, after: $after) {
       edges {
         node {
           id
@@ -6479,6 +6492,9 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     },
     getCollectionSingle(variables: GetCollectionSingleQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<GetCollectionSingleQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<GetCollectionSingleQuery>(GetCollectionSingleDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'getCollectionSingle');
+    },
+    getCollectionProducts(variables: GetCollectionProductsQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<GetCollectionProductsQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<GetCollectionProductsQuery>(GetCollectionProductsDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'getCollectionProducts');
     },
     getProductList(variables?: GetProductListQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<GetProductListQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<GetProductListQuery>(GetProductListDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'getProductList');

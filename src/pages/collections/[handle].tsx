@@ -1,20 +1,45 @@
+import {last} from 'lodash';
 import {NextPageContext} from 'next';
 import Head from 'next/head';
 import React from 'react';
+import {InfiniteData, useInfiniteQuery} from 'react-query';
 import styled from 'styled-components';
 import {ContentColumn} from '../../components/ContentColumn';
+import {PageLoader} from '../../components/PageLoading';
 import {ProductCard} from '../../components/ProductCard';
 import {ProductCardGrid} from '../../components/ProductCard.styled';
 import {colors} from '../../const';
-import {SingleCollection, getSingleCollection} from '../../services/collection';
+import {PRODUCT_LIST_QUERY} from '../../const/query';
+import {
+	SingleCollection,
+	getSingleCollection,
+	getCollectionProducts,
+} from '../../services/collection';
+import {ProductList} from '../../services/product';
 
 import {buildTitle} from '../../util/title';
 interface Props {
 	collection: SingleCollection;
+	handle: string;
+	initialData: InfiniteData<ProductList>;
 }
 
-const Collection = ({collection}: Props) => {
-	const {description, image, products, title} = collection;
+const Collection = ({collection, initialData, handle}: Props) => {
+	const productList = useInfiniteQuery(
+		PRODUCT_LIST_QUERY,
+		// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+		async ({pageParam}) => getCollectionProducts({handle, after: pageParam}),
+		{
+			initialData,
+			getNextPageParam: lastPage => {
+				if (lastPage.pageInfo.hasNextPage) {
+					return last(lastPage.products)?.cursor;
+				}
+			},
+		},
+	);
+
+	const {description, image, title} = collection;
 
 	return (
 		<>
@@ -34,10 +59,13 @@ const Collection = ({collection}: Props) => {
 			</SectionWithBackgroundImage>
 			<ContentColumn>
 				<ProductCardGrid>
-					{products.map(product => (
-						<ProductCard key={product.id} product={product} />
-					))}
+					{productList.data?.pages
+						.flatMap(({products}) => products)
+						.map(product => (
+							<ProductCard key={product.id} product={product} />
+						))}
 				</ProductCardGrid>
+				<PageLoader {...productList} />
 			</ContentColumn>
 		</>
 	);
@@ -48,8 +76,13 @@ Collection.getInitialProps = async ({
 }: NextPageContext): Promise<Props> => {
 	const handle = query.handle as string;
 	const collection = await getSingleCollection(handle);
+	const firstPage = await getCollectionProducts({handle});
 
-	return {collection};
+	return {
+		collection,
+		handle,
+		initialData: {pages: [firstPage], pageParams: [null]},
+	};
 };
 
 const SectionWithBackgroundImage = styled.section<{backgroundImage: string}>`
