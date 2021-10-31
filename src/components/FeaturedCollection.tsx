@@ -2,12 +2,13 @@ import React from 'react';
 
 import {ProductCard} from './ProductCard';
 import {ProductCardGrid} from './ProductCard.styled';
-import * as CollectionService from '../services/collection';
+
 import styled from 'styled-components';
 import {ArrowLink} from './Link';
+import {SingleCollection} from '../services/collection';
 
 interface Props {
-	collection: CollectionService.Single;
+	collection: SingleCollection;
 	handle: string;
 }
 

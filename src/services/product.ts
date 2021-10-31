@@ -8,7 +8,7 @@ import {
 	CurrencyCode,
 } from './shopify';
 
-export interface Single {
+export interface SingleProduct {
 	title: string;
 	description: string;
 	seo: {
@@ -31,11 +31,11 @@ export interface Single {
 	}>;
 }
 
-export async function getSingle(handle: string): Promise<Single> {
+export async function getSingleProduct(handle: string): Promise<SingleProduct> {
 	const {productByHandle} = await ShopifyService.getProductSingle({handle});
 	const {title, description, seo, images, variants} = productByHandle!;
 
-	const product: Single = {
+	const product: SingleProduct = {
 		title: formatTitle(title),
 		description,
 		seo: {
@@ -49,7 +49,7 @@ export async function getSingle(handle: string): Promise<Single> {
 			alt: node.altText ?? '',
 		})),
 		variants: variants.edges.map(({node}) => {
-			const variant: Single['variants'][0] = {
+			const variant: SingleProduct['variants'][0] = {
 				id: node.id,
 				title: node.title,
 				image: node.image?.id ?? '',
@@ -66,7 +66,7 @@ export async function getSingle(handle: string): Promise<Single> {
 	return product;
 }
 
-export interface ListItem {
+export interface ProductListItem {
 	id: string;
 	url: string;
 	title: string;
@@ -81,19 +81,19 @@ export interface ListItem {
 	};
 }
 
-export interface List {
-	products: Array<Merge<ListItem, {cursor: string}>>;
+export interface ProductList {
+	products: Array<Merge<ProductListItem, {cursor: string}>>;
 	pageInfo: GetProductListQuery['products']['pageInfo'];
 }
 
-export async function getList(
+export async function getProductList(
 	variables?: GetProductListQueryVariables,
-): Promise<List> {
+): Promise<ProductList> {
 	const {
 		products: {edges, pageInfo},
 	} = await ShopifyService.getProductList(variables);
 
-	const products: List['products'] = edges.map(({node, cursor}) => ({
+	const products: ProductList['products'] = edges.map(({node, cursor}) => ({
 		id: node.id,
 		cursor,
 		url: `/products/${node.handle}`,

@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-call */
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import React from 'react';
 import Image from 'next/image';
 import {useImmer} from 'use-immer';
@@ -15,18 +13,18 @@ import {
 } from 'swiper';
 import {Swiper as SwiperSlider, SwiperSlide} from 'swiper/react';
 import {CART_ITEM_COUNT_QUERY} from '../../const/query';
-import * as ProductService from '../../services/product';
-import * as CartService from '../../services/cart';
 import {formatPrice} from '../../util/intl';
 import {NextPageContext} from 'next';
 import {ContentColumn} from '../../components/ContentColumn';
+import {getSingleProduct, SingleProduct} from '../../services/product';
+import {addCartItem} from '../../services/cart';
 
 interface Props {
-	product: ProductService.Single;
+	product: SingleProduct;
 }
 
 interface State {
-	variant: ProductService.Single['variants'][0];
+	variant: SingleProduct['variants'][0];
 	quantity: number;
 }
 
@@ -38,7 +36,7 @@ const Product = ({product}: Props) => {
 	});
 
 	const queryClient = useQueryClient();
-	const addItem = useMutation(CartService.addItem, {
+	const addItem = useMutation(addCartItem, {
 		onSuccess: async () => queryClient.invalidateQueries(CART_ITEM_COUNT_QUERY),
 	});
 
@@ -81,12 +79,10 @@ const Product = ({product}: Props) => {
 						);
 
 						if (slideIndex !== -1 && swiper) {
-							// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
 							swiper.slideTo(slideIndex);
 						}
 
 						setState(draft => {
-							// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
 							draft.variant = variant!;
 						});
 					}}
@@ -106,7 +102,6 @@ const Product = ({product}: Props) => {
 				max="100"
 				onChange={event => {
 					setState(draft => {
-						// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
 						draft.quantity = Number(event.target.value);
 					});
 				}}
@@ -121,7 +116,6 @@ const Product = ({product}: Props) => {
 					});
 
 					setState(draft => {
-						// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
 						draft.quantity = 1;
 					});
 				}}
@@ -134,7 +128,7 @@ const Product = ({product}: Props) => {
 
 Product.getInitialProps = async ({query}: NextPageContext): Promise<Props> => {
 	const handle = query.handle as string;
-	const product = await ProductService.getSingle(handle);
+	const product = await getSingleProduct(handle);
 
 	return {product};
 };

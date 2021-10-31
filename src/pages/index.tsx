@@ -4,12 +4,12 @@ import Head from 'next/head';
 import {ContentColumn} from '../components/ContentColumn';
 import {FeaturedCollection} from '../components/FeaturedCollection';
 import {buildTitle} from '../util/title';
-import * as CollectionService from '../services/collection';
+import {getSingleCollection, SingleCollection} from '../services/collection';
 
 const FEATURED_COLLECTION_HANDLE = 'sakura-collection';
 
 interface Props {
-	featuredCollection: CollectionService.Single;
+	featuredCollection: SingleCollection;
 }
 
 const Home: NextPage<Props> = ({featuredCollection}: Props) => (
@@ -31,7 +31,7 @@ const Home: NextPage<Props> = ({featuredCollection}: Props) => (
 );
 
 Home.getInitialProps = async (): Promise<Props> => {
-	const featuredCollection = await CollectionService.getSingle(
+	const featuredCollection = await getSingleCollection(
 		FEATURED_COLLECTION_HANDLE,
 	);
 

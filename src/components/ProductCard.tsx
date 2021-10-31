@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import React, {FC} from 'react';
-import {ListItem} from '../services/product';
+import {ProductListItem} from '../services/product';
 import {formatPrice} from '../util/intl';
 import {
 	ProductCardLink,
@@ -14,7 +14,7 @@ import {
 } from './ProductCard.styled';
 
 interface Props {
-	product: ListItem;
+	product: ProductListItem;
 }
 
 export const ProductCard: FC<Props> = ({product}) => (

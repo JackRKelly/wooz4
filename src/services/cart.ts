@@ -99,7 +99,9 @@ export async function getCart(
 	}
 }
 
-export async function getItemCount(context?: NextPageContext): Promise<number> {
+export async function getCartItemCount(
+	context?: NextPageContext,
+): Promise<number> {
 	let count = 0;
 	const checkoutId = nookies.get(context, CHECKOUT_ID).CHECKOUT_ID;
 
@@ -116,7 +118,7 @@ export async function getItemCount(context?: NextPageContext): Promise<number> {
 	return count;
 }
 
-export async function addItem(
+export async function addCartItem(
 	lineItem: CheckoutLineItemInput,
 	context?: NextPageContext,
 ): Promise<void> {
@@ -133,7 +135,7 @@ export async function addItem(
 	}
 }
 
-export async function updateItem(
+export async function updateCartItem(
 	lineItem: CheckoutLineItemUpdateInput,
 	context?: NextPageContext,
 ): Promise<void> {
@@ -141,7 +143,7 @@ export async function updateItem(
 	await ShopifyService.updateCartItem({checkoutId, lineItem});
 }
 
-export async function removeItem(
+export async function removeCartItem(
 	lineItemId: string,
 	context?: NextPageContext,
 ): Promise<void> {

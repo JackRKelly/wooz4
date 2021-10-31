@@ -6,10 +6,11 @@ import {ContentColumn} from '../../components/ContentColumn';
 import {ProductCard} from '../../components/ProductCard';
 import {ProductCardGrid} from '../../components/ProductCard.styled';
 import {colors} from '../../const';
-import * as CollectionService from '../../services/collection';
+import {SingleCollection, getSingleCollection} from '../../services/collection';
+
 import {buildTitle} from '../../util/title';
 interface Props {
-	collection: CollectionService.Single;
+	collection: SingleCollection;
 }
 
 const Collection = ({collection}: Props) => {
@@ -46,7 +47,7 @@ Collection.getInitialProps = async ({
 	query,
 }: NextPageContext): Promise<Props> => {
 	const handle = query.handle as string;
-	const collection = await CollectionService.getSingle(handle);
+	const collection = await getSingleCollection(handle);
 
 	return {collection};
 };

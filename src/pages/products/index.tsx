@@ -3,20 +3,20 @@ import type {NextPage} from 'next';
 import last from 'lodash/last';
 import {InfiniteData, useInfiniteQuery} from 'react-query';
 import {PRODUCT_LIST_QUERY} from '../../const/query';
-import {getList, List} from '../../services/product';
+import {getProductList, ProductList} from '../../services/product';
 import {ProductCard, ProductCardGrid} from '../../components/ProductCard';
 import {PageLoader} from '../../components/PageLoading';
 import {ContentColumn} from '../../components/ContentColumn';
 
 interface Props {
-	initialData: InfiniteData<List>;
+	initialData: InfiniteData<ProductList>;
 }
 
 const Shop: NextPage<Props> = ({initialData}: Props) => {
 	const productList = useInfiniteQuery(
 		PRODUCT_LIST_QUERY,
 		// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-		async ({pageParam}) => getList({after: pageParam}),
+		async ({pageParam}) => getProductList({after: pageParam}),
 		{
 			initialData,
 			getNextPageParam: lastPage => {
@@ -43,7 +43,7 @@ const Shop: NextPage<Props> = ({initialData}: Props) => {
 };
 
 Shop.getInitialProps = async (): Promise<Props> => {
-	const firstPage = await getList();
+	const firstPage = await getProductList();
 
 	return {
 		initialData: {pages: [firstPage], pageParams: [null]},
