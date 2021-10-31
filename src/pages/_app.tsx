@@ -3,14 +3,15 @@ import type {AppProps} from 'next/app';
 import {Navigation} from '../components/Navigation';
 import ScrollManager from '../components/ScrollManager';
 import {colors} from '../const';
-import styled, {createGlobalStyle} from 'styled-components';
+import * as styled from 'styled-components';
 import {QueryClient, QueryClientProvider} from 'react-query';
 import {isProd} from '../util/env';
 
 import 'swiper/css';
 import 'swiper/css/pagination';
+import {NavigationPlaceholder} from '../components/Navigation/Navigation.styled';
 
-export const GlobalStyle = createGlobalStyle`
+export const GlobalStyle = styled.createGlobalStyle`
 	html {
 		box-sizing: border-box;
 		scroll-behavior: smooth;
@@ -122,11 +123,5 @@ const App = ({Component, pageProps, router}: AppProps) => {
 		</StrictMode>
 	);
 };
-
-const NavigationPlaceholder = styled.div`
-	height: 3.125rem;
-	background-color: ${colors.white};
-	width: 100%;
-`;
 
 export default App;
