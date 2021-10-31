@@ -20,6 +20,8 @@ export const NormalizedButton = styled.button`
 	border-radius: 0;
 	border: none;
 	cursor: pointer;
+	color: black;
+	padding: 0;
 `;
 
 export const NormalizedIconButton = styled(NormalizedButton)`
