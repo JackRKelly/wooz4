@@ -84,8 +84,10 @@ export interface CollectionListItem {
 	handle: string;
 }
 
+export type CollectionWithCursor = Merge<CollectionListItem, {cursor: string}>;
+
 export interface CollectionList {
-	collections: Array<Merge<CollectionListItem, {cursor: string}>>;
+	collections: CollectionWithCursor[];
 	pageInfo: GetProductListQuery['products']['pageInfo'];
 }
 
