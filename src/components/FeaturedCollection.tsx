@@ -1,64 +1,35 @@
 import React from 'react';
 
-import {GET_COLLECTION_BY_HANDLE} from '../graph';
-import styled from 'styled-components';
-import {
-	GetCollectionByHandle,
-	GetCollectionByHandleVariables,
-} from '../graph/@types/GetCollectionByHandle';
-import {ArrowLink} from './Link';
-import {LoadingSpinner} from './LoadingSpinner';
 import {ProductCard} from './ProductCard';
 import {ProductCardGrid} from './ProductCard.styled';
+import * as CollectionService from '../services/collection';
+import styled from 'styled-components';
+import {ArrowLink} from './Link';
 
-export const FeaturedCollection = () =>
-	// const CURRENT_COLLECTION_HANDLE = 'sakura-collection';
-	// const {loading, data} = useQuery<
-	// 	GetCollectionByHandle,
-	// 	GetCollectionByHandleVariables
-	// >(GET_COLLECTION_BY_HANDLE, {
-	// 	variables: {handle: CURRENT_COLLECTION_HANDLE, first: 8},
-	// });
-	// const {collectionByHandle} = data ?? {};
-	// const {title, description, products} = collectionByHandle ?? {};
-	// return (
-	// 	<section>
-	// 		<h3>{title}</h3>
-	// 		<p>{description}</p>
-	// 		<LoadingSpinner isLoading={loading} />
-	// 		<ProductCardGrid>
-	// 			{products?.edges.map(
-	// 				({
-	// 					node: {
-	// 						id,
-	// 						handle,
-	// 						title,
-	// 						images: {edges},
-	// 						priceRange: {
-	// 							minVariantPrice: {amount, currencyCode},
-	// 						},
-	// 					},
-	// 				}) => (
-	// 					<ProductCard
-	// 						key={id}
-	// 						link={`/product/${handle}`}
-	// 						currencyCode={currencyCode}
-	// 						price={amount as string}
-	// 						thumbnail={edges[0].node.transformedSrc as string}
-	// 						title={title}
-	// 					/>
-	// 				),
-	// 			)}
-	// 		</ProductCardGrid>
-	// 		<ViewCollectionLinkWrapper>
-	// 			<ArrowLink
-	// 				link={`/collection/${CURRENT_COLLECTION_HANDLE}`}
-	// 				text="View Collection"
-	// 			/>
-	// 		</ViewCollectionLinkWrapper>
-	// 	</section>
-	// );
-	 null;
+interface Props {
+	collection: CollectionService.Single;
+	handle: string;
+}
+
+export const FeaturedCollection = ({collection, handle}: Props) => {
+	const {description, products, title} = collection;
+
+	return (
+		<section>
+			<h3>{title}</h3>
+			<p>{description}</p>
+			<ProductCardGrid>
+				{products.map(product => (
+					<ProductCard key={product.id} product={product} />
+				))}
+			</ProductCardGrid>
+			<ViewCollectionLinkWrapper>
+				<ArrowLink link={`/collections/${handle}`} text="View Collection" />
+			</ViewCollectionLinkWrapper>
+		</section>
+	);
+};
+
 const ViewCollectionLinkWrapper = styled.div`
 	display: flex;
 	justify-content: flex-end;

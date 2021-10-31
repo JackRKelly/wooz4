@@ -4,24 +4,10 @@ query getColletionList($after: String) {
 			node {
 				title
 				description
-				# image {
-				# 	transformedSrc(maxWidth: 768, maxHeight: 1024, crop: CENTER)
-				# }
-				products(first: 1) {
-					edges {
-						node {
-							images(first: 1) {
-								edges {
-									node {
-										id
-										altText
-										transformedSrc(maxWidth: 768, maxHeight: 1024, crop: CENTER)
-									}
-								}
-							}
-						}
-					}
+				image {
+					transformedSrc(maxWidth: 768, maxHeight: 1024, crop: CENTER)
 				}
+				handle
 			}
 			cursor
 		}

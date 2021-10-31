@@ -6189,7 +6189,7 @@ export type GetColletionListQueryVariables = Exact<{
 }>;
 
 
-export type GetColletionListQuery = { __typename?: 'QueryRoot', collections: { __typename?: 'CollectionConnection', edges: Array<{ __typename?: 'CollectionEdge', cursor: string, node: { __typename?: 'Collection', title: string, description: string, products: { __typename?: 'ProductConnection', edges: Array<{ __typename?: 'ProductEdge', node: { __typename?: 'Product', images: { __typename?: 'ImageConnection', edges: Array<{ __typename?: 'ImageEdge', node: { __typename?: 'Image', id?: string | null | undefined, altText?: string | null | undefined, transformedSrc: string } }> } } }> } } }>, pageInfo: { __typename?: 'PageInfo', hasNextPage: boolean } } };
+export type GetColletionListQuery = { __typename?: 'QueryRoot', collections: { __typename?: 'CollectionConnection', edges: Array<{ __typename?: 'CollectionEdge', cursor: string, node: { __typename?: 'Collection', title: string, description: string, handle: string, image?: { __typename?: 'Image', transformedSrc: string } | null | undefined } }>, pageInfo: { __typename?: 'PageInfo', hasNextPage: boolean } } };
 
 export type GetCollectionSingleQueryVariables = Exact<{
   handle: Scalars['String'];
@@ -6324,21 +6324,10 @@ export const GetColletionListDocument = gql`
       node {
         title
         description
-        products(first: 1) {
-          edges {
-            node {
-              images(first: 1) {
-                edges {
-                  node {
-                    id
-                    altText
-                    transformedSrc(maxWidth: 768, maxHeight: 1024, crop: CENTER)
-                  }
-                }
-              }
-            }
-          }
+        image {
+          transformedSrc(maxWidth: 768, maxHeight: 1024, crop: CENTER)
         }
+        handle
       }
       cursor
     }
@@ -6358,7 +6347,7 @@ export const GetCollectionSingleDocument = gql`
       src
       altText
     }
-    products(first: 12, after: $after) {
+    products(first: 5, after: $after) {
       edges {
         node {
           id

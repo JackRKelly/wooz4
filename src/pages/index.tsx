@@ -4,8 +4,15 @@ import Head from 'next/head';
 import {ContentColumn} from '../components/ContentColumn';
 import {FeaturedCollection} from '../components/FeaturedCollection';
 import {buildTitle} from '../util/title';
+import * as CollectionService from '../services/collection';
 
-const Home: NextPage = () => (
+const FEATURED_COLLECTION_HANDLE = 'sakura-collection';
+
+interface Props {
+	featuredCollection: CollectionService.Single;
+}
+
+const Home: NextPage<Props> = ({featuredCollection}: Props) => (
 	<ContentColumn>
 		<Head>
 			<title>{buildTitle('Home', 'after')}</title>
@@ -16,8 +23,19 @@ const Home: NextPage = () => (
 			<p>Modern japanese inspired clothing brand</p>
 		</section>
 
-		<FeaturedCollection />
+		<FeaturedCollection
+			collection={featuredCollection}
+			handle={FEATURED_COLLECTION_HANDLE}
+		/>
 	</ContentColumn>
 );
+
+Home.getInitialProps = async (): Promise<Props> => {
+	const featuredCollection = await CollectionService.getSingle(
+		FEATURED_COLLECTION_HANDLE,
+	);
+
+	return {featuredCollection};
+};
 
 export default Home;
