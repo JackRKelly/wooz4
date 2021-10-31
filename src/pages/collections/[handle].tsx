@@ -9,15 +9,15 @@ import {PageLoader} from '../../components/PageLoading';
 import {ProductCard} from '../../components/ProductCard';
 import {ProductCardGrid} from '../../components/ProductCard.styled';
 import {colors} from '../../const';
-import {PRODUCT_LIST_QUERY} from '../../const/query';
+import {COLLECTION_LIST_QUERY} from '../../const/query';
 import {
 	SingleCollection,
 	getSingleCollection,
 	getCollectionProducts,
 } from '../../services/collection';
 import {ProductList} from '../../services/product';
-
 import {buildTitle} from '../../util/title';
+
 interface Props {
 	collection: SingleCollection;
 	handle: string;
@@ -26,7 +26,7 @@ interface Props {
 
 const Collection = ({collection, initialData, handle}: Props) => {
 	const productList = useInfiniteQuery(
-		PRODUCT_LIST_QUERY,
+		COLLECTION_LIST_QUERY,
 		async ({pageParam}: {pageParam?: string}) =>
 			getCollectionProducts({handle, after: pageParam}),
 		{
