@@ -9,7 +9,7 @@ const Contact: NextPage = () => (
 		<Head>
 			<title>{buildTitle('Contact', 'after')}</title>
 		</Head>
-		<h2>Contact</h2>
+		<h1>Contact</h1>
 		<p>This page is under construction</p>
 		<form>
 			<label htmlFor="name">Name</label>

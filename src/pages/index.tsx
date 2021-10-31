@@ -25,7 +25,7 @@ const Home: NextPage<Props> = ({collection, collectionProductList}: Props) => (
 		</Head>
 
 		<section>
-			<h2>Wooz4</h2>
+			<h1>Wooz4</h1>
 			<p>Modern japanese inspired clothing brand</p>
 		</section>
 

@@ -12,7 +12,7 @@ export const HeroWrapper = styled.section<{backgroundImage: string}>`
 	background-position: left;
 `;
 
-export const HeroTitle = styled.h2`
+export const HeroTitle = styled.h1`
 	color: ${colors.white};
 	text-align: center;
 	margin-top: 0;

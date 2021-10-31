@@ -42,7 +42,7 @@ const Product = ({product}: Props) => {
 
 	return (
 		<ContentColumn>
-			<h2>{product.title}</h2>
+			<h1>{product.title}</h1>
 			<p>{truncate(product.description, {length: 120})}</p>
 			<p>{formatPrice(state.variant.price)}</p>
 

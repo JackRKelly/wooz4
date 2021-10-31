@@ -4,7 +4,7 @@ import {ContentColumn} from '../components/ContentColumn';
 
 const FourOFour = () => (
 	<ContentColumn>
-		<h2>404 - Page Not Found</h2>
+		<h1>404 - Page Not Found</h1>
 		<p>This page is under construction</p>
 		<Link href="/">
 			<a>Return Home</a>

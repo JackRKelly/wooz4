@@ -23,7 +23,7 @@ export const FeaturedCollection = ({
 
 	return (
 		<section>
-			<h3>{title}</h3>
+			<h2>{title}</h2>
 			<p>{description}</p>
 			<ProductCardGrid>
 				{productList.products.map(product => (
