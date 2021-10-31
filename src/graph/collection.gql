@@ -1,0 +1,73 @@
+query getColletionList($after: String) {
+	collections(first: 12, after: $after) {
+		edges {
+			node {
+				title
+				description
+				# image {
+				# 	transformedSrc(maxWidth: 768, maxHeight: 1024, crop: CENTER)
+				# }
+				products(first: 1) {
+					edges {
+						node {
+							images(first: 1) {
+								edges {
+									node {
+										id
+										altText
+										transformedSrc(maxWidth: 768, maxHeight: 1024, crop: CENTER)
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			cursor
+		}
+		pageInfo {
+			hasNextPage
+		}
+	}
+}
+
+query getCollectionSingle($handle: String!, $after: String) {
+	collectionByHandle(handle: $handle) {
+		title
+		description
+		image {
+			id
+			src
+			altText
+		}
+		products(first: 12, after: $after) {
+			edges {
+				node {
+					id
+					handle
+					title
+					description(truncateAt: 120)
+					priceRange {
+						minVariantPrice {
+							amount
+							currencyCode
+						}
+					}
+					images(first: 1) {
+						edges {
+							node {
+								id
+								altText
+								transformedSrc(maxWidth: 768, maxHeight: 1024, crop: CENTER)
+							}
+						}
+					}
+				}
+				cursor
+			}
+			pageInfo {
+				hasNextPage
+			}
+		}
+	}
+}

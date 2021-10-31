@@ -6184,6 +6184,21 @@ export type RemoveCartItemMutationVariables = Exact<{
 
 export type RemoveCartItemMutation = { __typename?: 'Mutation', checkoutLineItemsRemove?: { __typename?: 'CheckoutLineItemsRemovePayload', checkout?: { __typename?: 'Checkout', id: string } | null | undefined } | null | undefined };
 
+export type GetColletionListQueryVariables = Exact<{
+  after?: Maybe<Scalars['String']>;
+}>;
+
+
+export type GetColletionListQuery = { __typename?: 'QueryRoot', collections: { __typename?: 'CollectionConnection', edges: Array<{ __typename?: 'CollectionEdge', cursor: string, node: { __typename?: 'Collection', title: string, description: string, products: { __typename?: 'ProductConnection', edges: Array<{ __typename?: 'ProductEdge', node: { __typename?: 'Product', images: { __typename?: 'ImageConnection', edges: Array<{ __typename?: 'ImageEdge', node: { __typename?: 'Image', id?: string | null | undefined, altText?: string | null | undefined, transformedSrc: string } }> } } }> } } }>, pageInfo: { __typename?: 'PageInfo', hasNextPage: boolean } } };
+
+export type GetCollectionSingleQueryVariables = Exact<{
+  handle: Scalars['String'];
+  after?: Maybe<Scalars['String']>;
+}>;
+
+
+export type GetCollectionSingleQuery = { __typename?: 'QueryRoot', collectionByHandle?: { __typename?: 'Collection', title: string, description: string, image?: { __typename?: 'Image', id?: string | null | undefined, src: string, altText?: string | null | undefined } | null | undefined, products: { __typename?: 'ProductConnection', edges: Array<{ __typename?: 'ProductEdge', cursor: string, node: { __typename?: 'Product', id: string, handle: string, title: string, description: string, priceRange: { __typename?: 'ProductPriceRange', minVariantPrice: { __typename?: 'MoneyV2', amount: string, currencyCode: CurrencyCode } }, images: { __typename?: 'ImageConnection', edges: Array<{ __typename?: 'ImageEdge', node: { __typename?: 'Image', id?: string | null | undefined, altText?: string | null | undefined, transformedSrc: string } }> } } }>, pageInfo: { __typename?: 'PageInfo', hasNextPage: boolean } } } | null | undefined };
+
 export type GetProductListQueryVariables = Exact<{
   after?: Maybe<Scalars['String']>;
 }>;
@@ -6302,6 +6317,79 @@ export const RemoveCartItemDocument = gql`
   }
 }
     `;
+export const GetColletionListDocument = gql`
+    query getColletionList($after: String) {
+  collections(first: 12, after: $after) {
+    edges {
+      node {
+        title
+        description
+        products(first: 1) {
+          edges {
+            node {
+              images(first: 1) {
+                edges {
+                  node {
+                    id
+                    altText
+                    transformedSrc(maxWidth: 768, maxHeight: 1024, crop: CENTER)
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+      cursor
+    }
+    pageInfo {
+      hasNextPage
+    }
+  }
+}
+    `;
+export const GetCollectionSingleDocument = gql`
+    query getCollectionSingle($handle: String!, $after: String) {
+  collectionByHandle(handle: $handle) {
+    title
+    description
+    image {
+      id
+      src
+      altText
+    }
+    products(first: 12, after: $after) {
+      edges {
+        node {
+          id
+          handle
+          title
+          description(truncateAt: 120)
+          priceRange {
+            minVariantPrice {
+              amount
+              currencyCode
+            }
+          }
+          images(first: 1) {
+            edges {
+              node {
+                id
+                altText
+                transformedSrc(maxWidth: 768, maxHeight: 1024, crop: CENTER)
+              }
+            }
+          }
+        }
+        cursor
+      }
+      pageInfo {
+        hasNextPage
+      }
+    }
+  }
+}
+    `;
 export const GetProductListDocument = gql`
     query getProductList($after: String) {
   products(first: 12, after: $after) {
@@ -6396,6 +6484,12 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     },
     removeCartItem(variables: RemoveCartItemMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<RemoveCartItemMutation> {
       return withWrapper((wrappedRequestHeaders) => client.request<RemoveCartItemMutation>(RemoveCartItemDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'removeCartItem');
+    },
+    getColletionList(variables?: GetColletionListQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<GetColletionListQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<GetColletionListQuery>(GetColletionListDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'getColletionList');
+    },
+    getCollectionSingle(variables: GetCollectionSingleQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<GetCollectionSingleQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<GetCollectionSingleQuery>(GetCollectionSingleDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'getCollectionSingle');
     },
     getProductList(variables?: GetProductListQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<GetProductListQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<GetProductListQuery>(GetProductListDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'getProductList');

@@ -29,6 +29,7 @@ const Shop: NextPage<Props> = ({initialData}: Props) => {
 
 	return (
 		<ContentColumn>
+			<h2>Products</h2>
 			<ProductCardGrid>
 				{productList.data?.pages
 					.flatMap(({products}) => products)
