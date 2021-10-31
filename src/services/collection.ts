@@ -3,10 +3,9 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import formatTitle from 'title';
 import {ShopifyService} from './shopify';
+import {ProductListItem} from './product';
 
-import * as ProductService from './product';
-
-export interface Single {
+export interface SingleCollection {
 	title: string;
 	description: string;
 	image: {
@@ -14,38 +13,42 @@ export interface Single {
 		src: string;
 		alt: string;
 	};
-	products: ProductService.ListItem[];
+	products: ProductListItem[];
 }
 
-export async function getSingle(handle: string): Promise<Single> {
+export async function getSingleCollection(
+	handle: string,
+): Promise<SingleCollection> {
 	const {collectionByHandle} = await ShopifyService.getCollectionSingle({
 		handle,
 	});
-	const {title, description, products, image} = collectionByHandle || {};
+	const {title, description, products, image} = collectionByHandle ?? {};
 
-	const collection: Single = {
-		title: title as string,
-		description: description as string,
+	const {id: imageId, src: imageSrc, altText: imgAltText} = image ?? {};
+
+	const collection: SingleCollection = {
+		title: title!,
+		description: description!,
 		image: {
-			id: image?.id as string,
-			src: image?.src as string,
-			alt: image?.altText as string,
+			id: imageId!,
+			src: imageSrc!,
+			alt: imgAltText!,
 		},
 		products: products?.edges.map(({node, cursor}) => ({
 			id: node.id,
 			cursor,
-			url: `/products/${node.handle as string}`,
+			url: `/products/${node.handle}`,
 			title: formatTitle(node.title),
 			description: node.description,
 			image: {
 				src: node.images.edges[0].node.transformedSrc,
-				alt: node.images.edges[0].node.altText as string,
+				alt: node.images.edges[0].node.altText!,
 			},
 			price: {
 				amount: Number(node.priceRange.minVariantPrice.amount),
 				currencyCode: node.priceRange.minVariantPrice.currencyCode,
 			},
-		})) as ProductService.ListItem[],
+		})) as ProductListItem[],
 	};
 
 	return collection;
