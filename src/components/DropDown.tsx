@@ -56,10 +56,6 @@ const ArrowWrapper = styled.div<{isOpen: boolean}>`
 export const DropDown: FC<Props> = ({value, options, onSelect}) => {
 	const [isOpen, setIsOpen] = useState(false);
 
-	useEffect(() => {
-		void new Audio('/pop.mp3').play().catch(() => null);
-	}, [isOpen]);
-
 	return (
 		<DropDownContainer>
 			<DropDownHeader
