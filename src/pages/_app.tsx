@@ -9,6 +9,11 @@ import {isProd} from '../util/env';
 
 import 'swiper/css';
 import 'swiper/css/pagination';
+import 'swiper/css/keyboard';
+import 'swiper/css/navigation';
+import 'swiper/css/a11y';
+import 'swiper/css/lazy';
+
 import {NavigationPlaceholder} from '../components/Navigation/Navigation.styled';
 
 export const GlobalStyle = styled.createGlobalStyle`

@@ -6221,7 +6221,7 @@ export type GetProductSingleQueryVariables = Exact<{
 }>;
 
 
-export type GetProductSingleQuery = { __typename?: 'QueryRoot', productByHandle?: { __typename?: 'Product', title: string, description: string, seo: { __typename?: 'SEO', title?: string | null | undefined, description?: string | null | undefined }, images: { __typename?: 'ImageConnection', edges: Array<{ __typename?: 'ImageEdge', node: { __typename?: 'Image', id?: string | null | undefined, altText?: string | null | undefined, transformedSrc: string } }> }, variants: { __typename?: 'ProductVariantConnection', edges: Array<{ __typename?: 'ProductVariantEdge', node: { __typename?: 'ProductVariant', id: string, title: string, priceV2: { __typename?: 'MoneyV2', amount: string, currencyCode: CurrencyCode }, image?: { __typename?: 'Image', id?: string | null | undefined } | null | undefined } }> } } | null | undefined };
+export type GetProductSingleQuery = { __typename?: 'QueryRoot', productByHandle?: { __typename?: 'Product', title: string, description: string, descriptionHtml: string, seo: { __typename?: 'SEO', title?: string | null | undefined, description?: string | null | undefined }, images: { __typename?: 'ImageConnection', edges: Array<{ __typename?: 'ImageEdge', node: { __typename?: 'Image', id?: string | null | undefined, altText?: string | null | undefined, transformedSrc: string } }> }, variants: { __typename?: 'ProductVariantConnection', edges: Array<{ __typename?: 'ProductVariantEdge', node: { __typename?: 'ProductVariant', id: string, title: string, priceV2: { __typename?: 'MoneyV2', amount: string, currencyCode: CurrencyCode }, image?: { __typename?: 'Image', id?: string | null | undefined } | null | undefined } }> } } | null | undefined };
 
 
 export const GetCartDocument = gql`
@@ -6429,6 +6429,7 @@ export const GetProductSingleDocument = gql`
   productByHandle(handle: $handle) {
     title
     description
+    descriptionHtml
     seo {
       title
       description

@@ -11,6 +11,7 @@ import {
 export interface SingleProduct {
 	title: string;
 	description: string;
+	descriptionHtml: string;
 	seo: {
 		title: string;
 		description: string;
@@ -33,14 +34,15 @@ export interface SingleProduct {
 
 export async function getSingleProduct(handle: string): Promise<SingleProduct> {
 	const {productByHandle} = await ShopifyService.getProductSingle({handle});
-	const {title, description, seo, images, variants} = productByHandle!;
+	const {title, description, seo, images, variants, descriptionHtml} =
+		productByHandle!;
 
 	const product: SingleProduct = {
 		title: formatTitle(title),
 		description,
+		descriptionHtml,
 		seo: {
 			title: formatTitle(seo.title ?? title),
-
 			description: seo.description ?? truncate(description, {length: 256}),
 		},
 		images: images.edges.map(({node}) => ({
