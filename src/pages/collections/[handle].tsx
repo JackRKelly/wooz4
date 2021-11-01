@@ -29,7 +29,7 @@ interface Props {
 
 const Collection = ({collection, initialData, handle}: Props) => {
 	const productList = useInfiniteQuery(
-		COLLECTION_PRODUCT_LIST_QUERY,
+		`${COLLECTION_PRODUCT_LIST_QUERY}_${handle}`,
 		async ({pageParam}: {pageParam?: string}) =>
 			getCollectionProducts({handle, after: pageParam}),
 		{
