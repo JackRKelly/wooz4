@@ -1,9 +1,6 @@
 import React from 'react';
-import Image from 'next/image';
 import {useImmer} from 'use-immer';
 import {useQueryClient, useMutation} from 'react-query';
-import {A11y, Keyboard, Navigation, Pagination, Swiper} from 'swiper';
-import {Swiper as SwiperSlider, SwiperSlide} from 'swiper/react';
 import {CART_ITEM_COUNT_QUERY} from '../../const/query';
 import {formatPrice} from '../../util/intl';
 import {NextPageContext} from 'next';
@@ -18,6 +15,11 @@ import {DropDown} from '../../components/DropDown';
 import {colors} from '../../const';
 import {NormalizedButton} from '../../components/Normalized.styled';
 import {FlexRowWrapper} from '../../components/Flex.styled';
+// import dynamic from 'next/dynamic';
+import {Swiper} from 'swiper';
+import {ProductSwiper} from '../../components/ProductSwiper';
+
+// const SwiperSliderNoSSR = dynamic(() => import('swiper/react'), {ssr: false});
 
 interface Props {
 	product: SingleProduct;
@@ -69,24 +71,7 @@ const Product = ({product}: Props) => {
 				<title>{buildTitle(product.title, 'after')}</title>
 			</Head>
 			<GridWrapper>
-				<SwiperSlider
-					navigation
-					modules={[A11y, Keyboard, Navigation, Pagination]}
-					pagination={{clickable: true}}
-					onSwiper={setSwiper}
-				>
-					{product.images.map(({id, src, alt}) => (
-						<SwiperSlide key={id}>
-							<Image
-								src={src}
-								alt={alt}
-								width="500"
-								height="500"
-								layout="responsive"
-							/>
-						</SwiperSlide>
-					))}
-				</SwiperSlider>
+				<ProductSwiper product={product} setSwiper={setSwiper} />
 				<div>
 					<h1>{product.title}</h1>
 					<p>{formatPrice(state.variant.price)}</p>
