@@ -16,6 +16,7 @@
 		"prepare": "husky install"
 	},
 	"dependencies": {
+		"esm": "^3.2.25",
 		"graphql": "^15.7.1",
 		"graphql-request": "^3.6.1",
 		"graphql-tag": "^2.12.5",
