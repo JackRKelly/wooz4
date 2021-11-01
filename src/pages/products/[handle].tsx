@@ -38,6 +38,7 @@ const GridWrapper = styled.div`
 	display: grid;
 	grid-template-columns: repeat(auto-fit, minmax(22rem, 1fr));
 	column-gap: 2rem;
+	align-items: start;
 	.swiper {
 		width: 100%;
 	}
