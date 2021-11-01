@@ -15,7 +15,13 @@ interface Props {
 export const CollectionCard: FC<Props> = ({collection}) => (
 	<Link passHref href={`/collections/${collection.handle}`}>
 		<NormalizedLink>
-			<CollectionCardStyled backgroundImage={collection.image.src}>
+			<CollectionCardStyled
+				backgroundImage={
+					collection.image.src
+						? collection.image.src
+						: '/images/no-image-collection-banner.jpg'
+				}
+			>
 				<CollectionCardTitle>{collection.title}</CollectionCardTitle>
 				{collection.description ? (
 					<CollectionCardDescription>

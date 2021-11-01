@@ -31,7 +31,7 @@ const Collections: NextPage<Props> = ({initialData}: Props) => {
 
 	return (
 		<ContentColumn>
-			<h1>Viewing all collections</h1>
+			<h1>All collections</h1>
 			<CollectionCardGrid>
 				{collectionList.data?.pages
 					.flatMap(({collections}) => collections)

@@ -39,12 +39,10 @@ export const CartListItem: React.FC<Props> = ({item}) => {
 
 	const remove = useMutation(removeCartItem, {
 		onSuccess: () => {
-			void new Audio('/success.mp3').play().catch(() => null);
 			refetchCart();
 		},
 	});
 
-	// eslint-disable-next-line @typescript-eslint/no-unsafe-call
 	useDebounce(
 		() => {
 			if (item.quantity !== state.quantity) {
@@ -98,7 +96,10 @@ export const CartListItem: React.FC<Props> = ({item}) => {
 			<button
 				type="button"
 				disabled={disabled}
-				onClick={async () => remove.mutateAsync(item.id)}
+				onClick={async () => {
+					void new Audio('/pop.mp3').play().catch(() => null);
+					return remove.mutateAsync(item.id);
+				}}
 			>
 				deleteicon
 			</button>

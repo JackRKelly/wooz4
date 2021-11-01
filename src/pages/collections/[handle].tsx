@@ -54,7 +54,11 @@ const Collection = ({collection, initialData, handle}: Props) => {
 				</title>
 			</Head>
 
-			<HeroWrapper backgroundImage={image?.src}>
+			<HeroWrapper
+				backgroundImage={
+					image.src ? image.src : '/images/no-image-collection-banner.jpg'
+				}
+			>
 				<ContentColumn padding="5.25rem 0 5.25rem 0">
 					<HeroTitle>{title}</HeroTitle>
 					<HeroDescription>{description}</HeroDescription>

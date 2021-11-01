@@ -1,6 +1,6 @@
 import {CurrencyCode} from '../services/shopify';
 
-interface Price {
+export interface Price {
 	amount: number;
 	currencyCode: CurrencyCode;
 	locales?: string | string[];
