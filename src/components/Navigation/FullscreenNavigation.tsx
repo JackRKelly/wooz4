@@ -1,18 +1,20 @@
 import Link from 'next/link';
 import React, {FC} from 'react';
-import {Close, Search, Cart, WoozBadge} from '../../assets/svg';
+import {Close, Search, WoozBadge} from '../../assets/svg';
 import {FlexRowWrapper} from '../Flex.styled';
-import {NormalizedIconButton, NormalizedIconLink} from '../Normalized.styled';
+import {NormalizedIconButton} from '../Normalized.styled';
 import {
 	StyledFullscreenNavigation,
 	FlexColumnWrapperHeight,
+	CartIconLink,
 } from './Navigation.styled';
 import {NavigationLink} from './NavigationLink';
 
 export const FullscreenNavigation: FC<{
 	open: boolean;
+	itemCount: number;
 	close: () => void;
-}> = ({open, close}) => (
+}> = ({open, close, itemCount}) => (
 	<StyledFullscreenNavigation open={open}>
 		<FlexColumnWrapperHeight>
 			<NormalizedIconButton type="button" onClick={close}>
@@ -23,11 +25,8 @@ export const FullscreenNavigation: FC<{
 				<NormalizedIconButton>
 					<Search />
 				</NormalizedIconButton>
-				<Link passHref href="/cart">
-					<NormalizedIconLink onClick={close}>
-						<Cart />
-					</NormalizedIconLink>
-				</Link>
+
+				<CartIconLink close={close} itemCount={itemCount} />
 			</FlexRowWrapper>
 
 			<NavigationLink text="Home" route="/" onClick={close} />

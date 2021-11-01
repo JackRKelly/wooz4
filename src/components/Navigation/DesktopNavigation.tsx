@@ -1,21 +1,13 @@
 import Link from 'next/link';
 import React, {FC, useState} from 'react';
-import {useQuery} from 'react-query';
-import styled from 'styled-components';
-import {WoozBadge, Search, Cart} from '../../assets/svg';
-import {colors} from '../../const';
-import {CART_ITEM_COUNT_QUERY} from '../../const/query';
-import {getCartItemCount} from '../../services/cart';
+import {WoozBadge, Search} from '../../assets/svg';
 import {FlexRowWrapper} from '../Flex.styled';
-import {NormalizedIconButton, NormalizedIconLink} from '../Normalized.styled';
-import {StyledDesktopNavigation} from './Navigation.styled';
+import {NormalizedIconButton} from '../Normalized.styled';
+import {CartIconLink, StyledDesktopNavigation} from './Navigation.styled';
 import {NavigationLink} from './NavigationLink';
 
-export const DesktopNavigation: FC = () => {
+export const DesktopNavigation: FC<{itemCount: number}> = ({itemCount}) => {
 	const [isHoveringSearch, setIsHoveringSearch] = useState(false);
-	const itemCount = useQuery(CART_ITEM_COUNT_QUERY, async () =>
-		getCartItemCount(),
-	);
 
 	return (
 		<StyledDesktopNavigation>
@@ -45,35 +37,10 @@ export const DesktopNavigation: FC = () => {
 						{/* https://www.shopify.com/partners/blog/query-argument-graphql */}
 						<Search active={isHoveringSearch} />
 					</NormalizedIconButton>
-					<Link passHref href="/cart">
-						<CartIconLink>
-							<Cart />
-							{itemCount.data === 0 ? null : (
-								<CartIconCount>{itemCount.data}</CartIconCount>
-							)}
-						</CartIconLink>
-					</Link>
+
+					<CartIconLink itemCount={itemCount} />
 				</FlexRowWrapper>
 			</FlexRowWrapper>
 		</StyledDesktopNavigation>
 	);
 };
-
-const CartIconLink = styled(NormalizedIconLink)`
-	position: relative;
-`;
-
-const CartIconCount = styled.span`
-	font-size: 0.6rem;
-	position: absolute;
-	top: 0.2rem;
-	right: 0;
-	width: 1rem;
-	height: 1rem;
-	background-color: ${colors.sakuraRed};
-	color: ${colors.white};
-	border-radius: 50%;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-`;

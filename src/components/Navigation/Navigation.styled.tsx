@@ -1,6 +1,10 @@
 import styled from 'styled-components';
 import {columnWidth, breakpoints, colors, transitions} from '../../const';
 import {FlexColumnWrapper} from '../Flex.styled';
+import {NormalizedIconLink} from '../Normalized.styled';
+import React, {FC} from 'react';
+import {Cart} from '../../assets/svg';
+import Link from 'next/link';
 
 export const StyledNavigation = styled.nav`
 	${columnWidth}
@@ -100,3 +104,34 @@ export const NavigationPlaceholder = styled.div`
 	background-color: ${colors.white};
 	width: 100%;
 `;
+
+export const CartLink = styled(NormalizedIconLink)`
+	position: relative;
+`;
+
+export const CartIconCount = styled.span`
+	font-size: 0.6rem;
+	position: absolute;
+	top: 0.2rem;
+	right: 0;
+	width: 1rem;
+	height: 1rem;
+	background-color: ${colors.sakuraRed};
+	color: ${colors.white};
+	border-radius: 50%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+`;
+
+export const CartIconLink: FC<{close?: () => void; itemCount: number}> = ({
+	close,
+	itemCount,
+}) => (
+	<Link passHref href="/cart">
+		<CartLink onClick={close}>
+			<Cart />
+			{itemCount === 0 ? null : <CartIconCount>{itemCount}</CartIconCount>}
+		</CartLink>
+	</Link>
+);

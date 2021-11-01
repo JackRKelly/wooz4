@@ -1,11 +1,14 @@
 import Link from 'next/link';
 import React, {FC, useState} from 'react';
-import {WoozBadge, Search, Cart, Hamburger} from '../../assets/svg';
+import {WoozBadge, Search, Hamburger} from '../../assets/svg';
 import {FlexRowWrapper} from '../Flex.styled';
-import {NormalizedIconButton, NormalizedIconLink} from '../Normalized.styled';
-import {StyledMobileNavigation} from './Navigation.styled';
+import {NormalizedIconButton} from '../Normalized.styled';
+import {CartIconLink, StyledMobileNavigation} from './Navigation.styled';
 
-export const MobileNavigation: FC<{open: () => void}> = ({open}) => {
+export const MobileNavigation: FC<{itemCount: number; open: () => void}> = ({
+	open,
+	itemCount,
+}) => {
 	const [isHoveringSearch, setIsHoveringSearch] = useState(false);
 
 	return (
@@ -31,11 +34,7 @@ export const MobileNavigation: FC<{open: () => void}> = ({open}) => {
 						<Search active={isHoveringSearch} />
 					</NormalizedIconButton>
 
-					<Link passHref href="/cart">
-						<NormalizedIconLink>
-							<Cart />
-						</NormalizedIconLink>
-					</Link>
+					<CartIconLink itemCount={itemCount} />
 
 					<NormalizedIconButton type="button" onClick={open}>
 						<Hamburger />

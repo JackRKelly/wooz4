@@ -1,4 +1,7 @@
 import React, {FC, useEffect, useState} from 'react';
+import {useQuery} from 'react-query';
+import {CART_ITEM_COUNT_QUERY} from '../../const/query';
+import {getCartItemCount} from '../../services/cart';
 import {DesktopNavigation} from './DesktopNavigation';
 import {FullscreenNavigation} from './FullscreenNavigation';
 import {MobileNavigation} from './MobileNavigation';
@@ -11,9 +14,14 @@ export const Navigation: FC = () => {
 		document.body.className = isNavigationOpen ? 'scroll-hidden' : '';
 	}, [isNavigationOpen]);
 
+	const itemCount = useQuery(CART_ITEM_COUNT_QUERY, async () =>
+		getCartItemCount(),
+	);
+
 	return (
 		<>
 			<FullscreenNavigation
+				itemCount={itemCount.data ?? 0}
 				open={isNavigationOpen}
 				close={() => {
 					setIsNavigationOpen(false);
@@ -21,11 +29,12 @@ export const Navigation: FC = () => {
 			/>
 			<NavigationWrapper>
 				<MobileNavigation
+					itemCount={itemCount.data ?? 0}
 					open={() => {
 						setIsNavigationOpen(true);
 					}}
 				/>
-				<DesktopNavigation />
+				<DesktopNavigation itemCount={itemCount.data ?? 0} />
 			</NavigationWrapper>
 		</>
 	);
