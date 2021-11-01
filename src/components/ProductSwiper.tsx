@@ -4,12 +4,12 @@ import {Swiper as SwiperMain, SwiperSlide} from 'swiper/react';
 import {SingleProduct} from '../services/product';
 import Image from 'next/image';
 
-interface Props {
+export interface ProductProps {
 	setSwiper: Dispatch<SetStateAction<Swiper | undefined>>;
 	product: SingleProduct;
 }
 
-export const ProductSwiper: FC<Props> = ({product, setSwiper}) => (
+export const ProductSwiper: FC<ProductProps> = ({product, setSwiper}) => (
 	<SwiperMain
 		navigation
 		modules={[A11y, Keyboard, Navigation, Pagination]}

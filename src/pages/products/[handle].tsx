@@ -17,8 +17,11 @@ import {NormalizedButton} from '../../components/Normalized.styled';
 import {FlexRowWrapper} from '../../components/Flex.styled';
 import dynamic from 'next/dynamic';
 import {Swiper} from 'swiper';
-const SwiperSliderNoSSR = dynamic(
-	async () => import('../../components/ProductSwiper'),
+import {ProductProps} from '../../components/ProductSwiper';
+
+const SwiperSliderNoSSR = dynamic<ProductProps>(
+	async () =>
+		import('../../components/ProductSwiper').then(mod => mod.ProductSwiper),
 	{ssr: false},
 );
 
