@@ -47,11 +47,7 @@ const Collection = ({collection, initialData, handle}: Props) => {
 	return (
 		<>
 			<Head>
-				<title>
-					{title
-						? buildTitle(`${title}`, 'after')
-						: buildTitle('Loading...', 'before')}
-				</title>
+				<title>{buildTitle(`${title}`, 'after')}</title>
 			</Head>
 
 			<HeroWrapper

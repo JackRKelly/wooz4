@@ -12,6 +12,8 @@ import {getSingleProduct, SingleProduct} from '../../services/product';
 import {addCartItem} from '../../services/cart';
 import styled from 'styled-components';
 import reactHtmlParser from 'react-html-parser';
+import Head from 'next/head';
+import {buildTitle} from '../../util/title';
 
 interface Props {
 	product: SingleProduct;
@@ -45,6 +47,9 @@ const Product = ({product}: Props) => {
 
 	return (
 		<ContentColumn>
+			<Head>
+				<title>{buildTitle(product.title, 'after')}</title>
+			</Head>
 			<GridWrapper>
 				<SwiperSlider
 					navigation

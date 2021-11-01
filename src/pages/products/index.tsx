@@ -7,6 +7,8 @@ import {getProductList, ProductList} from '../../services/product';
 import {ProductCard, ProductCardGrid} from '../../components/ProductCard';
 import {PageLoader} from '../../components/PageLoading';
 import {ContentColumn} from '../../components/ContentColumn';
+import Head from 'next/head';
+import {buildTitle} from '../../util/title';
 
 interface Props {
 	initialData: InfiniteData<ProductList>;
@@ -30,6 +32,9 @@ const Products: NextPage<Props> = ({initialData}: Props) => {
 
 	return (
 		<ContentColumn>
+			<Head>
+				<title>{buildTitle('All Products', 'after')}</title>
+			</Head>
 			<h1>All Products</h1>
 			<ProductCardGrid>
 				{productList.data?.pages
