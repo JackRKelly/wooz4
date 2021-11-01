@@ -15,11 +15,12 @@ import {DropDown} from '../../components/DropDown';
 import {colors} from '../../const';
 import {NormalizedButton} from '../../components/Normalized.styled';
 import {FlexRowWrapper} from '../../components/Flex.styled';
-// import dynamic from 'next/dynamic';
+import dynamic from 'next/dynamic';
 import {Swiper} from 'swiper';
-import {ProductSwiper} from '../../components/ProductSwiper';
-
-// const SwiperSliderNoSSR = dynamic(() => import('swiper/react'), {ssr: false});
+const SwiperSliderNoSSR = dynamic(
+	async () => import('../../components/ProductSwiper'),
+	{ssr: false},
+);
 
 interface Props {
 	product: SingleProduct;
@@ -71,7 +72,7 @@ const Product = ({product}: Props) => {
 				<title>{buildTitle(product.title, 'after')}</title>
 			</Head>
 			<GridWrapper>
-				<ProductSwiper product={product} setSwiper={setSwiper} />
+				<SwiperSliderNoSSR product={product} setSwiper={setSwiper} />
 				<div>
 					<h1>{product.title}</h1>
 					<p>{formatPrice(state.variant.price)}</p>
