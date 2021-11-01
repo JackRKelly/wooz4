@@ -1,4 +1,4 @@
-import React, {FC, useState} from 'react';
+import React, {FC, useEffect, useState} from 'react';
 import styled from 'styled-components';
 import {ArrowDown} from '../assets/svg/Icons/ArrowDown';
 import {colors, transitions} from '../const';
@@ -55,6 +55,10 @@ const ArrowWrapper = styled.div<{isOpen: boolean}>`
 
 export const DropDown: FC<Props> = ({value, options, onSelect}) => {
 	const [isOpen, setIsOpen] = useState(false);
+
+	useEffect(() => {
+		void new Audio('/pop.mp3').play().catch(() => null);
+	}, [isOpen]);
 
 	return (
 		<DropDownContainer>
