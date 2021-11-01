@@ -72,6 +72,13 @@ export const GlobalStyle = styled.createGlobalStyle`
 		background: ${colors.lightGray};
 	}
 
+	input,
+	select,
+	textarea,
+	button {
+		font-family: inherit;
+	}
+
 	h1,
 	h2,
 	h3,

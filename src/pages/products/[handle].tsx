@@ -15,6 +15,9 @@ import reactHtmlParser from 'react-html-parser';
 import Head from 'next/head';
 import {buildTitle} from '../../util/title';
 import {DropDown} from '../../components/DropDown';
+import {colors} from '../../const';
+import {NormalizedButton} from '../../components/Normalized.styled';
+import {FlexRowWrapper} from '../../components/Flex.styled';
 
 interface Props {
 	product: SingleProduct;
@@ -33,10 +36,19 @@ const GridWrapper = styled.div`
 		width: 100%;
 	}
 `;
+
 const GridVariantWrapper = styled.div`
 	display: grid;
 	grid-template-columns: 3fr 1fr;
 	column-gap: 0.75rem;
+`;
+
+const AddToCart = styled(NormalizedButton)`
+	background-color: ${colors.lightGray};
+	padding: 0.7rem 0.5rem;
+	cursor: pointer;
+	font-size: 0.9rem;
+	font-weight: 300;
 `;
 
 const Product = ({product}: Props) => {
@@ -115,21 +127,23 @@ const Product = ({product}: Props) => {
 							}}
 						/>
 					</GridVariantWrapper>
-					<button
-						type="button"
-						onClick={async () => {
-							await addItem.mutateAsync({
-								variantId: state.variant.id,
-								quantity: state.quantity,
-							});
-							setState(draft => {
-								draft.quantity = 1;
-							});
-							void new Audio('/success.mp3').play().catch(() => null);
-						}}
-					>
-						Add to cart
-					</button>
+					<FlexRowWrapper padding="1rem 0" justifyContent="flex-end">
+						<AddToCart
+							type="button"
+							onClick={async () => {
+								await addItem.mutateAsync({
+									variantId: state.variant.id,
+									quantity: state.quantity,
+								});
+								setState(draft => {
+									draft.quantity = 1;
+								});
+								void new Audio('/success.mp3').play().catch(() => null);
+							}}
+						>
+							Add to cart
+						</AddToCart>
+					</FlexRowWrapper>
 
 					<div>{reactHtmlParser(product.descriptionHtml)}</div>
 				</div>
