@@ -37,7 +37,7 @@ const Cart: NextPage = () => {
 			<h1>Your Cart</h1>
 			<p>
 				TOTAL: ({cart.data?.items.length} items){' '}
-				{formatPrice(cart?.data?.total ?? pricePlaceholder)}
+				<strong>{formatPrice(cart?.data?.total ?? pricePlaceholder)}</strong>
 			</p>
 
 			<GridWrapper>

@@ -15,12 +15,12 @@ export const HeroWrapper = styled.section<{backgroundImage: string}>`
 export const HeroTitle = styled.h1`
 	color: ${colors.white};
 	text-align: center;
-	margin-top: 0;
+	margin: 0;
 `;
 
 export const HeroDescription = styled.p`
 	color: ${colors.white};
 	max-width: 800px;
-	margin: 0 auto;
+	margin: 1rem auto 0;
 	text-align: center;
 `;

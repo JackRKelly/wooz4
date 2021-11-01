@@ -14,6 +14,7 @@ import styled from 'styled-components';
 import reactHtmlParser from 'react-html-parser';
 import Head from 'next/head';
 import {buildTitle} from '../../util/title';
+import {DropDown} from '../../components/DropDown';
 
 interface Props {
 	product: SingleProduct;
@@ -31,6 +32,11 @@ const GridWrapper = styled.div`
 	.swiper {
 		width: 100%;
 	}
+`;
+const GridVariantWrapper = styled.div`
+	display: grid;
+	grid-template-columns: 3fr 1fr;
+	column-gap: 0.75rem;
 `;
 
 const Product = ({product}: Props) => {
@@ -73,16 +79,18 @@ const Product = ({product}: Props) => {
 					<h1>{product.title}</h1>
 					<p>{formatPrice(state.variant.price)}</p>
 
-					<form>
-						<label id="product-variants-label">Variants</label>
-						<select
-							// label="Variants"
-							// labelId="product-variants-label"
-							disabled={addItem.isLoading}
-							value={state.variant.id}
-							onChange={event => {
+					<label>Variants</label>
+					<GridVariantWrapper>
+						<DropDown
+							// disabled={addItem.isLoading}
+							value={{title: state.variant.title, id: state.variant.id}}
+							options={product.variants.map(variant => ({
+								id: variant.id,
+								title: variant.title,
+							}))}
+							onSelect={optionId => {
 								const variant = product.variants.find(
-									({id}) => id === event.target.value,
+									({id}) => id === optionId,
 								);
 								const slideIndex = product.images.findIndex(
 									image => image.id === variant?.image,
@@ -94,25 +102,19 @@ const Product = ({product}: Props) => {
 									draft.variant = variant!;
 								});
 							}}
-						>
-							{product.variants.map(variant => (
-								<option key={variant.id} value={variant.id}>
-									{variant.title} - {formatPrice(variant.price)}
-								</option>
-							))}
-						</select>
-					</form>
-					<input
-						type="number"
-						value={state.quantity}
-						min="1"
-						max="100"
-						onChange={event => {
-							setState(draft => {
-								draft.quantity = Number(event.target.value);
-							});
-						}}
-					/>
+						/>
+						<input
+							type="number"
+							value={state.quantity}
+							min="1"
+							max="100"
+							onChange={event => {
+								setState(draft => {
+									draft.quantity = Number(event.target.value);
+								});
+							}}
+						/>
+					</GridVariantWrapper>
 					<button
 						type="button"
 						onClick={async () => {

@@ -57,7 +57,9 @@ const Collection = ({collection, initialData, handle}: Props) => {
 			>
 				<ContentColumn padding="5.25rem 0 5.25rem 0">
 					<HeroTitle>{title}</HeroTitle>
-					<HeroDescription>{description}</HeroDescription>
+					{description ? (
+						<HeroDescription>{description}</HeroDescription>
+					) : null}
 				</ContentColumn>
 			</HeroWrapper>
 			<ContentColumn>

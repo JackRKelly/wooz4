@@ -24,10 +24,8 @@ const Home: NextPage<Props> = ({collection, collectionProductList}: Props) => (
 			<title>{buildTitle('Home', 'after')}</title>
 		</Head>
 
-		<section>
-			<h1>Wooz4</h1>
-			<p>Modern japanese inspired clothing brand</p>
-		</section>
+		<h1>Wooz4</h1>
+		<p>Modern japanese inspired clothing brand</p>
 
 		<FeaturedCollection
 			collection={collection}
