@@ -1,4 +1,4 @@
-import React, {FC, useEffect, useState} from 'react';
+import React, {FC, useState} from 'react';
 import styled from 'styled-components';
 import {ArrowDown} from '../assets/svg/Icons/ArrowDown';
 import {colors, transitions} from '../const';
