@@ -1,41 +1,15 @@
 import React, {FC, useState} from 'react';
-import styled from 'styled-components';
 import {ArrowDown} from '../assets/svg/Icons/ArrowDown';
-import {colors, transitions} from '../const';
+import {
+	DropDownContainer,
+	DropDownHeader,
+	ArrowWrapper,
+	DropDownListWrapper,
+	DropDownListContainer,
+	DropDownList,
+	DropDownListItem,
+} from './DropDown.styled';
 import {FlexRowWrapper} from './Flex.styled';
-
-const DropDownHeader = styled.div`
-	background-color: ${colors.lightGray};
-	padding: 0.5rem;
-	cursor: pointer;
-`;
-
-const DropDownListContainer = styled.div<{isOpen: boolean}>`
-	position: absolute;
-	background-color: ${colors.gray};
-	transition: ${transitions.easeInOutMedium};
-	overflow-y: scroll;
-	width: 100%;
-	max-height: ${props => (props.isOpen ? '20rem' : '0')};
-`;
-
-const DropDownListWrapper = styled.div`
-	position: relative;
-`;
-
-const DropDownContainer = styled.div``;
-
-const DropDownList = styled.ul`
-	list-style: none;
-
-	padding: 0.25rem 0.5rem;
-	margin: 0;
-`;
-
-const DropDownListItem = styled.li`
-	cursor: pointer;
-	padding: 0.25rem 0;
-`;
 
 interface Option {
 	id: string;
@@ -47,11 +21,6 @@ interface Props {
 	options: Option[];
 	onSelect: (id: string) => void;
 }
-
-const ArrowWrapper = styled.div<{isOpen: boolean}>`
-	transition: ${transitions.easeInOutMedium};
-	transform: rotate(${props => (props.isOpen ? '180deg' : '0deg')});
-`;
 
 export const DropDown: FC<Props> = ({value, options, onSelect}) => {
 	const [isOpen, setIsOpen] = useState(false);
