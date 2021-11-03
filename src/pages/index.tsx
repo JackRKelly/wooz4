@@ -52,14 +52,7 @@ const HeroWrapper = styled.div`
 
 const HeroHeadingStyled = styled.span`
 	color: ${colors.red};
-	text-shadow: 0.25rem 0.25rem ${colors.darkGray};
 	transition: ${transitions.easeInOutShort};
-	&:hover {
-		text-shadow: 0 0 ${colors.darkGray};
-	}
-	@media (max-width: ${breakpoints.md}px) {
-		text-shadow: 0.15rem 0.15rem ${colors.darkGray};
-	}
 `;
 
 const HeroCTA = styled.a`
