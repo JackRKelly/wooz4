@@ -20,6 +20,6 @@ const Svg = styled.svg<{margin?: string}>`
 	display: block;
 	margin: ${props => (props.margin ? props.margin : '1rem 0')};
 	width: 5rem;
-	height: 1rem;
+	height: auto;
 	fill: ${colors.gray};
 `;

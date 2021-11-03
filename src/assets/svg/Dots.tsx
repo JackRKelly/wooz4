@@ -32,7 +32,7 @@ export const Dots: FC<{margin?: string}> = ({margin}) => (
 const Svg = styled.svg<{margin?: string}>`
 	display: block;
 	margin: ${props => (props.margin ? props.margin : '1rem 0')};
-	width: 10rem;
-	height: 1rem;
+	width: 6rem;
+	height: auto;
 	fill: ${colors.gray};
 `;

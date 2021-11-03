@@ -13,9 +13,9 @@ import {ProductList} from '../services/product';
 import styled from 'styled-components';
 import {breakpoints, colors, transitions} from '../const';
 import {Dash} from '../assets/svg/Dash';
-// import Image from 'next/image';
 import Link from 'next/link';
 import {Dots} from '../assets/svg/Dots';
+import {HeroText} from '../assets/svg/HeroText';
 
 const FEATURED_COLLECTION_HANDLE = 'sakura-collection';
 
@@ -31,16 +31,6 @@ const HeroSection = styled.section`
 			rgba(210, 210, 210, 0.6)
 		),
 		url('/images/no-image-collection-banner.jpg');
-`;
-
-const HeroJapanese = styled.span`
-	font-family: 'JKG', helvetica, arial, sans-serif;
-	line-height: 0.95;
-	font-size: 3rem;
-	color: ${colors.red};
-	@media (max-width: ${breakpoints.md}px) {
-		font-size: 1.75rem;
-	}
 `;
 
 const HeroHeading = styled.h2`
@@ -89,8 +79,8 @@ const Home: NextPage<Props> = ({collection, collectionProductList}: Props) => (
 		<HeroSection>
 			<ContentColumn padding="3rem 0">
 				<HeroWrapper>
-					<HeroJapanese>モダンな服</HeroJapanese>
-					<Dash margin="1rem 0 0.25rem" />
+					<HeroText margin="0" />
+					<Dots margin="1rem 0 0.5rem" />
 					<HeroHeading>
 						Creating modern
 						<br />
@@ -98,7 +88,7 @@ const Home: NextPage<Props> = ({collection, collectionProductList}: Props) => (
 						<br />
 						clothing for you
 					</HeroHeading>
-					<Dots margin="1rem 0 1.25rem" />
+					<Dots margin="0.6rem 0 1.25rem" />
 					<Link passHref href="/products">
 						<HeroCTA>Shop Now</HeroCTA>
 					</Link>
