@@ -10,6 +10,12 @@ import {
 	SingleCollection,
 } from '../services/collection';
 import {ProductList} from '../services/product';
+import styled from 'styled-components';
+import {breakpoints, colors, transitions} from '../const';
+import {Dash} from '../assets/svg/Dash';
+// import Image from 'next/image';
+import Link from 'next/link';
+import {Dots} from '../assets/svg/Dots';
 
 const FEATURED_COLLECTION_HANDLE = 'sakura-collection';
 
@@ -18,21 +24,123 @@ interface Props {
 	collectionProductList: ProductList;
 }
 
+const HeroSection = styled.section`
+	background-image: linear-gradient(
+			45deg,
+			rgba(230, 230, 230, 0.827),
+			rgba(230, 230, 230, 0.6)
+		),
+		url('/images/no-image-collection-banner.jpg');
+`;
+
+const HeroJapanese = styled.span`
+	font-family: 'JKG', helvetica, arial, sans-serif;
+	line-height: 0.95;
+	font-size: 3rem;
+	color: ${colors.red};
+	@media (max-width: ${breakpoints.md}px) {
+		font-size: 1.75rem;
+	}
+`;
+
+const HeroHeading = styled.h2`
+	font-size: 3rem;
+	color: ${colors.darkGray};
+	margin: 0;
+	@media (max-width: ${breakpoints.md}px) {
+		font-size: 2rem;
+	}
+`;
+
+// const HeroDescription = styled.p`
+// 	font-size: 1rem;
+// 	color: ${colors.darkGray};
+// 	max-width: 35rem;
+// 	margin: 0.75rem 0;
+// `;
+
+const HeroWrapper = styled.div`
+	display: flex;
+	align-items: flex-start;
+	justify-content: center;
+	flex-direction: column;
+	height: 100%;
+`;
+
+// const GridWrapper = styled.div`
+// 	display: grid;
+// 	grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
+// 	@media (max-width: ${breakpoints.md}px) {
+// 		grid-template-columns: 1fr;
+// 	}
+// 	column-gap: 2rem;
+// 	align-items: start;
+// 	height: 100%;
+// `;
+
+const HeroHeadingStyled = styled.span`
+	color: ${colors.red};
+	text-shadow: 0.25rem 0.25rem ${colors.darkGray};
+	transition: ${transitions.easeInOutShort};
+	&:hover {
+		text-shadow: 0 0 ${colors.darkGray};
+	}
+	@media (max-width: ${breakpoints.md}px) {
+		text-shadow: 0.15rem 0.15rem ${colors.darkGray};
+	}
+`;
+
+// const HeroImageWrapper = styled.div`
+// 	position: relative;
+// 	width: 100%;
+// 	padding-top: 100%;
+// `;
+
+// const HeroImageContainer = styled(HeroWrapper)`
+// 	max-width: 35rem;
+// `;
+
+const HeroCTA = styled.a`
+	background-color: ${colors.red};
+	color: ${colors.white};
+	text-decoration: none;
+	padding: 0.5rem 1rem;
+	border-radius: 4px;
+`;
+
 const Home: NextPage<Props> = ({collection, collectionProductList}: Props) => (
-	<ContentColumn>
+	<>
 		<Head>
 			<title>{buildTitle('Home', 'after')}</title>
 		</Head>
 
-		<h1>Wooz4</h1>
-		<p>Modern japanese inspired clothing brand</p>
-
-		<FeaturedCollection
-			collection={collection}
-			productList={collectionProductList}
-			handle={FEATURED_COLLECTION_HANDLE}
-		/>
-	</ContentColumn>
+		<HeroSection>
+			<ContentColumn padding="3rem 0">
+				<HeroWrapper>
+					<HeroJapanese>モダンな服</HeroJapanese>
+					<Dash margin="1rem 0 0.25rem" />
+					<HeroHeading>
+						Creating modern
+						<br />
+						<HeroHeadingStyled>Japanese-inspired</HeroHeadingStyled>
+						<br />
+						clothing for you
+					</HeroHeading>
+					<Dots margin="1rem 0 1.25rem" />
+					<Link passHref href="/products">
+						<HeroCTA>Shop Now</HeroCTA>
+					</Link>
+				</HeroWrapper>
+			</ContentColumn>
+		</HeroSection>
+		<ContentColumn>
+			<FeaturedCollection
+				collection={collection}
+				productList={collectionProductList}
+				handle={FEATURED_COLLECTION_HANDLE}
+			/>
+		</ContentColumn>
+	</>
 );
 
 Home.getInitialProps = async (): Promise<Props> => {

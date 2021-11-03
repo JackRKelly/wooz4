@@ -12,6 +12,7 @@ export interface ProductProps {
 export const ProductSwiper: FC<ProductProps> = ({product, setSwiper}) => (
 	<SwiperMain
 		navigation
+		preloadImages
 		modules={[A11y, Keyboard, Navigation, Pagination]}
 		pagination={{clickable: true}}
 		onSwiper={setSwiper}

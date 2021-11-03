@@ -64,7 +64,7 @@ export const GlobalStyle = styled.createGlobalStyle`
 
 	::selection {
 		color: ${colors.white};
-		background: ${colors.sakuraRed};
+		background: ${colors.red};
 	}
 
 	img::selection {
@@ -87,7 +87,7 @@ export const GlobalStyle = styled.createGlobalStyle`
 	h6 {
 		&::selection {
 			color: ${colors.white};
-			background: ${colors.sakuraBlue};
+			background: ${colors.blue};
 		}
 	}
 
@@ -105,6 +105,11 @@ export const GlobalStyle = styled.createGlobalStyle`
 
 	::-webkit-scrollbar-thumb:hover {
 		background: #555;
+	}
+
+	@font-face {
+		font-family: JKG;
+		src: url('jkg.ttf');
 	}
 `;
 

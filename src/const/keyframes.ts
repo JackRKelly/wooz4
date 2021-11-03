@@ -3,16 +3,16 @@ import {colors} from './colors';
 
 export const redBlueFade = keyframes`
 	0% {
-		stroke: ${colors.sakuraBlue};
+		stroke: ${colors.blue};
 	}
 	48% {
-		stroke: ${colors.sakuraBlue};
+		stroke: ${colors.blue};
 	}
 	52% {
-		stroke: ${colors.sakuraRed};
+		stroke: ${colors.red};
 	}
 	100% {
-		stroke: ${colors.sakuraRed};
+		stroke: ${colors.red};
 	}
 `;
 

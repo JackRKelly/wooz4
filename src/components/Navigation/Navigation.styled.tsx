@@ -51,8 +51,7 @@ export const StyledLink = styled.a<StyledLinkProps>`
 
 	&:nth-child(2n + 1) {
 		&::after {
-			background-color: ${props =>
-				props.active ? colors.sakuraRed : colors.gray};
+			background-color: ${props => (props.active ? colors.red : colors.gray)};
 		}
 	}
 
@@ -64,8 +63,7 @@ export const StyledLink = styled.a<StyledLinkProps>`
 		transform: translateX(-50%);
 		width: ${props => (props.active ? '90%' : '0%')};
 		height: 1.5px;
-		background-color: ${props =>
-			props.active ? colors.sakuraBlue : colors.gray};
+		background-color: ${props => (props.active ? colors.blue : colors.gray)};
 		transition: ${transitions.easeInOutShort};
 	}
 
@@ -116,7 +114,7 @@ export const CartIconCount = styled.span`
 	right: 0;
 	width: 1rem;
 	height: 1rem;
-	background-color: ${colors.sakuraRed};
+	background-color: ${colors.red};
 	color: ${colors.white};
 	border-radius: 50%;
 	display: flex;
