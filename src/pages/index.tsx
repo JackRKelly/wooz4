@@ -12,7 +12,6 @@ import {
 import {ProductList} from '../services/product';
 import styled from 'styled-components';
 import {breakpoints, colors, transitions} from '../const';
-import {Dash} from '../assets/svg/Dash';
 import Link from 'next/link';
 import {Dots} from '../assets/svg/Dots';
 import {HeroText} from '../assets/svg/HeroText';
@@ -31,6 +30,7 @@ const HeroSection = styled.section`
 			rgba(210, 210, 210, 0.6)
 		),
 		url('/images/no-image-collection-banner.jpg');
+	background-size: cover;
 `;
 
 const HeroHeading = styled.h2`
