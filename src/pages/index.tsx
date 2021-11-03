@@ -79,7 +79,7 @@ const Home: NextPage<Props> = ({collection, collectionProductList}: Props) => (
 		<HeroSection>
 			<ContentColumn padding="3rem 0">
 				<HeroWrapper>
-					<HeroText margin="0" />
+					<HeroText />
 					<Dots margin="1rem 0 0.5rem" />
 					<HeroHeading>
 						Creating modern

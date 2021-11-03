@@ -1,6 +1,6 @@
 import React, {FC} from 'react';
 import styled from 'styled-components';
-import {colors} from '../../const';
+import {breakpoints, colors} from '../../const';
 
 export const HeroText: FC<{margin?: string}> = ({margin}) => (
 	<Svg
@@ -44,9 +44,12 @@ export const HeroText: FC<{margin?: string}> = ({margin}) => (
 
 const Svg = styled.svg<{margin?: string}>`
 	display: block;
-	margin: ${props => (props.margin ? props.margin : '1rem 0')};
+	margin: ${props => (props.margin ? props.margin : '0')};
 	width: 13rem;
 	height: auto;
 	fill: ${colors.red};
 	stroke: ${colors.red};
+	@media (max-width: ${breakpoints.md}px) {
+		width: 8rem;
+	}
 `;

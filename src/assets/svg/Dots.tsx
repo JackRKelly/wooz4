@@ -1,6 +1,6 @@
 import React, {FC} from 'react';
 import styled from 'styled-components';
-import {colors} from '../../const';
+import {breakpoints, colors} from '../../const';
 
 export const Dots: FC<{margin?: string}> = ({margin}) => (
 	<Svg
@@ -35,4 +35,7 @@ const Svg = styled.svg<{margin?: string}>`
 	width: 6rem;
 	height: auto;
 	fill: ${colors.gray};
+	@media (max-width: ${breakpoints.md}px) {
+		width: 4rem;
+	}
 `;
