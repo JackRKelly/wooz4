@@ -27,8 +27,8 @@ interface Props {
 const HeroSection = styled.section`
 	background-image: linear-gradient(
 			45deg,
-			rgba(230, 230, 230, 0.827),
-			rgba(230, 230, 230, 0.6)
+			rgba(210, 210, 210, 0.827),
+			rgba(210, 210, 210, 0.6)
 		),
 		url('/images/no-image-collection-banner.jpg');
 `;
@@ -52,13 +52,6 @@ const HeroHeading = styled.h2`
 	}
 `;
 
-// const HeroDescription = styled.p`
-// 	font-size: 1rem;
-// 	color: ${colors.darkGray};
-// 	max-width: 35rem;
-// 	margin: 0.75rem 0;
-// `;
-
 const HeroWrapper = styled.div`
 	display: flex;
 	align-items: flex-start;
@@ -66,17 +59,6 @@ const HeroWrapper = styled.div`
 	flex-direction: column;
 	height: 100%;
 `;
-
-// const GridWrapper = styled.div`
-// 	display: grid;
-// 	grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
-// 	@media (max-width: ${breakpoints.md}px) {
-// 		grid-template-columns: 1fr;
-// 	}
-// 	column-gap: 2rem;
-// 	align-items: start;
-// 	height: 100%;
-// `;
 
 const HeroHeadingStyled = styled.span`
 	color: ${colors.red};
@@ -89,16 +71,6 @@ const HeroHeadingStyled = styled.span`
 		text-shadow: 0.15rem 0.15rem ${colors.darkGray};
 	}
 `;
-
-// const HeroImageWrapper = styled.div`
-// 	position: relative;
-// 	width: 100%;
-// 	padding-top: 100%;
-// `;
-
-// const HeroImageContainer = styled(HeroWrapper)`
-// 	max-width: 35rem;
-// `;
 
 const HeroCTA = styled.a`
 	background-color: ${colors.red};
