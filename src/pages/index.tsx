@@ -26,7 +26,7 @@ interface Props {
 const HeroSection = styled.section`
 	background-image: linear-gradient(
 			45deg,
-			rgba(210, 210, 210, 0.827),
+			rgba(230, 230, 230, 0.827),
 			rgba(210, 210, 210, 0.6)
 		),
 		url('/images/no-image-collection-banner.jpg');
