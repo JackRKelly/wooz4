@@ -88,7 +88,7 @@ const Home: NextPage<Props> = ({collection, collectionProductList}: Props) => (
 						<br />
 						clothing for you
 					</HeroHeading>
-					<Dots margin="0.6rem 0 1.25rem" />
+					<Dots margin="0.6rem 0 1.15rem" />
 					<Link passHref href="/products">
 						<HeroCTA>Shop Now</HeroCTA>
 					</Link>

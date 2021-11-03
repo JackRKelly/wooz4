@@ -29,6 +29,7 @@ export const NavigationWrapper = styled.div`
 	right: 0;
 	background: ${colors.white};
 	box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.04);
+	height: 3.125rem;
 
 	@supports (-webkit-backdrop-filter: none) or (backdrop-filter: none) {
 		background: rgba(255, 255, 255, 0.7);
