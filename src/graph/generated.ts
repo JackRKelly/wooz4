@@ -6331,7 +6331,7 @@ export const GetCollectionListDocument = gql`
         title
         description
         image {
-          transformedSrc(maxWidth: 1200, maxHeight: 200, crop: CENTER)
+          transformedSrc
         }
         handle
       }
@@ -6377,7 +6377,7 @@ export const GetCollectionProductsDocument = gql`
               node {
                 id
                 altText
-                transformedSrc(maxWidth: 300, maxHeight: 300, crop: CENTER)
+                transformedSrc
               }
             }
           }
@@ -6411,7 +6411,7 @@ export const GetProductListDocument = gql`
             node {
               id
               altText
-              transformedSrc(maxWidth: 300, maxHeight: 300, crop: CENTER)
+              transformedSrc
             }
           }
         }
@@ -6439,7 +6439,7 @@ export const GetProductSingleDocument = gql`
         node {
           id
           altText
-          transformedSrc(maxWidth: 1000, maxHeight: 1000, crop: CENTER)
+          transformedSrc
         }
       }
     }

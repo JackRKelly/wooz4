@@ -6,7 +6,7 @@ query getCollectionList($limit: Int = 12, $after: String) {
 				title
 				description
 				image {
-					transformedSrc(maxWidth: 1200, maxHeight: 200, crop: CENTER)
+					transformedSrc
 				}
 				handle
 			}
@@ -54,7 +54,7 @@ query getCollectionProducts(
 							node {
 								id
 								altText
-								transformedSrc(maxWidth: 300, maxHeight: 300, crop: CENTER)
+								transformedSrc
 							}
 						}
 					}

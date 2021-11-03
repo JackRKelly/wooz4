@@ -17,7 +17,7 @@ query getProductList($limit: Int = 12, $after: String) {
 						node {
 							id
 							altText
-							transformedSrc(maxWidth: 300, maxHeight: 300, crop: CENTER)
+							transformedSrc
 						}
 					}
 				}
@@ -44,7 +44,7 @@ query getProductSingle($handle: String!) {
 				node {
 					id
 					altText
-					transformedSrc(maxWidth: 1000, maxHeight: 1000, crop: CENTER)
+					transformedSrc
 				}
 			}
 		}
