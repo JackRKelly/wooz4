@@ -36,6 +36,7 @@ export const SlantedLink = styled(NormalizedLink)<{
 	background-color: ${props => props.backgroundColor ?? colors.white};
 	color: ${props => props.color ?? colors.darkGray};
 	cursor: ${props => (props.disabled || props.loading ? 'default' : 'pointer')};
+	display: inline-block;
 
 	${props =>
 		props.iconColor
