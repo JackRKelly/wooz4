@@ -57,6 +57,7 @@ export async function getCollectionProducts(
 			url: `/products/${node.handle}`,
 			title: formatTitle(node.title),
 			description: node.description,
+			outOfStock: !node.availableForSale,
 			image: {
 				src: node.images.edges[0].node.transformedSrc,
 				alt: node.images.edges[0].node.altText,

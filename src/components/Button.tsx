@@ -15,6 +15,7 @@ export const StyledButton: FC<{
 	fontSize?: string;
 	padding?: string;
 	borderColor?: string;
+	backgroundColor?: string;
 	color?: string;
 	iconColor?: string;
 }> = ({
@@ -28,16 +29,19 @@ export const StyledButton: FC<{
 	iconColor,
 	padding,
 	borderColor,
+	backgroundColor,
 	color,
 }) => (
 	<SlantedButton
 		iconHover={iconHover}
 		hasArrow={Boolean(Icon)}
 		borderColor={borderColor}
+		backgroundColor={backgroundColor}
 		padding={padding}
 		disabled={disabled}
 		iconColor={iconColor}
 		fontSize={fontSize}
+		loading={loading}
 		type="button"
 		onClick={onClick}
 	>
