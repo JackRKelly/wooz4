@@ -43,6 +43,7 @@ query getCollectionProducts(
 					handle
 					title
 					description(truncateAt: 120)
+					availableForSale
 					priceRange {
 						minVariantPrice {
 							amount

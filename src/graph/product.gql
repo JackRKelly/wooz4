@@ -5,6 +5,7 @@ query getProductList($limit: Int = 12, $after: String) {
 				id
 				handle
 				title
+				availableForSale
 				description(truncateAt: 120)
 				priceRange {
 					minVariantPrice {
@@ -35,6 +36,7 @@ query getProductSingle($handle: String!) {
 		title
 		description
 		descriptionHtml
+		availableForSale
 		seo {
 			title
 			description
@@ -51,6 +53,7 @@ query getProductSingle($handle: String!) {
 		variants(first: 250) {
 			edges {
 				node {
+					availableForSale
 					id
 					title
 					priceV2 {
