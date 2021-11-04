@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {useImmer} from 'use-immer';
 import {useQueryClient, useMutation} from 'react-query';
 import {CART_ITEM_COUNT_QUERY} from '../../const/query';
@@ -18,6 +18,7 @@ import {FlexRowWrapper} from '../../components/Flex.styled';
 import dynamic from 'next/dynamic';
 import {Swiper} from 'swiper';
 import {ProductProps} from '../../components/ProductSwiper';
+import {LoadingDots} from '../../assets/svg/LoadingDots';
 
 const SwiperSliderNoSSR = dynamic<ProductProps>(
 	async () =>
@@ -51,8 +52,11 @@ const GridVariantWrapper = styled.div`
 `;
 
 const AddToCart = styled(NormalizedButton)`
-	background-color: ${colors.lightGray};
+	background-color: ${colors.red};
 	padding: 0.7rem 0.5rem;
+	color: white;
+	border-radius: 3px;
+	padding: 0.45rem 0.8rem;
 	cursor: pointer;
 	font-size: 0.9rem;
 	font-weight: 300;
@@ -65,12 +69,17 @@ const QuantitySelector = styled.input`
 	max-width: 5rem;
 `;
 
+const SwiperWrapper = styled.div`
+	background-color: ${colors.lighterGray};
+`;
+
 const Product = ({product}: Props) => {
-	const [swiper, setSwiper] = React.useState<Swiper>();
+	const [swiper, setSwiper] = useState<Swiper>();
 	const [state, setState] = useImmer<State>({
 		variant: product.variants[0],
 		quantity: 1,
 	});
+	const [isAddToCartLoading, setIsAddToCartLoading] = useState(false);
 
 	const queryClient = useQueryClient();
 	const addItem = useMutation(addCartItem, {
@@ -83,7 +92,9 @@ const Product = ({product}: Props) => {
 				<title>{buildTitle(product.title, 'after')}</title>
 			</Head>
 			<GridWrapper>
-				<SwiperSliderNoSSR product={product} setSwiper={setSwiper} />
+				<SwiperWrapper>
+					<SwiperSliderNoSSR product={product} setSwiper={setSwiper} />
+				</SwiperWrapper>
 				<div>
 					<h1>{product.title}</h1>
 					<p>{formatPrice(state.variant.price)}</p>
@@ -124,20 +135,25 @@ const Product = ({product}: Props) => {
 					</GridVariantWrapper>
 					<FlexRowWrapper padding="1rem 0" justifyContent="flex-end">
 						<AddToCart
-							disabled={state.variant.outOfStock}
+							disabled={state.variant.outOfStock || isAddToCartLoading}
 							type="button"
 							onClick={async () => {
-								await addItem.mutateAsync({
-									variantId: state.variant.id,
-									quantity: state.quantity,
-								});
-								setState(draft => {
-									draft.quantity = 1;
-								});
-								void new Audio('/success.mp3').play().catch(() => null);
+								setIsAddToCartLoading(true);
+								await addItem
+									.mutateAsync({
+										variantId: state.variant.id,
+										quantity: state.quantity,
+									})
+									.finally(() => {
+										setIsAddToCartLoading(false);
+										setState(draft => {
+											draft.quantity = 1;
+										});
+										void new Audio('/success.mp3').play().catch(() => null);
+									});
 							}}
 						>
-							Add to cart
+							{isAddToCartLoading ? <LoadingDots /> : 'Add to cart'}
 						</AddToCart>
 					</FlexRowWrapper>
 

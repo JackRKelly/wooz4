@@ -38,3 +38,12 @@ export const spinnerRotate = keyframes`
 		transform: rotate(270deg);
 	}
 `;
+
+export const pulse = keyframes`
+  0% {
+    transform: scale(0)
+  }
+  100% {
+    transform: scale(1)
+  }
+`;
