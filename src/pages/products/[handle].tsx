@@ -73,6 +73,17 @@ const SwiperWrapper = styled.div`
 	background-color: ${colors.lighterGray};
 `;
 
+export const Availability = styled.span`
+	transform: skew(-7deg);
+	color: ${colors.red};
+	padding: 4px 8px;
+	border: 3px solid red;
+	border-radius: 3px;
+	text-transform: uppercase;
+	font-weight: bold;
+	user-select: none;
+`;
+
 const Product = ({product}: Props) => {
 	const [swiper, setSwiper] = useState<Swiper>();
 	const [state, setState] = useImmer<State>({
@@ -98,7 +109,6 @@ const Product = ({product}: Props) => {
 				<div>
 					<h1>{product.title}</h1>
 					<p>{formatPrice(state.variant.price)}</p>
-					{state.variant.outOfStock ? 'out of stock' : null}
 
 					<label>Variants</label>
 					<GridVariantWrapper>
@@ -134,27 +144,31 @@ const Product = ({product}: Props) => {
 						/>
 					</GridVariantWrapper>
 					<FlexRowWrapper padding="1rem 0" justifyContent="flex-end">
-						<AddToCart
-							disabled={state.variant.outOfStock || isAddToCartLoading}
-							type="button"
-							onClick={async () => {
-								setIsAddToCartLoading(true);
-								await addItem
-									.mutateAsync({
-										variantId: state.variant.id,
-										quantity: state.quantity,
-									})
-									.finally(() => {
-										setIsAddToCartLoading(false);
-										setState(draft => {
-											draft.quantity = 1;
+						{state.variant.outOfStock ? (
+							<Availability>Unavailable</Availability>
+						) : (
+							<AddToCart
+								disabled={isAddToCartLoading}
+								type="button"
+								onClick={async () => {
+									setIsAddToCartLoading(true);
+									await addItem
+										.mutateAsync({
+											variantId: state.variant.id,
+											quantity: state.quantity,
+										})
+										.finally(() => {
+											setIsAddToCartLoading(false);
+											setState(draft => {
+												draft.quantity = 1;
+											});
+											void new Audio('/success.mp3').play().catch(() => null);
 										});
-										void new Audio('/success.mp3').play().catch(() => null);
-									});
-							}}
-						>
-							{isAddToCartLoading ? <LoadingDots /> : 'Add to cart'}
-						</AddToCart>
+								}}
+							>
+								{isAddToCartLoading ? <LoadingDots /> : 'Add to cart'}
+							</AddToCart>
+						)}
 					</FlexRowWrapper>
 
 					<div>{reactHtmlParser(product.descriptionHtml)}</div>

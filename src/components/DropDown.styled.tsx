@@ -19,6 +19,7 @@ export const DropDownListContainer = styled.div<{isOpen: boolean}>`
 
 export const DropDownListWrapper = styled.div`
 	position: relative;
+	z-index: 3;
 `;
 
 export const DropDownContainer = styled.div``;
