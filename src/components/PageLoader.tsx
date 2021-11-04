@@ -1,6 +1,8 @@
 import React from 'react';
 import {UseInfiniteQueryResult} from 'react-query';
+import {ArrowRight} from '../assets/svg';
 import {colors} from '../const';
+import {StyledButton} from './Button';
 import {FlexRowWrapper} from './Flex.styled';
 import {NormalizedButton} from './Normalized.styled';
 import {BoldUppercaseText} from './Text.styled';
@@ -13,41 +15,28 @@ export type PageLoaderProps = Pick<
 export const PageLoader: React.FC<PageLoaderProps> = props => (
 	<FlexRowWrapper justifyContent="flex-end" padding="2rem 0">
 		{(() => {
-			if (props.isFetchingNextPage) {
-				return (
-					<NormalizedButton type="button">
-						<BoldUppercaseText color={colors.gray}>
-							Loading...
-						</BoldUppercaseText>
-					</NormalizedButton>
-				);
-			}
-
 			if (props.error) {
 				return (
-					<NormalizedButton
-						type="button"
-						cursor="pointer"
+					<StyledButton
+						Icon={<ArrowRight />}
+						iconHover="translate(5px)"
 						onClick={async () => props.fetchNextPage()}
 					>
-						<BoldUppercaseText color={colors.darkGray}>
-							Try Again to Load More
-						</BoldUppercaseText>
-					</NormalizedButton>
+						Try Again to Load More
+					</StyledButton>
 				);
 			}
 
-			if (props.hasNextPage) {
+			if (props.hasNextPage || props.isFetchingNextPage) {
 				return (
-					<NormalizedButton
-						type="button"
-						cursor="pointer"
+					<StyledButton
+						Icon={<ArrowRight />}
+						iconHover="translate(5px)"
+						loading={props.isFetchingNextPage}
 						onClick={async () => props.fetchNextPage()}
 					>
-						<BoldUppercaseText color={colors.darkGray}>
-							Load More
-						</BoldUppercaseText>
-					</NormalizedButton>
+						Load More
+					</StyledButton>
 				);
 			}
 
