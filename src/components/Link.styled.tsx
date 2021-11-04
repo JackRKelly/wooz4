@@ -19,7 +19,11 @@ export const SlantedLink = styled(NormalizedLink)<{
 	borderWidth?: string;
 	padding?: string;
 	hasArrow?: boolean;
+	iconColor?: string;
 	fontSize?: string;
+	iconHover?: string;
+	disabled?: boolean;
+	loading?: boolean;
 }>`
 	border-radius: 3px;
 	transform: skew(-7deg);
@@ -31,6 +35,17 @@ export const SlantedLink = styled(NormalizedLink)<{
 	font-size: ${props => props.fontSize ?? 'initial'};
 	background-color: ${props => props.backgroundColor ?? colors.white};
 	color: ${props => props.color ?? colors.darkGray};
+	cursor: ${props => (props.disabled || props.loading ? 'default' : 'pointer')};
+
+	${props =>
+		props.iconColor
+			? css`
+					svg {
+						fill: ${props.iconColor};
+						stroke: ${props.iconColor};
+					}
+			  `
+			: null}
 	${props =>
 		props.hasArrow
 			? css`
@@ -39,9 +54,9 @@ export const SlantedLink = styled(NormalizedLink)<{
 					}
 					&:hover {
 						svg {
-							transform: translateX(5px);
+							transform: ${props.iconHover ?? 'none'};
 						}
 					}
 			  `
-			: ''}
+			: null}
 `;

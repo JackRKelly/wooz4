@@ -11,12 +11,14 @@ export const FlexColumnWrapper = styled.div`
 export const FlexRowWrapper = styled.div<{
 	justifyContent?: 'space-between' | 'center' | 'flex-start' | 'flex-end';
 	padding?: string;
+	margin?: string;
 }>`
 	display: flex;
 	align-items: center;
 	justify-content: ${props =>
 		props.justifyContent ? props.justifyContent : 'space-between'};
-	padding: ${props => (props.padding ? props.padding : 'none')};
+	padding: ${props => props.padding ?? 'none'};
+	margin: ${props => props.margin ?? 'none'};
 	flex-wrap: wrap;
 	flex-direction: row;
 `;
