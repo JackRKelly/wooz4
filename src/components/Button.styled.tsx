@@ -13,7 +13,7 @@ export const SlantedButton = styled(NormalizedButton)<{
 	fontSize?: string;
 	iconHover?: string;
 	disabled?: boolean;
-	loading?: boolean;
+	$loading?: boolean;
 }>`
 	border-radius: 3px;
 	transform: skew(-7deg);
@@ -25,7 +25,8 @@ export const SlantedButton = styled(NormalizedButton)<{
 	font-size: ${props => props.fontSize ?? 'initial'};
 	background-color: ${props => props.backgroundColor ?? colors.white};
 	color: ${props => props.color ?? colors.darkGray};
-	cursor: ${props => (props.disabled || props.loading ? 'default' : 'pointer')};
+	cursor: ${props =>
+		props.disabled || props.$loading ? 'default' : 'pointer'};
 
 	${props =>
 		props.iconColor

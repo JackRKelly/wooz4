@@ -41,7 +41,7 @@ export const StyledButton: FC<{
 		disabled={disabled}
 		iconColor={iconColor}
 		fontSize={fontSize}
-		loading={loading}
+		$loading={loading}
 		type="button"
 		onClick={onClick}
 	>

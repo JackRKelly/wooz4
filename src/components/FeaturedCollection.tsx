@@ -30,11 +30,9 @@ export const FeaturedCollection = ({
 				))}
 			</ProductCardGrid>
 			<FlexRowWrapper padding="1.5rem 0" justifyContent="flex-end">
-				<StyledLink
-					link={`/collections/${handle}`}
-					text="View Collection"
-					Icon={<ArrowRight />}
-				/>
+				<StyledLink link={`/collections/${handle}`} Icon={<ArrowRight />}>
+					View Collection
+				</StyledLink>
 			</FlexRowWrapper>
 		</section>
 	);
