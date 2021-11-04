@@ -3,9 +3,9 @@ import {colors, transitions} from '../const';
 import {NormalizedLink} from './Normalized.styled';
 import {BoldUppercaseText} from './Text.styled';
 
-export const ArrowLinkText = styled(BoldUppercaseText)`
+export const StyledLinkText = styled(BoldUppercaseText)<{color?: string}>`
 	padding: 0 0.3rem 0 0;
-	color: ${colors.darkGray};
+	color: ${props => props.color ?? colors.darkGray};
 `;
 
 export const Unslant = styled.div`

@@ -3,12 +3,14 @@ import {colors, transitions} from '../const';
 import {NormalizedButton} from './Normalized.styled';
 
 export const SlantedButton = styled(NormalizedButton)<{
+	iconHover?: string;
 	color?: string;
 	backgroundColor?: string;
 	borderColor?: string;
 	borderWidth?: string;
 	padding?: string;
 	hasArrow?: boolean;
+	iconColor?: string;
 	fontSize?: string;
 }>`
 	border-radius: 3px;
@@ -21,6 +23,16 @@ export const SlantedButton = styled(NormalizedButton)<{
 	font-size: ${props => props.fontSize ?? 'initial'};
 	background-color: ${props => props.backgroundColor ?? colors.white};
 	color: ${props => props.color ?? colors.darkGray};
+
+	${props =>
+		props.iconColor
+			? css`
+					svg {
+						fill: ${props.iconColor};
+						stroke: ${props.iconColor};
+					}
+			  `
+			: null}
 	${props =>
 		props.hasArrow
 			? css`
@@ -29,9 +41,9 @@ export const SlantedButton = styled(NormalizedButton)<{
 					}
 					&:hover {
 						svg {
-							transform: translateX(5px);
+							transform: ${props => props.iconHover ?? 'none'};
 						}
 					}
 			  `
-			: ''}
+			: null}
 `;

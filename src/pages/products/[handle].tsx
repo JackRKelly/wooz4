@@ -17,8 +17,8 @@ import {FlexRowWrapper} from '../../components/Flex.styled';
 import dynamic from 'next/dynamic';
 import {Swiper} from 'swiper';
 import {ProductProps} from '../../components/ProductSwiper';
-import {ArrowButton} from '../../components/Button';
-import {ArrowRight} from '../../assets/svg';
+import {StyledButton} from '../../components/Button';
+import {ArrowRight, Close} from '../../assets/svg';
 
 const SwiperSliderNoSSR = dynamic<ProductProps>(
 	async () =>
@@ -57,17 +57,6 @@ const QuantitySelector = styled.input`
 
 const SwiperWrapper = styled.div`
 	background-color: ${colors.lighterGray};
-`;
-
-export const Availability = styled.span`
-	transform: skew(-7deg);
-	color: ${colors.red};
-	padding: 4px 8px;
-	border: 3px solid red;
-	border-radius: 3px;
-	text-transform: uppercase;
-	font-weight: bold;
-	user-select: none;
 `;
 
 const Product = ({product}: Props) => {
@@ -129,33 +118,35 @@ const Product = ({product}: Props) => {
 						/>
 					</GridVariantWrapper>
 					<FlexRowWrapper padding="1rem 0" justifyContent="flex-end">
-						{state.variant.outOfStock ? (
-							<Availability>Unavailable</Availability>
-						) : (
-							<ArrowButton
-								padding="0.3rem 0.9rem"
-								Icon={<ArrowRight />}
-								disabled={isAddToCartLoading}
-								loading={isAddToCartLoading}
-								onClick={async () => {
-									setIsAddToCartLoading(true);
-									await addItem
-										.mutateAsync({
-											variantId: state.variant.id,
-											quantity: state.quantity,
-										})
-										.finally(() => {
-											setIsAddToCartLoading(false);
-											setState(draft => {
-												draft.quantity = 1;
-											});
-											void new Audio('/success.mp3').play().catch(() => null);
+						<StyledButton
+							iconHover={
+								state.variant.outOfStock ? undefined : 'translate(5px)'
+							}
+							iconColor={state.variant.outOfStock ? colors.red : undefined}
+							color={state.variant.outOfStock ? colors.red : undefined}
+							borderColor={state.variant.outOfStock ? colors.red : undefined}
+							padding="0.3rem 0.9rem"
+							Icon={state.variant.outOfStock ? <Close /> : <ArrowRight />}
+							disabled={isAddToCartLoading || state.variant.outOfStock}
+							loading={isAddToCartLoading}
+							onClick={async () => {
+								setIsAddToCartLoading(true);
+								await addItem
+									.mutateAsync({
+										variantId: state.variant.id,
+										quantity: state.quantity,
+									})
+									.finally(() => {
+										setIsAddToCartLoading(false);
+										setState(draft => {
+											draft.quantity = 1;
 										});
-								}}
-							>
-								Add to cart
-							</ArrowButton>
-						)}
+										void new Audio('/success.mp3').play().catch(() => null);
+									});
+							}}
+						>
+							{state.variant.outOfStock ? 'Unavailable' : 'Add to cart'}
+						</StyledButton>
 					</FlexRowWrapper>
 				</div>
 			</GridWrapper>

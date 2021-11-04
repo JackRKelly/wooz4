@@ -1,11 +1,12 @@
 import {SlantedButton} from './Button.styled';
 import React, {FC, ReactNode} from 'react';
 import {FlexRowWrapper} from './Flex.styled';
-import {Unslant, ArrowLinkText} from './Link.styled';
+import {Unslant, StyledLinkText} from './Link.styled';
 import {LoadingDots} from '../assets/svg/LoadingDots';
 import {colors} from '../const';
 
-export const ArrowButton: FC<{
+export const StyledButton: FC<{
+	iconHover?: string;
 	loading?: boolean;
 	children?: ReactNode;
 	disabled?: boolean;
@@ -13,19 +14,29 @@ export const ArrowButton: FC<{
 	Icon?: JSX.Element;
 	fontSize?: string;
 	padding?: string;
+	borderColor?: string;
+	color?: string;
+	iconColor?: string;
 }> = ({
+	iconHover,
 	loading,
 	children,
 	disabled,
 	onClick,
 	Icon,
 	fontSize = '0.8rem',
+	iconColor,
 	padding,
+	borderColor,
+	color,
 }) => (
 	<SlantedButton
-		hasArrow
+		iconHover={iconHover}
+		hasArrow={Boolean(Icon)}
+		borderColor={borderColor}
 		padding={padding}
 		disabled={disabled}
+		iconColor={iconColor}
 		fontSize={fontSize}
 		type="button"
 		onClick={onClick}
@@ -36,7 +47,7 @@ export const ArrowButton: FC<{
 					<LoadingDots color={colors.darkGray} margin="0 2rem" />
 				) : (
 					<>
-						<ArrowLinkText>{children}</ArrowLinkText>
+						<StyledLinkText color={color}>{children}</StyledLinkText>
 						{Icon}
 					</>
 				)}
