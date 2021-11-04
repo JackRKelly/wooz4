@@ -1,12 +1,10 @@
 import React from 'react';
-
 import {ProductCard} from './ProductCard';
 import {ProductCardGrid} from './ProductCard.styled';
-
-import styled from 'styled-components';
 import {ArrowLink} from './Link';
 import {SingleCollection} from '../services/collection';
 import {ProductList} from '../services/product';
+import {FlexRowWrapper} from './Flex.styled';
 
 interface Props {
 	collection: SingleCollection;
@@ -30,15 +28,9 @@ export const FeaturedCollection = ({
 					<ProductCard key={product.id} product={product} />
 				))}
 			</ProductCardGrid>
-			<ViewCollectionLinkWrapper>
+			<FlexRowWrapper padding="1.5rem 0" justifyContent="flex-end">
 				<ArrowLink link={`/collections/${handle}`} text="View Collection" />
-			</ViewCollectionLinkWrapper>
+			</FlexRowWrapper>
 		</section>
 	);
 };
-
-const ViewCollectionLinkWrapper = styled.div`
-	display: flex;
-	justify-content: flex-end;
-	margin: 1.5rem 0;
-`;

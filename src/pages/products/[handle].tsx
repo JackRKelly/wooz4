@@ -13,12 +13,11 @@ import Head from 'next/head';
 import {buildTitle} from '../../util/title';
 import {DropDown} from '../../components/DropDown';
 import {colors} from '../../const';
-import {NormalizedButton} from '../../components/Normalized.styled';
 import {FlexRowWrapper} from '../../components/Flex.styled';
 import dynamic from 'next/dynamic';
 import {Swiper} from 'swiper';
 import {ProductProps} from '../../components/ProductSwiper';
-import {LoadingDots} from '../../assets/svg/LoadingDots';
+import {ArrowButton} from '../../components/Button';
 
 const SwiperSliderNoSSR = dynamic<ProductProps>(
 	async () =>
@@ -49,20 +48,6 @@ const GridVariantWrapper = styled.div`
 	display: grid;
 	grid-template-columns: 10fr auto;
 	column-gap: 0.75rem;
-`;
-
-const AddToCart = styled(NormalizedButton)`
-	background-color: ${colors.red};
-	padding: 0.7rem 0.5rem;
-	color: white;
-	border-radius: 3px;
-	padding: 0.45rem 0.8rem;
-	cursor: pointer;
-	font-size: 0.9rem;
-	font-weight: 300;
-	&:disabled {
-		cursor: default;
-	}
 `;
 
 const QuantitySelector = styled.input`
@@ -113,7 +98,6 @@ const Product = ({product}: Props) => {
 					<label>Variants</label>
 					<GridVariantWrapper>
 						<DropDown
-							// disabled={addItem.isLoading}
 							value={state.variant}
 							options={product.variants}
 							onSelect={optionId => {
@@ -147,9 +131,9 @@ const Product = ({product}: Props) => {
 						{state.variant.outOfStock ? (
 							<Availability>Unavailable</Availability>
 						) : (
-							<AddToCart
+							<ArrowButton
 								disabled={isAddToCartLoading}
-								type="button"
+								loading={isAddToCartLoading}
 								onClick={async () => {
 									setIsAddToCartLoading(true);
 									await addItem
@@ -166,8 +150,8 @@ const Product = ({product}: Props) => {
 										});
 								}}
 							>
-								{isAddToCartLoading ? <LoadingDots /> : 'Add to cart'}
-							</AddToCart>
+								Add to cart
+							</ArrowButton>
 						)}
 					</FlexRowWrapper>
 
