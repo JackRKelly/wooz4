@@ -56,6 +56,9 @@ const AddToCart = styled(NormalizedButton)`
 	cursor: pointer;
 	font-size: 0.9rem;
 	font-weight: 300;
+	&:disabled {
+		cursor: default;
+	}
 `;
 
 const QuantitySelector = styled.input`
@@ -121,6 +124,7 @@ const Product = ({product}: Props) => {
 					</GridVariantWrapper>
 					<FlexRowWrapper padding="1rem 0" justifyContent="flex-end">
 						<AddToCart
+							disabled={state.variant.outOfStock}
 							type="button"
 							onClick={async () => {
 								await addItem.mutateAsync({
