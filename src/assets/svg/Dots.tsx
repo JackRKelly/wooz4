@@ -34,7 +34,7 @@ const Svg = styled.svg<{margin?: string}>`
 	margin: ${props => (props.margin ? props.margin : '1rem 0')};
 	width: 6rem;
 	height: auto;
-	fill: ${colors.gray};
+	fill: ${colors.lightGray};
 	@media (max-width: ${breakpoints.md}px) {
 		width: 4rem;
 	}

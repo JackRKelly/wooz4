@@ -15,6 +15,8 @@ import {breakpoints, colors, transitions} from '../const';
 import Link from 'next/link';
 import {Dots} from '../assets/svg/Dots';
 import {HeroText} from '../assets/svg/HeroText';
+import {ArrowRight} from '../assets/svg';
+import {FlexRowWrapper} from '../components/Flex.styled';
 
 const FEATURED_COLLECTION_HANDLE = 'sakura-collection';
 
@@ -59,8 +61,27 @@ const HeroCTA = styled.a`
 	background-color: ${colors.red};
 	color: ${colors.white};
 	text-decoration: none;
-	padding: 0.5rem 1rem;
 	border-radius: 4px;
+	transform: skew(-7deg);
+	padding: 0.2rem 0.7rem;
+	border: 3px solid red;
+	border-radius: 3px;
+	text-transform: uppercase;
+	font-weight: bold;
+	user-select: none;
+	&:hover {
+		svg {
+			transform: translateX(0.3rem);
+		}
+	}
+`;
+
+const HeroCTAWrapper = styled(FlexRowWrapper)`
+	transform: skew(7deg);
+`;
+
+const HeroCTACopy = styled.span`
+	padding-right: 0.5rem;
 `;
 
 const Home: NextPage<Props> = ({collection, collectionProductList}: Props) => (
@@ -83,7 +104,12 @@ const Home: NextPage<Props> = ({collection, collectionProductList}: Props) => (
 					</HeroHeading>
 					<Dots margin="0.6rem 0 1.15rem" />
 					<Link passHref href="/products">
-						<HeroCTA>Shop Now</HeroCTA>
+						<HeroCTA>
+							<HeroCTAWrapper>
+								<HeroCTACopy>Shop Now</HeroCTACopy>
+								<ArrowRight />
+							</HeroCTAWrapper>
+						</HeroCTA>
 					</Link>
 				</HeroWrapper>
 			</ContentColumn>

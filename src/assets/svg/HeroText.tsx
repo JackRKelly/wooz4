@@ -45,7 +45,7 @@ export const HeroText: FC<{margin?: string}> = ({margin}) => (
 const Svg = styled.svg<{margin?: string}>`
 	display: block;
 	margin: ${props => (props.margin ? props.margin : '0')};
-	width: 13rem;
+	width: 11rem;
 	height: auto;
 	fill: ${colors.red};
 	stroke: ${colors.red};
