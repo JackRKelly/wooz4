@@ -22,7 +22,7 @@ const LoadingDotsWrapper = styled.div<{margin?: string}>`
 	margin: ${props => props.margin ?? '0'};
 `;
 
-const LoadingDot = styled.div<{delay?: string; color: string}>`
+const LoadingDot = styled.div<{delay?: string; color?: string}>`
 	width: 0.7rem;
 	height: 0.7rem;
 	animation: ${pulse} 500ms infinite linear alternate;

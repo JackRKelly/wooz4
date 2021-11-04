@@ -18,6 +18,7 @@ import dynamic from 'next/dynamic';
 import {Swiper} from 'swiper';
 import {ProductProps} from '../../components/ProductSwiper';
 import {ArrowButton} from '../../components/Button';
+import {ArrowRight} from '../../assets/svg';
 
 const SwiperSliderNoSSR = dynamic<ProductProps>(
 	async () =>
@@ -132,6 +133,8 @@ const Product = ({product}: Props) => {
 							<Availability>Unavailable</Availability>
 						) : (
 							<ArrowButton
+								padding="0.3rem 0.9rem"
+								Icon={<ArrowRight />}
 								disabled={isAddToCartLoading}
 								loading={isAddToCartLoading}
 								onClick={async () => {
@@ -154,10 +157,9 @@ const Product = ({product}: Props) => {
 							</ArrowButton>
 						)}
 					</FlexRowWrapper>
-
-					<div>{reactHtmlParser(product.descriptionHtml)}</div>
 				</div>
 			</GridWrapper>
+			<div>{reactHtmlParser(product.descriptionHtml)}</div>
 		</ContentColumn>
 	);
 };

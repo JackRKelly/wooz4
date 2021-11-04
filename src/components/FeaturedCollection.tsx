@@ -5,6 +5,7 @@ import {ArrowLink} from './Link';
 import {SingleCollection} from '../services/collection';
 import {ProductList} from '../services/product';
 import {FlexRowWrapper} from './Flex.styled';
+import {ArrowRight} from '../assets/svg';
 
 interface Props {
 	collection: SingleCollection;
@@ -29,7 +30,11 @@ export const FeaturedCollection = ({
 				))}
 			</ProductCardGrid>
 			<FlexRowWrapper padding="1.5rem 0" justifyContent="flex-end">
-				<ArrowLink link={`/collections/${handle}`} text="View Collection" />
+				<ArrowLink
+					link={`/collections/${handle}`}
+					text="View Collection"
+					Icon={<ArrowRight />}
+				/>
 			</FlexRowWrapper>
 		</section>
 	);
