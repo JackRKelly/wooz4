@@ -5,7 +5,7 @@ import {InfiniteData, useInfiniteQuery} from 'react-query';
 import {PRODUCT_LIST_QUERY} from '../../const/query';
 import {getProductList, ProductList} from '../../services/product';
 import {ProductCard, ProductCardGrid} from '../../components/ProductCard';
-import {PageLoader} from '../../components/PageLoading';
+import {PageLoader} from '../../components/PageLoader';
 import {ContentColumn} from '../../components/ContentColumn';
 import Head from 'next/head';
 import {buildTitle} from '../../util/title';

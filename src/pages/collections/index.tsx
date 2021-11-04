@@ -4,7 +4,7 @@ import React from 'react';
 import {InfiniteData, useInfiniteQuery} from 'react-query';
 import {CollectionCardGrid} from '../../components/CollectionCard.styled';
 import {ContentColumn} from '../../components/ContentColumn';
-import {PageLoader} from '../../components/PageLoading';
+import {PageLoader} from '../../components/PageLoader';
 import {COLLECTION_LIST_QUERY} from '../../const/query';
 import {CollectionList, getCollectionList} from '../../services/collection';
 import {CollectionCard} from '../../components/CollectionCard';

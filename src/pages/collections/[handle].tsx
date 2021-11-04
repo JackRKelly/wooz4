@@ -9,7 +9,7 @@ import {
 	HeroTitle,
 	HeroDescription,
 } from '../../components/Hero.styled';
-import {PageLoader} from '../../components/PageLoading';
+import {PageLoader} from '../../components/PageLoader';
 import {ProductCard} from '../../components/ProductCard';
 import {ProductCardGrid} from '../../components/ProductCard.styled';
 import {COLLECTION_PRODUCT_LIST_QUERY} from '../../const/query';
