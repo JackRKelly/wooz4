@@ -10,7 +10,8 @@ import Link from 'next/link';
 import {Close} from '../assets/svg';
 import {NormalizedButton} from './Normalized.styled';
 import styled from 'styled-components';
-import {FlexRowWrapper} from './Flex.styled';
+import {FlexColumnWrapper, FlexRowWrapper} from './Flex.styled';
+import {colors} from '../const';
 
 interface Props {
 	item: CartItem;
@@ -21,7 +22,7 @@ interface State {
 }
 
 const QuantityInput = styled.input`
-	width: 4rem;
+	width: 2rem;
 
 	&::-webkit-outer-spin-button,
 	&::-webkit-inner-spin-button {
@@ -32,6 +33,11 @@ const QuantityInput = styled.input`
 	&[type='number'] {
 		-moz-appearance: textfield;
 	}
+`;
+
+const ProductImageWrapper = styled.div`
+	background-color: ${colors.lighterGray};
+	border-radius: 3px;
 `;
 
 export const CartListItem: React.FC<Props> = ({item}) => {
@@ -74,69 +80,72 @@ export const CartListItem: React.FC<Props> = ({item}) => {
 	const disabled = updateQuantity.isLoading || remove.isLoading;
 
 	return (
-		<FlexRowWrapper>
-			<Link passHref href={item.variant.url}>
-				<a>
-					<Image
-						src={item.variant.image.src}
-						alt={item.variant.image.alt}
-						width={200}
-						height={200}
+		<FlexRowWrapper margin="0 0 1rem 0">
+			<ProductImageWrapper>
+				<Link passHref href={item.variant.url}>
+					<a>
+						<Image
+							src={item.variant.image.src}
+							alt={item.variant.image.alt}
+							width={150}
+							height={150}
+						/>
+					</a>
+				</Link>
+			</ProductImageWrapper>
+			<FlexColumnWrapper>
+				<Link href={item.variant.url}>
+					<a>
+						{item.title} ({item.variant.title})
+					</a>
+				</Link>
+				<div>
+					<button
+						type="button"
+						disabled={!(state.quantity < 99)}
+						onClick={() => {
+							setState(draft => {
+								if (draft.quantity < 99) {
+									draft.quantity += 1;
+								}
+							});
+						}}
+					>
+						+
+					</button>
+					<QuantityInput
+						type="number"
+						max="99"
+						min="1"
+						disabled={disabled}
+						value={state.quantity}
+						onChange={event => {
+							if (Number(event.target.value) > 99) {
+								setState(draft => {
+									draft.quantity = 99;
+								});
+							} else {
+								setState(draft => {
+									draft.quantity = Number(event.target.value) || 1;
+								});
+							}
+						}}
 					/>
-				</a>
-			</Link>
-
-			<Link href={item.variant.url}>
-				<a>
-					{item.title} ({item.variant.title})
-				</a>
-			</Link>
-
-			<button
-				type="button"
-				disabled={!(state.quantity < 99)}
-				onClick={() => {
-					setState(draft => {
-						if (draft.quantity < 99) {
-							draft.quantity += 1;
-						}
-					});
-				}}
-			>
-				+
-			</button>
-			<button
-				type="button"
-				disabled={!(state.quantity > 1)}
-				onClick={() => {
-					setState(draft => {
-						if (draft.quantity > 1) {
-							draft.quantity -= 1;
-						}
-					});
-				}}
-			>
-				-
-			</button>
-			<QuantityInput
-				type="number"
-				max="99"
-				min="1"
-				disabled={disabled}
-				value={state.quantity}
-				onChange={event => {
-					if (Number(event.target.value) > 99) {
-						setState(draft => {
-							draft.quantity = 99;
-						});
-					} else {
-						setState(draft => {
-							draft.quantity = Number(event.target.value) || 1;
-						});
-					}
-				}}
-			/>
-
+					<button
+						type="button"
+						disabled={!(state.quantity > 1)}
+						onClick={() => {
+							setState(draft => {
+								if (draft.quantity > 1) {
+									draft.quantity -= 1;
+								}
+							});
+						}}
+					>
+						-
+					</button>
+				</div>
+			</FlexColumnWrapper>
 			<span>{formatPrice(item.variant.price)}</span>
 			<span>
 				{formatPrice({
@@ -144,7 +153,6 @@ export const CartListItem: React.FC<Props> = ({item}) => {
 					currencyCode: item.variant.price.currencyCode,
 				})}
 			</span>
-
 			<NormalizedButton
 				type="button"
 				cursor="pointer"
