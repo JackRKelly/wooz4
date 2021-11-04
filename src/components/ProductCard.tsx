@@ -11,6 +11,7 @@ import {
 	ProductCardTitle,
 	ProductCardPrice,
 	ProductCardImage,
+	Availability,
 } from './ProductCard.styled';
 
 interface Props {
@@ -21,7 +22,7 @@ export const ProductCard: FC<Props> = ({product}) => (
 	<Link passHref href={product.url}>
 		<ProductCardLink>
 			<ProductCardWrapper>
-				<ProductFlex>
+				<ProductFlex isDisabled={product.outOfStock}>
 					<ProductCardImageWrapper>
 						<ProductCardImage
 							alt={product.image.alt}
@@ -30,6 +31,7 @@ export const ProductCard: FC<Props> = ({product}) => (
 						/>
 					</ProductCardImageWrapper>
 				</ProductFlex>
+				{product.outOfStock ? <Availability>Unavailable</Availability> : null}
 			</ProductCardWrapper>
 			<ProductTitleWrapper>
 				<ProductCardTitle>{product.title}</ProductCardTitle>

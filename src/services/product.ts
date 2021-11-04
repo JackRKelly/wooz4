@@ -12,6 +12,7 @@ export interface SingleProduct {
 	title: string;
 	description: string;
 	descriptionHtml: string;
+	outOfStock: boolean;
 	seo: {
 		title: string;
 		description: string;
@@ -22,6 +23,7 @@ export interface SingleProduct {
 		alt: string;
 	}>;
 	variants: Array<{
+		outOfStock: boolean;
 		id: string;
 		title: string;
 		image?: string;
@@ -34,13 +36,21 @@ export interface SingleProduct {
 
 export async function getSingleProduct(handle: string): Promise<SingleProduct> {
 	const {productByHandle} = await ShopifyService.getProductSingle({handle});
-	const {title, description, seo, images, variants, descriptionHtml} =
-		productByHandle!;
+	const {
+		title,
+		description,
+		seo,
+		images,
+		variants,
+		descriptionHtml,
+		availableForSale,
+	} = productByHandle!;
 
 	const product: SingleProduct = {
 		title: formatTitle(title),
 		description,
 		descriptionHtml,
+		outOfStock: !availableForSale,
 		seo: {
 			title: formatTitle(seo.title ?? title),
 			description: seo.description ?? truncate(description, {length: 256}),
@@ -52,6 +62,7 @@ export async function getSingleProduct(handle: string): Promise<SingleProduct> {
 		})),
 		variants: variants.edges.map(({node}) => {
 			const variant: SingleProduct['variants'][0] = {
+				outOfStock: !node.availableForSale,
 				id: node.id,
 				title: node.title,
 				image: node.image?.id ?? '',
@@ -73,6 +84,7 @@ export interface ProductListItem {
 	url: string;
 	title: string;
 	description: string;
+	outOfStock: boolean;
 	image: {
 		src: string;
 		alt: string;
@@ -101,6 +113,7 @@ export async function getProductList(
 		url: `/products/${node.handle}`,
 		title: formatTitle(node.title),
 		description: node.description,
+		outOfStock: !node.availableForSale,
 		image: {
 			src: node.images.edges[0].node.transformedSrc,
 			alt: node.images.edges[0].node.altText!,

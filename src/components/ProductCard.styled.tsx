@@ -25,7 +25,7 @@ export const ProductCardGrid = styled.div`
 	grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
 `;
 
-export const ProductFlex = styled.div`
+export const ProductFlex = styled.div<{isDisabled?: boolean}>`
 	display: flex;
 	flex-direction: column;
 	flex-wrap: wrap;
@@ -33,6 +33,7 @@ export const ProductFlex = styled.div`
 	justify-content: space-between;
 	width: 100%;
 	height: 100%;
+	opacity: ${props => (props.isDisabled ? '.2' : '1')};
 `;
 
 export const ProductCardLink = styled.a`
@@ -62,10 +63,25 @@ export const ProductTitleWrapper = styled(FlexRowWrapper)`
 `;
 
 export const ProductCardWrapper = styled.div`
+	position: relative;
 	background-color: ${colors.lighterGray};
 	border-radius: 3px;
 	transition: ${transitions.easeInOutShort};
 	&:hover {
 		transform: translate(0, -3px);
 	}
+`;
+
+export const Availability = styled.span`
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%) skew(-7deg);
+	z-index: 5;
+	color: ${colors.red};
+	padding: 4px 8px;
+	border: 3px solid red;
+	border-radius: 3px;
+	text-transform: uppercase;
+	font-weight: bold;
 `;

@@ -46,7 +46,7 @@ const GridWrapper = styled.div`
 
 const GridVariantWrapper = styled.div`
 	display: grid;
-	grid-template-columns: 3fr 1fr;
+	grid-template-columns: 10fr auto;
 	column-gap: 0.75rem;
 `;
 
@@ -56,6 +56,10 @@ const AddToCart = styled(NormalizedButton)`
 	cursor: pointer;
 	font-size: 0.9rem;
 	font-weight: 300;
+`;
+
+const QuantitySelector = styled.input`
+	max-width: 5rem;
 `;
 
 const Product = ({product}: Props) => {
@@ -80,16 +84,14 @@ const Product = ({product}: Props) => {
 				<div>
 					<h1>{product.title}</h1>
 					<p>{formatPrice(state.variant.price)}</p>
+					{state.variant.outOfStock ? 'out of stock' : null}
 
 					<label>Variants</label>
 					<GridVariantWrapper>
 						<DropDown
 							// disabled={addItem.isLoading}
-							value={{title: state.variant.title, id: state.variant.id}}
-							options={product.variants.map(variant => ({
-								id: variant.id,
-								title: variant.title,
-							}))}
+							value={product.variants[0]}
+							options={product.variants}
 							onSelect={optionId => {
 								const variant = product.variants.find(
 									({id}) => id === optionId,
@@ -105,7 +107,7 @@ const Product = ({product}: Props) => {
 								});
 							}}
 						/>
-						<input
+						<QuantitySelector
 							type="number"
 							value={state.quantity}
 							min="1"

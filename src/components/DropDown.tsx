@@ -1,5 +1,6 @@
 import React, {FC, useState} from 'react';
 import {ArrowDown} from '../assets/svg/Icons/ArrowDown';
+import {SingleProduct} from '../services/product';
 import {
 	DropDownContainer,
 	DropDownHeader,
@@ -11,14 +12,9 @@ import {
 } from './DropDown.styled';
 import {FlexRowWrapper} from './Flex.styled';
 
-interface Option {
-	id: string;
-	title: string;
-}
-
 interface Props {
-	value: Option;
-	options: Option[];
+	value: SingleProduct['variants'][0];
+	options: SingleProduct['variants'];
 	onSelect: (id: string) => void;
 }
 
@@ -51,8 +47,13 @@ export const DropDown: FC<Props> = ({value, options, onSelect}) => {
 									setIsOpen(!isOpen);
 								}}
 							>
-								{value.id === option.id ? '* ' : ''}
-								{option.title}
+								<FlexRowWrapper>
+									<div>
+										{value.id === option.id ? '* ' : ''}
+										{option.title}
+									</div>
+									<span>{option.outOfStock ? ' Unavailable' : ''}</span>
+								</FlexRowWrapper>
 							</DropDownListItem>
 						))}
 					</DropDownList>
