@@ -90,7 +90,7 @@ const Product = ({product}: Props) => {
 					<GridVariantWrapper>
 						<DropDown
 							// disabled={addItem.isLoading}
-							value={product.variants[0]}
+							value={state.variant}
 							options={product.variants}
 							onSelect={optionId => {
 								const variant = product.variants.find(
