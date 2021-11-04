@@ -11,6 +11,8 @@ import {formatPrice, Price} from '../util/intl';
 import {CartListItem} from '../components/CartListItem';
 import styled from 'styled-components';
 import {CurrencyCode} from '../services/shopify';
+import {StyledLink} from '../components/Link';
+import {ArrowRight} from '../assets/svg';
 
 const GridWrapper = styled.div`
 	display: grid;
@@ -29,6 +31,8 @@ const pricePlaceholder: Price = {
 const Cart: NextPage = () => {
 	const cart = useQuery(CART_QUERY, async () => getCart());
 
+	const cartItemCount = cart.data?.items.length;
+
 	return (
 		<ContentColumn>
 			<Head>
@@ -36,23 +40,26 @@ const Cart: NextPage = () => {
 			</Head>
 			<h1>Your Cart</h1>
 			<p>
-				TOTAL: ({cart.data?.items.length} items){' '}
+				TOTAL: ({cartItemCount} items){' '}
 				<strong>{formatPrice(cart?.data?.total ?? pricePlaceholder)}</strong>
 			</p>
 
 			<GridWrapper>
 				<div>
-					{cart.data?.items.length ? (
-						cart.data?.items.map(item => (
+					{cartItemCount && cart.data ? (
+						cart.data.items.map(item => (
 							<CartListItem key={item.id} item={item} />
 						))
 					) : (
-						<Link href="/products">Shop products</Link>
+						<p>
+							Your cart is empty!
+							<Link href="/products">Shop products</Link>
+						</p>
 					)}
 				</div>
 
 				<div>
-					{cart.data?.items.length ? (
+					{cartItemCount && cart.data ? (
 						<div>
 							<p>Order Summary</p>
 							<div>
@@ -64,9 +71,13 @@ const Cart: NextPage = () => {
 							<div>
 								Total is <span>{formatPrice(cart.data.total)}</span>
 							</div>
-							<a href={cart.data.url} target="_blank" rel="noreferrer">
+							<StyledLink
+								link={cart.data.url}
+								Icon={<ArrowRight />}
+								iconHover="translate(5px)"
+							>
 								Checkout
-							</a>
+							</StyledLink>
 						</div>
 					) : null}
 				</div>
