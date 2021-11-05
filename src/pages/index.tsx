@@ -88,6 +88,7 @@ const Home: NextPage<Props> = ({collection, collectionProductList}: Props) => (
 							color={colors.white}
 							borderWidth="0"
 							padding="0.4rem 0.9rem"
+							iconHover="translate(5px)"
 						>
 							<Unslant>
 								<FlexRowWrapper>

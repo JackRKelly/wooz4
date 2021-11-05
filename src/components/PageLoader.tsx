@@ -1,6 +1,6 @@
 import React from 'react';
 import {UseInfiniteQueryResult} from 'react-query';
-import {ArrowRight} from '../assets/svg';
+import {Refresh} from '../assets/svg';
 import {colors} from '../const';
 import {StyledButton} from './Button';
 import {FlexRowWrapper} from './Flex.styled';
@@ -18,7 +18,7 @@ export const PageLoader: React.FC<PageLoaderProps> = props => (
 			if (props.error) {
 				return (
 					<StyledButton
-						Icon={<ArrowRight />}
+						Icon={<Refresh />}
 						iconHover="translate(5px)"
 						onClick={async () => props.fetchNextPage()}
 					>
@@ -30,8 +30,8 @@ export const PageLoader: React.FC<PageLoaderProps> = props => (
 			if (props.hasNextPage || props.isFetchingNextPage) {
 				return (
 					<StyledButton
-						Icon={<ArrowRight />}
-						iconHover="translate(5px)"
+						Icon={<Refresh />}
+						iconHover="rotate(90deg)"
 						loading={props.isFetchingNextPage}
 						onClick={async () => props.fetchNextPage()}
 					>
