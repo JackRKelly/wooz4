@@ -5,3 +5,6 @@ export * from './Search';
 export * from './SvgBase';
 export * from './ArrowLeft';
 export * from './ArrowRight';
+export * from './Refresh';
+export * from './Checkmark';
+export * from './Plus';
