@@ -32,7 +32,7 @@ export const NavigationWrapper = styled.div`
 	height: 3.125rem;
 
 	@supports (-webkit-backdrop-filter: none) or (backdrop-filter: none) {
-		background: rgba(255, 255, 255, 0.7);
+		background: rgba(255, 255, 255, 0.85);
 		-webkit-backdrop-filter: blur(10px);
 		backdrop-filter: blur(10px);
 	}
