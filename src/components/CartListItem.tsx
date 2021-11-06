@@ -102,16 +102,16 @@ export const CartListItem: React.FC<Props> = ({item}) => {
 				<div>
 					<button
 						type="button"
-						disabled={!(state.quantity < 99)}
+						disabled={!(state.quantity > 1)}
 						onClick={() => {
 							setState(draft => {
-								if (draft.quantity < 99) {
-									draft.quantity += 1;
+								if (draft.quantity > 1) {
+									draft.quantity -= 1;
 								}
 							});
 						}}
 					>
-						+
+						-
 					</button>
 					<QuantityInput
 						type="number"
@@ -133,16 +133,16 @@ export const CartListItem: React.FC<Props> = ({item}) => {
 					/>
 					<button
 						type="button"
-						disabled={!(state.quantity > 1)}
+						disabled={!(state.quantity < 99)}
 						onClick={() => {
 							setState(draft => {
-								if (draft.quantity > 1) {
-									draft.quantity -= 1;
+								if (draft.quantity < 99) {
+									draft.quantity += 1;
 								}
 							});
 						}}
 					>
-						-
+						+
 					</button>
 				</div>
 			</FlexColumnWrapper>
