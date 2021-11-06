@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import React, {FC, useState} from 'react';
-import {WoozBadge, Search, Hamburger} from '../../assets/svg';
+import {WoozLogo, Search, Hamburger} from '../../assets/svg';
 import {FlexRowWrapper} from '../Flex.styled';
 import {NormalizedIconButton} from '../Normalized.styled';
 import {CartIconLink, StyledMobileNavigation} from './Navigation.styled';
@@ -17,7 +17,7 @@ export const MobileNavigation: FC<{itemCount: number; open: () => void}> = ({
 				<div>
 					<Link passHref href="/">
 						<a>
-							<WoozBadge />
+							<WoozLogo />
 						</a>
 					</Link>
 				</div>

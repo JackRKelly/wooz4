@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import React, {FC} from 'react';
-import {Close, Search, WoozBadge} from '../../assets/svg';
+import {Close, Search, WoozLogo} from '../../assets/svg';
 import {FlexRowWrapper} from '../Flex.styled';
 import {NormalizedIconButton} from '../Normalized.styled';
 import {
@@ -36,7 +36,7 @@ export const FullscreenNavigation: FC<{
 
 			<Link passHref href="/">
 				<a onClick={close}>
-					<WoozBadge />
+					<WoozLogo />
 				</a>
 			</Link>
 		</FlexColumnWrapperHeight>

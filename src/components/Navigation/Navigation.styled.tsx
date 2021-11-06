@@ -13,7 +13,7 @@ export const StyledNavigation = styled.nav`
 export const StyledMobileNavigation = styled(StyledNavigation)`
 	display: none;
 
-	@media (max-width: ${breakpoints.lg}px) {
+	@media (max-width: ${breakpoints.lg + 200}px) {
 		display: block;
 	}
 `;
@@ -93,7 +93,7 @@ export const FlexColumnWrapperHeight = styled(FlexColumnWrapper)`
 export const StyledDesktopNavigation = styled(StyledNavigation)`
 	display: none;
 
-	@media (min-width: ${breakpoints.lg}px) {
+	@media (min-width: ${breakpoints.lg + 200}px) {
 		display: block;
 	}
 `;
