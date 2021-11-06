@@ -25,6 +25,10 @@ export const GlobalStyle = styled.createGlobalStyle`
 		background-color: ${colors.white};
 	}
 
+	* {
+		box-sizing: border-box;
+	}
+
 	body {
 		margin: 0;
 		background-attachment: fixed;
@@ -105,11 +109,6 @@ export const GlobalStyle = styled.createGlobalStyle`
 
 	::-webkit-scrollbar-thumb:hover {
 		background: #555;
-	}
-
-	@font-face {
-		font-family: JKG;
-		src: url('jkg.ttf');
 	}
 `;
 
