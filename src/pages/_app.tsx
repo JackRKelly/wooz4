@@ -6,15 +6,19 @@ import {colors} from '../const';
 import * as styled from 'styled-components';
 import {QueryClient, QueryClientProvider} from 'react-query';
 import {isProd} from '../util/env';
-
+import NProgress from 'nprogress';
+import {Router} from 'next/router';
+import {NavigationPlaceholder} from '../components/Navigation/Navigation.styled';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/keyboard';
 import 'swiper/css/navigation';
 import 'swiper/css/a11y';
 import 'swiper/css/lazy';
-
-import {NavigationPlaceholder} from '../components/Navigation/Navigation.styled';
+import 'nprogress/nprogress.css';
+Router.events.on('routeChangeStart', () => NProgress.start());
+Router.events.on('routeChangeComplete', () => NProgress.done());
+Router.events.on('routeChangeError', () => NProgress.done());
 
 export const GlobalStyle = styled.createGlobalStyle`
 	html {
@@ -109,6 +113,10 @@ export const GlobalStyle = styled.createGlobalStyle`
 
 	::-webkit-scrollbar-thumb:hover {
 		background: #555;
+	}
+
+	#nprogress .bar {
+		background: ${colors.red};
 	}
 `;
 
