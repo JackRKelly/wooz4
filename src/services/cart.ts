@@ -70,8 +70,8 @@ export async function getCart(
 								node.variant?.priceV2?.currencyCode ?? ('USD' as CurrencyCode),
 						},
 						image: {
-							src: node.variant?.image?.transformedSrc ?? '',
-							alt: node.variant?.image?.altText ?? '',
+							src: node.variant?.image?.transformedSrc ?? '/favicon.png',
+							alt: node.variant?.image?.altText ?? 'Loading',
 						},
 					},
 				};
