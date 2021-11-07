@@ -62,7 +62,7 @@ export async function getSingleProduct(handle: string): Promise<SingleProduct> {
 		})),
 		variants: variants.edges.map(({node}) => {
 			const variant: SingleProduct['variants'][0] = {
-				outOfStock: node.availableForSale,
+				outOfStock: !node.availableForSale,
 				id: node.id,
 				title: node.title,
 				image: node.image?.id ?? '',
