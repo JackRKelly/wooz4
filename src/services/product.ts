@@ -56,13 +56,13 @@ export async function getSingleProduct(handle: string): Promise<SingleProduct> {
 			description: seo.description ?? truncate(description, {length: 256}),
 		},
 		images: images.edges.map(({node}) => ({
-			id: node.id!,
+			id: node.id ?? '',
 			src: node.transformedSrc,
 			alt: node.altText ?? '',
 		})),
 		variants: variants.edges.map(({node}) => {
 			const variant: SingleProduct['variants'][0] = {
-				outOfStock: !node.availableForSale,
+				outOfStock: node.availableForSale,
 				id: node.id,
 				title: node.title,
 				image: node.image?.id ?? '',
