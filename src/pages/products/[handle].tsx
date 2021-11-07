@@ -59,6 +59,10 @@ const SwiperWrapper = styled.div`
 	background-color: ${colors.lighterGray};
 `;
 
+const DescriptionWrapper = styled.div`
+	line-height: 1.5625rem;
+`;
+
 const Product = ({product}: Props) => {
 	const [swiper, setSwiper] = useState<Swiper>();
 	const [state, setState] = useImmer<State>({
@@ -150,7 +154,9 @@ const Product = ({product}: Props) => {
 					</FlexRowWrapper>
 				</div>
 			</GridWrapper>
-			<div>{reactHtmlParser(product.descriptionHtml)}</div>
+			<DescriptionWrapper>
+				{reactHtmlParser(product.descriptionHtml)}
+			</DescriptionWrapper>
 		</ContentColumn>
 	);
 };
