@@ -1,14 +1,13 @@
-import React from 'react';
-import {SvgFill} from './SvgBase';
+import React, {FC} from 'react';
+import {SvgStroke} from './SvgBase';
 
-export const ArrowDown = () => (
-	<SvgFill id="dropdown" viewBox="0 0 16 24">
+export const ArrowDown: FC<{color?: string}> = ({color}) => (
+	<SvgStroke id="dropdown" viewBox="0 0 16 24" color={color}>
 		<path
 			fill="none"
-			stroke="currentColor"
 			strokeMiterlimit="10"
 			strokeWidth="2"
 			d="M1.5 9L8 15.5 14.5 9"
 		/>
-	</SvgFill>
+	</SvgStroke>
 );

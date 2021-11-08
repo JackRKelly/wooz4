@@ -122,9 +122,14 @@ const Product = ({product}: Props) => {
 							iconHover={
 								state.variant.outOfStock ? undefined : 'translate(5px)'
 							}
-							iconColor={state.variant.outOfStock ? colors.red : undefined}
-							color={state.variant.outOfStock ? colors.red : undefined}
-							borderColor={state.variant.outOfStock ? colors.red : undefined}
+							iconColor={state.variant.outOfStock ? colors.red : colors.white}
+							color={state.variant.outOfStock ? colors.red : colors.white}
+							borderColor={
+								state.variant.outOfStock ? colors.red : colors.darkGray
+							}
+							backgroundColor={
+								state.variant.outOfStock ? undefined : colors.darkGray
+							}
 							padding="0.3rem 0.9rem"
 							Icon={state.variant.outOfStock ? <Close /> : <ArrowRight />}
 							disabled={isAddToCartLoading || state.variant.outOfStock}

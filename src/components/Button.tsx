@@ -48,7 +48,7 @@ export const StyledButton: FC<{
 		<Unslant>
 			<FlexRowWrapper>
 				{loading ? (
-					<LoadingDots color={colors.darkGray} margin="0 2rem" />
+					<LoadingDots color={colors.white} margin="0 2rem" />
 				) : (
 					<>
 						<StyledLinkText color={color}>{children}</StyledLinkText>

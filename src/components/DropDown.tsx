@@ -1,5 +1,6 @@
 import React, {FC, useState} from 'react';
 import {ArrowDown} from '../assets/svg/Icons/ArrowDown';
+import {colors} from '../const';
 import {SingleProduct} from '../services/product';
 import {
 	DropDownContainer,
@@ -24,6 +25,7 @@ export const DropDown: FC<Props> = ({value, options, onSelect}) => {
 	return (
 		<DropDownContainer>
 			<DropDownHeader
+				isOpen={isOpen}
 				onClick={() => {
 					setIsOpen(!isOpen);
 				}}
@@ -31,7 +33,7 @@ export const DropDown: FC<Props> = ({value, options, onSelect}) => {
 				<FlexRowWrapper>
 					<span>{value.title}</span>
 					<ArrowWrapper isOpen={isOpen}>
-						<ArrowDown />
+						<ArrowDown color={colors.darkGray} />
 					</ArrowWrapper>
 				</FlexRowWrapper>
 			</DropDownHeader>
