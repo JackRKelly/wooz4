@@ -13,6 +13,11 @@ export interface SingleProduct {
 	description: string;
 	descriptionHtml: string;
 	outOfStock: boolean;
+	options: Array<{
+		id: string;
+		name: string;
+		values: string[];
+	}>;
 	seo: {
 		title: string;
 		description: string;
@@ -44,6 +49,7 @@ export async function getSingleProduct(handle: string): Promise<SingleProduct> {
 		variants,
 		descriptionHtml,
 		availableForSale,
+		options,
 	} = productByHandle!;
 
 	const product: SingleProduct = {
@@ -51,6 +57,16 @@ export async function getSingleProduct(handle: string): Promise<SingleProduct> {
 		description,
 		descriptionHtml,
 		outOfStock: !availableForSale,
+		options: options.map(option => {
+			const optionMapped: SingleProduct['options'][0] = {
+				id: option.id,
+				name: option.name,
+				values: option.values,
+			};
+
+			return optionMapped;
+		}),
+
 		seo: {
 			title: formatTitle(seo.title ?? title),
 			description: seo.description ?? truncate(description, {length: 256}),

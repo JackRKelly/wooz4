@@ -89,9 +89,36 @@ const Product = ({product}: Props) => {
 					<h1>{product.title}</h1>
 					<p>{formatPrice(state.variant.price)}</p>
 
+					<div>
+						{product.options.map(option => (
+							<div key={option.id}>
+								<label>{option.name}</label>
+								<DropDown
+									value={option.values[0]}
+									options={option.values}
+									onSelect={optionId => {
+										const variant = product.variants.find(
+											({id}) => id === optionId,
+										);
+										const slideIndex = product.images.findIndex(
+											image => image.id === variant?.image,
+										);
+										if (slideIndex !== -1 && swiper) {
+											swiper.slideTo(slideIndex);
+										}
+										setState(draft => {
+											draft.variant = variant!;
+										});
+									}}
+								/>
+								{option.values.toString()}
+							</div>
+						))}
+					</div>
+
 					<label>Variants</label>
 					<GridVariantWrapper>
-						<DropDown
+						{/* <DropDown
 							value={state.variant}
 							options={product.variants}
 							onSelect={optionId => {
@@ -108,7 +135,7 @@ const Product = ({product}: Props) => {
 									draft.variant = variant!;
 								});
 							}}
-						/>
+						/> */}
 						<QuantitySelector
 							type="number"
 							value={state.quantity}
