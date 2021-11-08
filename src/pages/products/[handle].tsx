@@ -53,10 +53,25 @@ const GridVariantWrapper = styled.div`
 
 const QuantitySelector = styled.input`
 	max-width: 5rem;
+	padding: 0.3rem 0.4rem 0.3rem 0.9rem;
+	border-radius: 3px;
+	text-transform: uppercase;
+	font-weight: bold;
+	border: 3px solid ${colors.darkGray};
+	font-size: 1rem;
+	background-color: ${colors.white};
+	color: ${colors.darkGray};
 `;
 
 const SwiperWrapper = styled.div`
 	background-color: ${colors.lighterGray};
+`;
+
+const ProductTag = styled.span`
+	background-color: lightgray;
+	color: ${colors.darkGray};
+	padding: 0.25rem 0.5rem;
+	border-radius: 3px;
 `;
 
 const Product = ({product}: Props) => {
@@ -84,7 +99,11 @@ const Product = ({product}: Props) => {
 				<div>
 					<h1>{product.title}</h1>
 					<p>{formatPrice(state.variant.price)}</p>
-
+					<div>
+						{product.tags.map(tag => (
+							<ProductTag key={`${product.title}_tag-${tag}`}>{tag}</ProductTag>
+						))}
+					</div>
 					<label>Variants</label>
 					<GridVariantWrapper>
 						<DropDown

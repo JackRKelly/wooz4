@@ -37,6 +37,7 @@ query getProductSingle($handle: String!) {
 		description
 		descriptionHtml
 		availableForSale
+		tags
 		seo {
 			title
 			description

@@ -13,6 +13,7 @@ export interface SingleProduct {
 	description: string;
 	descriptionHtml: string;
 	outOfStock: boolean;
+	tags: string[];
 	seo: {
 		title: string;
 		description: string;
@@ -44,6 +45,7 @@ export async function getSingleProduct(handle: string): Promise<SingleProduct> {
 		variants,
 		descriptionHtml,
 		availableForSale,
+		tags,
 	} = productByHandle!;
 
 	const product: SingleProduct = {
@@ -51,6 +53,7 @@ export async function getSingleProduct(handle: string): Promise<SingleProduct> {
 		description,
 		descriptionHtml,
 		outOfStock: !availableForSale,
+		tags,
 		seo: {
 			title: formatTitle(seo.title ?? title),
 			description: seo.description ?? truncate(description, {length: 256}),
