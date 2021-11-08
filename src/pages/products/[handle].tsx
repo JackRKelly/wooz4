@@ -19,6 +19,7 @@ import {Swiper} from 'swiper';
 import {ProductProps} from '../../components/ProductSwiper';
 import {StyledButton} from '../../components/Button';
 import {ArrowRight, Close} from '../../assets/svg';
+import {Unslant} from '../../components/Link.styled';
 
 const SwiperSliderNoSSR = dynamic<ProductProps>(
 	async () =>
@@ -39,7 +40,7 @@ const GridWrapper = styled.div`
 	display: grid;
 	grid-template-columns: repeat(auto-fit, minmax(22rem, 1fr));
 	column-gap: 2rem;
-	align-items: start;
+	align-items: center;
 	.swiper {
 		width: 100%;
 	}
@@ -72,6 +73,30 @@ const ProductTag = styled.span`
 	color: ${colors.darkGray};
 	padding: 0.25rem 0.5rem;
 	border-radius: 3px;
+	margin-right: 0.45rem;
+	transform: skewX(-7deg);
+	display: inline-block;
+`;
+
+const ProductTitle = styled.h1`
+	margin: 0 0 1rem;
+	font-style: italic;
+	font-weight: normal;
+`;
+
+const ProductPrice = styled.span`
+	font-weight: bold;
+	margin-bottom: 1rem;
+	display: block;
+`;
+
+const ProductTagWrapper = styled.div`
+	margin: 1rem 0;
+`;
+
+const ProductVariantLabel = styled.label`
+	margin-bottom: 0.3rem;
+	display: inline-block;
 `;
 
 const Product = ({product}: Props) => {
@@ -97,14 +122,16 @@ const Product = ({product}: Props) => {
 					<SwiperSliderNoSSR product={product} setSwiper={setSwiper} />
 				</SwiperWrapper>
 				<div>
-					<h1>{product.title}</h1>
-					<p>{formatPrice(state.variant.price)}</p>
-					<div>
+					<ProductTitle>{product.title}</ProductTitle>
+					<ProductPrice>{formatPrice(state.variant.price)}</ProductPrice>
+					<ProductTagWrapper>
 						{product.tags.map(tag => (
-							<ProductTag key={`${product.title}_tag-${tag}`}>{tag}</ProductTag>
+							<ProductTag key={`${product.title}_tag-${tag}`}>
+								<Unslant>{tag}</Unslant>
+							</ProductTag>
 						))}
-					</div>
-					<label>Variants</label>
+					</ProductTagWrapper>
+					<ProductVariantLabel>Variants: </ProductVariantLabel>
 					<GridVariantWrapper>
 						<DropDown
 							value={state.variant}
