@@ -93,7 +93,7 @@ const Home: NextPage<Props> = ({collection, collectionProductList}: Props) => (
 							<Unslant>
 								<FlexRowWrapper>
 									<HeroCTACopy>Shop Now</HeroCTACopy>
-									<ArrowRight />
+									<ArrowRight color={colors.white} />
 								</FlexRowWrapper>
 							</Unslant>
 						</SlantedLink>

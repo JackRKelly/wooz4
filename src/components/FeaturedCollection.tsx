@@ -6,6 +6,7 @@ import {SingleCollection} from '../services/collection';
 import {ProductList} from '../services/product';
 import {FlexRowWrapper} from './Flex.styled';
 import {ArrowRight} from '../assets/svg';
+import {colors} from '../const';
 
 interface Props {
 	collection: SingleCollection;
@@ -32,7 +33,7 @@ export const FeaturedCollection = ({
 			<FlexRowWrapper padding="1.5rem 0" justifyContent="flex-end">
 				<StyledLink
 					link={`/collections/${handle}`}
-					Icon={<ArrowRight />}
+					Icon={<ArrowRight color={colors.darkGray} />}
 					iconHover="translate(5px)"
 				>
 					View Collection
