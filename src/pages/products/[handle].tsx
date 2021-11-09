@@ -62,6 +62,7 @@ const QuantitySelector = styled.input`
 	font-size: 1rem;
 	background-color: ${colors.white};
 	color: ${colors.darkGray};
+	-webkit-appearance: none;
 `;
 
 const SwiperWrapper = styled.div`
