@@ -1,5 +1,5 @@
-query getProductList($limit: Int = 12, $after: String) {
-	products(first: $limit, after: $after) {
+query getProductList($limit: Int = 12, $after: String, $query: String) {
+	products(first: $limit, after: $after, query: $query) {
 		edges {
 			node {
 				id

@@ -6211,6 +6211,7 @@ export type GetCollectionProductsQuery = { __typename?: 'QueryRoot', collectionB
 export type GetProductListQueryVariables = Exact<{
   limit?: Maybe<Scalars['Int']>;
   after?: Maybe<Scalars['String']>;
+  query?: Maybe<Scalars['String']>;
 }>;
 
 
@@ -6393,8 +6394,8 @@ export const GetCollectionProductsDocument = gql`
 }
     `;
 export const GetProductListDocument = gql`
-    query getProductList($limit: Int = 12, $after: String) {
-  products(first: $limit, after: $after) {
+    query getProductList($limit: Int = 12, $after: String, $query: String) {
+  products(first: $limit, after: $after, query: $query) {
     edges {
       node {
         id
