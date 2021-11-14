@@ -22,7 +22,7 @@ export const ProductCardGrid = styled.div`
 	justify-items: stretch;
 	column-gap: 1rem;
 	row-gap: 2rem;
-	grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+	grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
 `;
 
 export const ProductFlex = styled.div<{isDisabled?: boolean}>`
