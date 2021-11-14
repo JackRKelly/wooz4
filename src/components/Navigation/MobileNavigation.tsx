@@ -1,46 +1,41 @@
 import Link from 'next/link';
-import React, {FC, useState} from 'react';
+import React, {FC} from 'react';
 import {WoozLogo, Search, Hamburger} from '../../assets/svg';
 import {FlexRowWrapper} from '../Flex.styled';
 import {NormalizedIconButton} from '../Normalized.styled';
-import {CartIconLink, StyledMobileNavigation} from './Navigation.styled';
+import {
+	CartIconLink,
+	SearchGlass,
+	StyledMobileNavigation,
+} from './Navigation.styled';
 
 export const MobileNavigation: FC<{itemCount: number; open: () => void}> = ({
 	open,
 	itemCount,
-}) => {
-	const [isHoveringSearch, setIsHoveringSearch] = useState(false);
+}) => (
+	<StyledMobileNavigation>
+		<FlexRowWrapper>
+			<div>
+				<Link passHref href="/">
+					<a>
+						<WoozLogo />
+					</a>
+				</Link>
+			</div>
 
-	return (
-		<StyledMobileNavigation>
 			<FlexRowWrapper>
-				<div>
-					<Link passHref href="/">
-						<a>
-							<WoozLogo />
-						</a>
-					</Link>
-				</div>
+				<Link passHref href="/products/search">
+					<SearchGlass>
+						<Search />
+					</SearchGlass>
+				</Link>
 
-				<FlexRowWrapper>
-					<NormalizedIconButton
-						onMouseEnter={() => {
-							setIsHoveringSearch(true);
-						}}
-						onMouseLeave={() => {
-							setIsHoveringSearch(false);
-						}}
-					>
-						<Search active={isHoveringSearch} />
-					</NormalizedIconButton>
+				<CartIconLink itemCount={itemCount} />
 
-					<CartIconLink itemCount={itemCount} />
-
-					<NormalizedIconButton type="button" onClick={open}>
-						<Hamburger />
-					</NormalizedIconButton>
-				</FlexRowWrapper>
+				<NormalizedIconButton type="button" onClick={open}>
+					<Hamburger />
+				</NormalizedIconButton>
 			</FlexRowWrapper>
-		</StyledMobileNavigation>
-	);
-};
+		</FlexRowWrapper>
+	</StyledMobileNavigation>
+);

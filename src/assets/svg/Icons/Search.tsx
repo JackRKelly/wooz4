@@ -1,10 +1,8 @@
-import React, {FC} from 'react';
-import styled from 'styled-components';
-import {transitions} from '../../../const';
+import React from 'react';
 import {SvgFill} from './SvgBase';
 
-export const Search: FC<{active?: boolean}> = ({active}) => (
-	<RotatingGlass viewBox="0 0 20 24" active={active}>
+export const Search = () => (
+	<SvgFill viewBox="0 0 20 24">
 		<g
 			fill="none"
 			stroke="black"
@@ -15,10 +13,5 @@ export const Search: FC<{active?: boolean}> = ({active}) => (
 			<circle cx="8" cy="10" r="6" />
 			<path d="M13 15l5 5" />
 		</g>
-	</RotatingGlass>
+	</SvgFill>
 );
-
-const RotatingGlass = styled(SvgFill)<{active?: boolean}>`
-	transition: ${transitions.easeInOutShort};
-	transform: ${props => (props.active ? 'rotate(45deg)' : 'none')};
-`;

@@ -2,7 +2,7 @@ import React from 'react';
 import type {NextPage} from 'next';
 import last from 'lodash/last';
 import {InfiniteData, useInfiniteQuery} from 'react-query';
-import {PRODUCT_LIST_QUERY} from '../../const/query';
+import {PRODUCT_LIST_SEARCH_QUERY} from '../../const/query';
 import {getProductList, ProductList} from '../../services/product';
 import {ProductCard, ProductCardGrid} from '../../components/ProductCard';
 import {PageLoader} from '../../components/PageLoader';
@@ -16,10 +16,14 @@ interface Props {
 
 const SearchProducts: NextPage<Props> = ({initialData}: Props) => {
 	const productList = useInfiniteQuery(
-		PRODUCT_LIST_QUERY,
+		PRODUCT_LIST_SEARCH_QUERY,
 
 		async ({pageParam}: {pageParam?: string}) =>
-			getProductList({after: pageParam}),
+			getProductList({
+				after: pageParam,
+				query: 'Sakura',
+				limit: 8,
+			}),
 		{
 			initialData,
 			getNextPageParam: lastPage => {

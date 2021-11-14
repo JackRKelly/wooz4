@@ -7,6 +7,7 @@ import {
 	StyledFullscreenNavigation,
 	FlexColumnWrapperHeight,
 	CartIconLink,
+	SearchGlass,
 } from './Navigation.styled';
 import {NavigationLink} from './NavigationLink';
 
@@ -22,9 +23,11 @@ export const FullscreenNavigation: FC<{
 			</NormalizedIconButton>
 
 			<FlexRowWrapper>
-				<NormalizedIconButton>
-					<Search />
-				</NormalizedIconButton>
+				<Link passHref href="/products/search">
+					<SearchGlass>
+						<Search />
+					</SearchGlass>
+				</Link>
 
 				<CartIconLink close={close} itemCount={itemCount} />
 			</FlexRowWrapper>

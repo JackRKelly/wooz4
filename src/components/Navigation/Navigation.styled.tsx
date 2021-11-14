@@ -134,3 +134,10 @@ export const CartIconLink: FC<{close?: () => void; itemCount: number}> = ({
 		</CartLink>
 	</Link>
 );
+
+export const SearchGlass = styled.a`
+	transition: ${transitions.easeInOutShort};
+	&:hover {
+		transform: rotate(45deg);
+	}
+`;
