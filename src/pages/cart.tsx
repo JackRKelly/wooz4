@@ -39,10 +39,12 @@ const Cart: NextPage = () => {
 				<title>{buildTitle('Cart', 'after')}</title>
 			</Head>
 			<h1>Your Cart</h1>
-			<p>
-				TOTAL: ({cartItemCount} items){' '}
-				<strong>{formatPrice(cart?.data?.total ?? pricePlaceholder)}</strong>
-			</p>
+			{cartItemCount ? (
+				<p>
+					TOTAL: ({cartItemCount} items){' '}
+					<strong>{formatPrice(cart?.data?.total ?? pricePlaceholder)}</strong>
+				</p>
+			) : null}
 
 			<GridWrapper>
 				<div>
